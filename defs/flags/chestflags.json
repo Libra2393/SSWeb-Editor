@@ -1,0 +1,31 @@
+{
+  "name": "Chest flags",
+  "source": "Layout from the zeldaret/ss decompilation (TBoxflagManager: 32 flags per scene); scene indices as for scene flags. A chest's flag number is the low 6 bits of its rotation-Z parameter (the randomizer's TBox id minus 64).",
+  "base": "0x2A64",
+  "wordsPerScene": 2,
+  "format": "Flag n of a scene is bit n%16 of the 16-bit word at base + 2*(2*scene + n/16).",
+  "scenes": {
+    "Skyloft": 0,
+    "Faron Woods": 1,
+    "Lake Floria": 2,
+    "Flooded Faron Woods": 3,
+    "Eldin Volcano": 4,
+    "Volcano Summit": 5,
+    "Lanayru Desert": 7,
+    "Lanayru Sand Sea": 8,
+    "Lanayru Gorge": 9,
+    "Sealed Grounds": 10,
+    "Skyview": 11,
+    "Ancient Cistern": 12,
+    "Earth Temple": 14,
+    "Fire Sanctuary": 15,
+    "Lanayru Mining Facility": 17,
+    "Sandship": 18,
+    "Sky Keep": 20,
+    "Sky": 21,
+    "Faron Silent Realm": 22,
+    "Eldin Silent Realm": 23,
+    "Lanayru Silent Realm": 24,
+    "Skyloft Silent Realm": 25
+  }
+}

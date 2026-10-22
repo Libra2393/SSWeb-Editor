@@ -1,0 +1,86 @@
+{
+  "id": "inventory",
+  "title": "Inventory",
+  "scope": "slot",
+  "groups": [
+    {
+      "title": "Swords",
+      "fields": [
+        { "id": "practiceSword", "label": "Practice Sword", "type": "flag", "offset": "0x09F2", "mask": "0x0100", "storage": "u16" },
+        { "id": "goddessSword", "label": "Goddess Sword", "type": "flag", "offset": "0x09E4", "mask": "0x0100", "storage": "u16" },
+        { "id": "goddessLongsword", "label": "Goddess Longsword", "type": "flag", "offset": "0x09E4", "mask": "0x0200", "storage": "u16" },
+        { "id": "goddessWhiteSword", "label": "Goddess White Sword", "type": "flag", "offset": "0x09FA", "mask": "0x0010", "storage": "u16" },
+        { "id": "masterSword", "label": "Master Sword", "type": "flag", "offset": "0x09E4", "mask": "0x0400", "storage": "u16" },
+        { "id": "trueMasterSword", "label": "True Master Sword", "type": "flag", "offset": "0x09F2", "mask": "0x0080", "storage": "u16" }
+      ]
+    },
+    {
+      "title": "Items",
+      "fields": [
+        { "id": "slingshot", "label": "Slingshot", "type": "flag", "offset": "0x09E6", "mask": "0x1000", "storage": "u16" },
+        { "id": "scattershot", "label": "Scattershot", "type": "flag", "offset": "0x09EC", "mask": "0x8000", "storage": "u16" },
+        { "id": "beetle", "label": "Beetle", "type": "flag", "offset": "0x09E6", "mask": "0x2000", "storage": "u16" },
+        { "id": "hookBeetle", "label": "Hook Beetle", "type": "flag", "offset": "0x09EA", "mask": "0x0002", "storage": "u16" },
+        { "id": "quickBeetle", "label": "Quick Beetle", "type": "flag", "offset": "0x09EA", "mask": "0x0004", "storage": "u16" },
+        { "id": "toughBeetle", "label": "Tough Beetle", "type": "flag", "offset": "0x09EA", "mask": "0x0008", "storage": "u16" },
+        { "id": "bombs", "label": "Bomb Bag", "type": "flag", "offset": "0x09EC", "mask": "0x0004", "storage": "u16" },
+        { "id": "gustBellows", "label": "Gust Bellows", "type": "flag", "offset": "0x09E6", "mask": "0x0200", "storage": "u16" },
+        { "id": "whip", "label": "Whip", "type": "flag", "offset": "0x09F2", "mask": "0x0010", "storage": "u16" },
+        { "id": "clawshots", "label": "Clawshots", "type": "flag", "offset": "0x09E4", "mask": "0x2000", "storage": "u16" },
+        { "id": "bow", "label": "Bow", "type": "flag", "offset": "0x09E4", "mask": "0x1000", "storage": "u16" },
+        { "id": "ironBow", "label": "Iron Bow", "type": "flag", "offset": "0x09EC", "mask": "0x0001", "storage": "u16" },
+        { "id": "sacredBow", "label": "Sacred Bow", "type": "flag", "offset": "0x09EC", "mask": "0x0002", "storage": "u16" },
+        { "id": "bugNet", "label": "Bug Net", "type": "flag", "offset": "0x09E8", "mask": "0x0100", "storage": "u16" },
+        { "id": "bigBugNet", "label": "Big Bug Net", "type": "flag", "offset": "0x09F2", "mask": "0x0200", "storage": "u16" },
+        { "id": "harp", "label": "Goddess's Harp", "type": "flag", "offset": "0x09F4", "mask": "0x0200", "storage": "u16" },
+        { "id": "sailcloth", "label": "Sailcloth", "type": "flag", "offset": "0x09F4", "mask": "0x0100", "storage": "u16" },
+        { "id": "diggingMitts", "label": "Digging Mitts", "type": "flag", "offset": "0x09E6", "mask": "0x4000", "storage": "u16" },
+        { "id": "moleMitts", "label": "Mogma Mitts", "type": "flag", "offset": "0x09EC", "mask": "0x0200", "storage": "u16" },
+        { "id": "fireshieldEarrings", "label": "Fireshield Earrings", "type": "flag", "offset": "0x09F2", "mask": "0x0020", "storage": "u16" },
+        { "id": "waterDragonScale", "label": "Water Dragon's Scale", "type": "flag", "offset": "0x09E8", "mask": "0x0020", "storage": "u16" }
+      ]
+    },
+    {
+      "title": "Ammo",
+      "fields": [
+        { "id": "arrows", "label": "Arrows", "type": "u16", "offset": "0x0A62", "shift": 0, "bits": 7 },
+        { "id": "bombAmmo", "label": "Bombs", "type": "u16", "offset": "0x0A62", "shift": 7, "bits": 7 },
+        { "id": "seeds", "label": "Deku seeds", "type": "u16", "offset": "0x0A60", "shift": 7, "bits": 7 }
+      ]
+    },
+    {
+      "title": "Wallets",
+      "fields": [
+        { "id": "mediumWallet", "label": "Medium Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0004", "storage": "u16" },
+        { "id": "bigWallet", "label": "Big Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0008", "storage": "u16" },
+        { "id": "giantWallet", "label": "Giant Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0010", "storage": "u16" },
+        { "id": "tycoonWallet", "label": "Tycoon Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0020", "storage": "u16" }
+      ]
+    },
+    {
+      "title": "Songs & Triforce",
+      "fields": [
+        { "id": "balladGoddess", "label": "Ballad of the Goddess", "type": "flag", "offset": "0x09FA", "mask": "0x0020", "storage": "u16" },
+        { "id": "faroresCourage", "label": "Farore's Courage", "type": "flag", "offset": "0x09FA", "mask": "0x0040", "storage": "u16" },
+        { "id": "nayrusWisdom", "label": "Nayru's Wisdom", "type": "flag", "offset": "0x09FA", "mask": "0x0080", "storage": "u16" },
+        { "id": "dinsPower", "label": "Din's Power", "type": "flag", "offset": "0x09FA", "mask": "0x0100", "storage": "u16" },
+        { "id": "waterDragonSong", "label": "Water Dragon's part", "type": "flag", "offset": "0x09FA", "mask": "0x0200", "storage": "u16" },
+        { "id": "fireDragonSong", "label": "Fire Dragon's part", "type": "flag", "offset": "0x09FA", "mask": "0x0400", "storage": "u16" },
+        { "id": "songOfTheHero", "label": "Song of the Hero", "type": "flag", "offset": "0x09FA", "mask": "0x1000", "storage": "u16" },
+        { "id": "triforceRight", "label": "Triforce (right)", "type": "flag", "offset": "0x09EC", "mask": "0x0020", "storage": "u16" },
+        { "id": "triforceTop", "label": "Triforce (top)", "type": "flag", "offset": "0x09EC", "mask": "0x0040", "storage": "u16" },
+        { "id": "triforceLeft", "label": "Triforce (left)", "type": "flag", "offset": "0x09EC", "mask": "0x0080", "storage": "u16" },
+        { "id": "emeraldTablet", "label": "Emerald Tablet", "type": "itemflag", "flag": 177 },
+        { "id": "rubyTablet", "label": "Ruby Tablet", "type": "itemflag", "flag": 178 },
+        { "id": "amberTablet", "label": "Amber Tablet", "type": "itemflag", "flag": 179 }
+      ]
+    },
+    {
+      "title": "Equipped",
+      "fields": [
+        { "id": "equippedWeapon", "label": "Equipped B item", "type": "u8", "offset": "0x53AE", "enum": "weapons" },
+        { "id": "knightUniform", "label": "Knight uniform", "type": "storyflag", "flag": 36, "description": "Off: Link wears his starting clothes. The same story flag also unlocks Fi once Link has a sword and switches parts of Skyloft, the Knight Academy and the Sealed Grounds to their later layouts." }
+      ]
+    }
+  ]
+}

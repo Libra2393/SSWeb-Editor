@@ -1,0 +1,689 @@
+{
+  "id": "collection",
+  "title": "Bugs & Treasures",
+  "scope": "slot",
+  "groups": [
+    {
+      "title": "Bugs",
+      "fields": [
+        {
+          "id": "hornet",
+          "label": "Deku Hornet",
+          "type": "row",
+          "fields": [
+            {
+              "id": "hornetOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x08F6",
+              "mask": "0x8000",
+              "storage": "u16"
+            },
+            {
+              "id": "hornetCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4C",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "butterfly",
+          "label": "Blessed Butterfly",
+          "type": "row",
+          "fields": [
+            {
+              "id": "butterflyOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F2",
+              "mask": "0x8000",
+              "storage": "u16"
+            },
+            {
+              "id": "butterflyCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4A",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "dragonfly",
+          "label": "Gerudo Dragonfly",
+          "type": "row",
+          "fields": [
+            {
+              "id": "dragonflyOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0004",
+              "storage": "u16"
+            },
+            {
+              "id": "dragonflyCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A46",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "firefly",
+          "label": "Starry Firefly",
+          "type": "row",
+          "fields": [
+            {
+              "id": "fireflyOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0020",
+              "storage": "u16"
+            },
+            {
+              "id": "fireflyCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A44",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "rhinoBeetle",
+          "label": "Woodland Rhino Beetle",
+          "type": "row",
+          "fields": [
+            {
+              "id": "rhinoBeetleOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F2",
+              "mask": "0x0800",
+              "storage": "u16"
+            },
+            {
+              "id": "rhinoBeetleCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4E",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "ladybug",
+          "label": "Volcanic Ladybug",
+          "type": "row",
+          "fields": [
+            {
+              "id": "ladybugOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F2",
+              "mask": "0x4000",
+              "storage": "u16"
+            },
+            {
+              "id": "ladybugCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4A",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "sandCicada",
+          "label": "Sand Cicada",
+          "type": "row",
+          "fields": [
+            {
+              "id": "sandCicadaOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0002",
+              "storage": "u16"
+            },
+            {
+              "id": "sandCicadaCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A48",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "stagBeetle",
+          "label": "Sky Stag Beetle",
+          "type": "row",
+          "fields": [
+            {
+              "id": "stagBeetleOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0010",
+              "storage": "u16"
+            },
+            {
+              "id": "stagBeetleCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A44",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "grasshopper",
+          "label": "Faron Grasshopper",
+          "type": "row",
+          "fields": [
+            {
+              "id": "grasshopperOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F2",
+              "mask": "0x0400",
+              "storage": "u16"
+            },
+            {
+              "id": "grasshopperCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4E",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "mantis",
+          "label": "Skyloft Mantis",
+          "type": "row",
+          "fields": [
+            {
+              "id": "mantisOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F2",
+              "mask": "0x2000",
+              "storage": "u16"
+            },
+            {
+              "id": "mantisCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A4C",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "ant",
+          "label": "Lanayru Ant",
+          "type": "row",
+          "fields": [
+            {
+              "id": "antOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0001",
+              "storage": "u16"
+            },
+            {
+              "id": "antCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A48",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "roller",
+          "label": "Eldin Roller",
+          "type": "row",
+          "fields": [
+            {
+              "id": "rollerOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x09F4",
+              "mask": "0x0008",
+              "storage": "u16"
+            },
+            {
+              "id": "rollerCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A46",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Treasures",
+      "fields": [
+        {
+          "id": "hornetLarvae",
+          "label": "Hornet Larvae",
+          "type": "row",
+          "fields": [
+            {
+              "id": "hornetLarvaeOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x0200",
+              "storage": "u16"
+            },
+            {
+              "id": "hornetLarvaeCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A42",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "birdFeather",
+          "label": "Bird Feather",
+          "type": "row",
+          "fields": [
+            {
+              "id": "birdFeatherOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x0400",
+              "storage": "u16"
+            },
+            {
+              "id": "birdFeatherCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A42",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "tumbleweed",
+          "label": "Tumbleweed",
+          "type": "row",
+          "fields": [
+            {
+              "id": "tumbleweedOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x0800",
+              "storage": "u16"
+            },
+            {
+              "id": "tumbleweedCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A40",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "lizardTail",
+          "label": "Lizard Tail",
+          "type": "row",
+          "fields": [
+            {
+              "id": "lizardTailOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x1000",
+              "storage": "u16"
+            },
+            {
+              "id": "lizardTailCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A40",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "eldinOre",
+          "label": "Eldin Ore",
+          "type": "row",
+          "fields": [
+            {
+              "id": "eldinOreOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x2000",
+              "storage": "u16"
+            },
+            {
+              "id": "eldinOreCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3E",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "ancientFlower",
+          "label": "Ancient Flower",
+          "type": "row",
+          "fields": [
+            {
+              "id": "ancientFlowerOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x4000",
+              "storage": "u16"
+            },
+            {
+              "id": "ancientFlowerCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3E",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "amberRelic",
+          "label": "Amber Relic",
+          "type": "row",
+          "fields": [
+            {
+              "id": "amberRelicOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0934",
+              "mask": "0x8000",
+              "storage": "u16"
+            },
+            {
+              "id": "amberRelicCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3C",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "duskRelic",
+          "label": "Dusk Relic",
+          "type": "row",
+          "fields": [
+            {
+              "id": "duskRelicOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0001",
+              "storage": "u16"
+            },
+            {
+              "id": "duskRelicCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3C",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "jellyBlob",
+          "label": "Jelly Blob",
+          "type": "row",
+          "fields": [
+            {
+              "id": "jellyBlobOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0002",
+              "storage": "u16"
+            },
+            {
+              "id": "jellyBlobCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3A",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "monsterClaw",
+          "label": "Monster Claw",
+          "type": "row",
+          "fields": [
+            {
+              "id": "monsterClawOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0004",
+              "storage": "u16"
+            },
+            {
+              "id": "monsterClawCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A3A",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "monsterHorn",
+          "label": "Monster Horn",
+          "type": "row",
+          "fields": [
+            {
+              "id": "monsterHornOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0008",
+              "storage": "u16"
+            },
+            {
+              "id": "monsterHornCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A38",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "ornamentalSkull",
+          "label": "Ornamental Skull",
+          "type": "row",
+          "fields": [
+            {
+              "id": "ornamentalSkullOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0010",
+              "storage": "u16"
+            },
+            {
+              "id": "ornamentalSkullCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A38",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "evilCrystal",
+          "label": "Evil Crystal",
+          "type": "row",
+          "fields": [
+            {
+              "id": "evilCrystalOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0020",
+              "storage": "u16"
+            },
+            {
+              "id": "evilCrystalCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A36",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "blueBirdFeather",
+          "label": "Blue Bird Feather",
+          "type": "row",
+          "fields": [
+            {
+              "id": "blueBirdFeatherOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0040",
+              "storage": "u16"
+            },
+            {
+              "id": "blueBirdFeatherCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A36",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "goldenSkull",
+          "label": "Golden Skull",
+          "type": "row",
+          "fields": [
+            {
+              "id": "goldenSkullOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0080",
+              "storage": "u16"
+            },
+            {
+              "id": "goldenSkullCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A34",
+              "shift": 0,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        },
+        {
+          "id": "goddessPlume",
+          "label": "Goddess Plume",
+          "type": "row",
+          "fields": [
+            {
+              "id": "goddessPlumeOwned",
+              "label": "Owned",
+              "type": "flag",
+              "offset": "0x0936",
+              "mask": "0x0100",
+              "storage": "u16"
+            },
+            {
+              "id": "goddessPlumeCount",
+              "label": "Count",
+              "type": "u16",
+              "offset": "0x0A34",
+              "shift": 7,
+              "bits": 7,
+              "max": 99
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

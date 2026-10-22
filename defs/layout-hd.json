@@ -1,0 +1,62 @@
+{
+  "name": "The Legend of Zelda: Skyward Sword HD — wiiking2.sav",
+  "platform": "switch",
+  "fileSize": "0x1DE20",
+  "endian": "little",
+  "magic": {
+    "offset": "0x0",
+    "length": 4,
+    "values": { "PROJ": "Skyward Sword HD" },
+    "description": "Seen in one dump so far; a different header still opens after a prompt."
+  },
+  "scopes": {
+    "file": { "label": "Whole file", "base": "0x0", "size": "0x1DE20" },
+    "slot": {
+      "label": "File {n}",
+      "labels": ["File 1", "File 2", "File 3", "Slot 4"],
+      "base": "0x20",
+      "stride": "0x53C0",
+      "size": "0x53C0",
+      "count": 4,
+      "companions": ["slotExtra", "slotExtra2"],
+      "description": "Same struct as the Wii slots, little-endian. The 4th slot looked like a later copy of file 3 in the one sample (possibly an autosave)."
+    },
+    "slotExtra": {
+      "label": "File {n} extra data",
+      "base": "0x14FB0",
+      "stride": "0x2238",
+      "size": "0x2238",
+      "count": 4,
+      "description": "Per-slot HD-only data, covered by that slot's checksum. Contents not yet understood."
+    },
+    "slotExtra2": {
+      "label": "File {n} extra data 2",
+      "base": "0x1D9B0",
+      "stride": "0x118",
+      "size": "0x118",
+      "count": 4,
+      "description": "Second per-slot HD-only block, also covered by that slot's checksum."
+    },
+    "skip": { "label": "Skip data", "base": "0x14F20", "size": "0x90", "description": "Starts with the same bytes as skip.dat." },
+    "shared": { "label": "Unknown shared data", "base": "0x1D890", "size": "0x120" },
+    "end": { "label": "End of file", "base": "0x1DE10", "size": "0x10" }
+  },
+  "checksums": [
+    {
+      "scope": "slot",
+      "algorithm": "crc32",
+      "parts": [
+        { "scope": "slot", "start": "0x0", "length": "0x53BC" },
+        { "scope": "slotExtra", "start": "0x0", "length": "0x2238" },
+        { "scope": "slotExtra2", "start": "0x0", "length": "0x118" }
+      ],
+      "store": "0x53BC",
+      "description": "Standard CRC32 run over the slot's 0x53BC bytes, then its two extra blocks, stored little-endian at the end of the slot. Found in the game's FileManager code (main ~0xDFAE30 in v1.0.0, ~0xDFA7E4 in v1.0.1; same ranges in both)."
+    }
+  ],
+  "slotSummary": {
+    "name": "general.playerName",
+    "empty": "general.isNew",
+    "playTime": "general.playTime"
+  }
+}

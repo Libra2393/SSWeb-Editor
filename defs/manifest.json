@@ -1,0 +1,26 @@
+{
+  "formats": [
+    { "id": "wii", "label": "Wii", "layout": "layout.json" },
+    { "id": "hd", "label": "Skyward Sword HD (Switch)", "layout": "layout-hd.json" }
+  ],
+  "enums": ["enums.json"],
+  "sections": [
+    "general.json",
+    "inventory.json",
+    "equipment.json",
+    "collection.json",
+    "locations.json",
+    "story-flags.json"
+  ],
+  "flagTables": {
+    "story": "flags/storyflags.json",
+    "item": "flags/itemflags.json",
+    "scene": "flags/sceneflags.json",
+    "chest": "flags/chestflags.json"
+  },
+  "presets": [
+    "presets/skyloft-before-first-dive.json",
+    "presets/skyloft-before-first-dive-starting-clothes.json"
+  ],
+  "tracker": "tracker.json"
+}

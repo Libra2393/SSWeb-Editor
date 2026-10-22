@@ -1,0 +1,309 @@
+{
+  "id": "locations",
+  "title": "Collectibles",
+  "scope": "slot",
+  "layout": "flags",
+  "description": "Goddess chests, heart pieces, loose gratitude crystals and every other chest, ticked when collected or opened. Location names and chest IDs from the Skyward Sword Randomizer (MIT); flag positions from its Archipelago world, checked against a 100% Wii save. Hover an entry to see whether it was verified.",
+  "groups": [
+    {
+      "title": "Goddess Chests (27)",
+      "fields": [
+        { "id": "gc-central-skyloft-west-cliff-goddess-chest", "label": "Central Skyloft - West Cliff Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 14, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-central-skyloft-bazaar-goddess-chest", "label": "Central Skyloft - Bazaar Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 29, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-central-skyloft-shed-goddess-chest", "label": "Central Skyloft - Shed Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 15, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-central-skyloft-floating-island-goddess-chest", "label": "Central Skyloft - Floating Island Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 27, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-central-skyloft-waterfall-goddess-chest", "label": "Central Skyloft - Waterfall Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 16, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-bamboo-island-goddess-chest", "label": "Sky - Bamboo Island Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 18, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-on-island-next-to-bamboo-island", "label": "Sky - Goddess Chest on Island next to Bamboo Island", "type": "chestflag", "scene": "Sky", "flag": 7, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-in-cave-on-island-next-to-bamboo-island", "label": "Sky - Goddess Chest in Cave on Island next to Bamboo Island", "type": "chestflag", "scene": "Sky", "flag": 19, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-beedle-s-island-goddess-chest", "label": "Sky - Beedle's Island Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 25, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-beedle-s-island-cage-goddess-chest", "label": "Sky - Beedle's Island Cage Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 17, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-northeast-island-goddess-chest-behind-bombable-rocks", "label": "Sky - Northeast Island Goddess Chest behind Bombable Rocks", "type": "chestflag", "scene": "Sky", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-northeast-island-cage-goddess-chest", "label": "Sky - Northeast Island Cage Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 10, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-lumpy-pumpkin-goddess-chest-on-the-roof", "label": "Sky - Lumpy Pumpkin - Goddess Chest on the Roof", "type": "chestflag", "scene": "Sky", "flag": 23, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-lumpy-pumpkin-outside-goddess-chest", "label": "Sky - Lumpy Pumpkin - Outside Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-on-island-closest-to-faron-pillar", "label": "Sky - Goddess Chest on Island Closest to Faron Pillar", "type": "chestflag", "scene": "Sky", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-outside-volcanic-island", "label": "Sky - Goddess Chest outside Volcanic Island", "type": "chestflag", "scene": "Sky", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-inside-volcanic-island", "label": "Sky - Goddess Chest inside Volcanic Island", "type": "chestflag", "scene": "Sky", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-goddess-chest-under-fun-fun-island", "label": "Sky - Goddess Chest under Fun Fun Island", "type": "chestflag", "scene": "Sky", "flag": 22, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-southwest-triple-island-upper-goddess-chest", "label": "Sky - Southwest Triple Island Upper Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-southwest-triple-island-lower-goddess-chest", "label": "Sky - Southwest Triple Island Lower Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 20, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-sky-southwest-triple-island-cage-goddess-chest", "label": "Sky - Southwest Triple Island Cage Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 11, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-east-island-goddess-chest", "label": "Thunderhead - East Island Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 9, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-goddess-chest-on-top-of-isle-of-songs", "label": "Thunderhead - Goddess Chest on top of Isle of Songs", "type": "chestflag", "scene": "Sky", "flag": 21, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-goddess-chest-outside-isle-of-songs", "label": "Thunderhead - Goddess Chest outside Isle of Songs", "type": "chestflag", "scene": "Sky", "flag": 28, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-first-goddess-chest-on-mogma-mitts-island", "label": "Thunderhead - First Goddess Chest on Mogma Mitts Island", "type": "chestflag", "scene": "Sky", "flag": 13, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-second-goddess-chest-on-mogma-mitts-island", "label": "Thunderhead - Second Goddess Chest on Mogma Mitts Island", "type": "chestflag", "scene": "Sky", "flag": 12, "description": "Set on the sample 100% Wii save." },
+        { "id": "gc-thunderhead-bug-heaven-goddess-chest", "label": "Thunderhead - Bug Heaven Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 24, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Heart Pieces (21)",
+      "fields": [
+        { "id": "hp-upper-skyloft-in-zelda-s-closet", "label": "Upper Skyloft - In Zelda's Closet", "type": "sceneflag", "scene": "Skyloft", "flag": 32, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-upper-skyloft-pumpkin-archery-600-points", "label": "Upper Skyloft - Pumpkin Archery -- 600 Points", "type": "storyflag", "flag": 359, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-central-skyloft-shed-goddess-chest", "label": "Central Skyloft - Shed Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 15, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-central-skyloft-waterfall-goddess-chest", "label": "Central Skyloft - Waterfall Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 16, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-lumpy-pumpkin-chandelier", "label": "Sky - Lumpy Pumpkin - Chandelier", "type": "sceneflag", "scene": "Sky", "flag": 47, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-lumpy-pumpkin-harp-minigame", "label": "Sky - Lumpy Pumpkin - Harp Minigame", "type": "storyflag", "flag": 296, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-fun-fun-island-minigame-500-rupees", "label": "Sky - Fun Fun Island Minigame -- 500 Rupees", "type": "sceneflag", "scene": "Sky", "flag": 19, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-beedle-s-island-goddess-chest", "label": "Sky - Beedle's Island Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 25, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-goddess-chest-on-island-closest-to-faron-pillar", "label": "Sky - Goddess Chest on Island Closest to Faron Pillar", "type": "chestflag", "scene": "Sky", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sky-goddess-chest-inside-volcanic-island", "label": "Sky - Goddess Chest inside Volcanic Island", "type": "chestflag", "scene": "Sky", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-thunderhead-bug-heaven-goddess-chest", "label": "Thunderhead - Bug Heaven Goddess Chest", "type": "chestflag", "scene": "Sky", "flag": 24, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sealed-grounds-gorko-s-goddess-wall-reward", "label": "Sealed Grounds - Gorko's Goddess Wall Reward", "type": "sceneflag", "scene": "Sealed Grounds", "flag": 113, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-faron-woods-item-behind-lower-bombable-rock", "label": "Faron Woods - Item behind Lower Bombable Rock", "type": "sceneflag", "scene": "Faron Woods", "flag": 33, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-faron-woods-item-on-tree", "label": "Faron Woods - Item on Tree", "type": "sceneflag", "scene": "Faron Woods", "flag": 68, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-eldin-volcano-item-on-cliff", "label": "Eldin Volcano - Item on Cliff", "type": "sceneflag", "scene": "Eldin Volcano", "flag": 102, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-volcano-summit-item-behind-digging", "label": "Volcano Summit - Item behind Digging", "type": "sceneflag", "scene": "Volcano Summit", "flag": 104, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-lanayru-desert-secret-passageway-chest", "label": "Lanayru Desert - Secret Passageway Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 10, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-lanayru-sand-sea-rickety-coaster-heart-stopping-track-in-1-0", "label": "Lanayru Sand Sea - Rickety Coaster -- Heart Stopping Track in 1'05", "type": "storyflag", "flag": 667, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-skyview-item-behind-bars", "label": "Skyview - Item behind Bars", "type": "sceneflag", "scene": "Skyview", "flag": 103, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-sandship-chest-at-the-stern", "label": "Sandship - Chest at the Stern", "type": "sceneflag", "scene": "Sandship", "flag": 21, "description": "Set on the sample 100% Wii save." },
+        { "id": "hp-fire-sanctuary-plats-chest", "label": "Fire Sanctuary - Plats' Chest", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 2, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Gratitude Crystals — loose (15)",
+      "fields": [
+        { "id": "crystal-upper-skyloft-crystal-in-link-s-room", "label": "Upper Skyloft - Crystal in Link's Room", "type": "sceneflag", "scene": "Skyloft", "flag": 104, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-upper-skyloft-crystal-in-knight-academy-plant", "label": "Upper Skyloft - Crystal in Knight Academy Plant", "type": "sceneflag", "scene": "Skyloft", "flag": 102, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-upper-skyloft-crystal-in-zelda-s-room", "label": "Upper Skyloft - Crystal in Zelda's Room", "type": "sceneflag", "scene": "Skyloft", "flag": 103, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-upper-skyloft-crystal-in-sparring-hall", "label": "Upper Skyloft - Crystal in Sparring Hall", "type": "sceneflag", "scene": "Skyloft", "flag": 115, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-in-orielle-and-parrow-s-house", "label": "Central Skyloft - Crystal in Orielle and Parrow's House", "type": "sceneflag", "scene": "Skyloft", "flag": 114, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-on-west-cliff", "label": "Central Skyloft - Crystal on West Cliff", "type": "sceneflag", "scene": "Skyloft", "flag": 113, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-between-wooden-planks", "label": "Central Skyloft - Crystal between Wooden Planks", "type": "sceneflag", "scene": "Skyloft", "flag": 112, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-after-waterfall-cave", "label": "Central Skyloft - Crystal after Waterfall Cave", "type": "sceneflag", "scene": "Skyloft", "flag": 111, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-in-loftwing-prison", "label": "Central Skyloft - Crystal in Loftwing Prison", "type": "sceneflag", "scene": "Skyloft", "flag": 110, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-on-waterfall-island", "label": "Central Skyloft - Crystal on Waterfall Island", "type": "sceneflag", "scene": "Skyloft", "flag": 109, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-central-skyloft-crystal-on-light-tower", "label": "Central Skyloft - Crystal on Light Tower", "type": "sceneflag", "scene": "Skyloft", "flag": 106, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-skyloft-village-crystal-near-pumpkin-patch", "label": "Skyloft Village - Crystal near Pumpkin Patch", "type": "sceneflag", "scene": "Skyloft", "flag": 108, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-sky-crystal-outside-lumpy-pumpkin", "label": "Sky - Crystal outside Lumpy Pumpkin", "type": "sceneflag", "scene": "Sky", "flag": 100, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-sky-crystal-inside-lumpy-pumpkin", "label": "Sky - Crystal inside Lumpy Pumpkin", "type": "sceneflag", "scene": "Sky", "flag": 116, "description": "Set on the sample 100% Wii save." },
+        { "id": "crystal-sky-crystal-on-beedle-s-ship", "label": "Sky - Crystal on Beedle's Ship", "type": "sceneflag", "scene": "Sky", "flag": 119, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Upper Skyloft",
+      "fields": [
+        { "id": "chest-upper-skyloft-sparring-hall-chest", "label": "Sparring Hall Chest", "type": "chestflag", "scene": "Skyloft", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-upper-skyloft-chest-near-goddess-statue", "label": "Chest near Goddess Statue", "type": "chestflag", "scene": "Skyloft", "flag": 7, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Central Skyloft",
+      "fields": [
+        { "id": "chest-central-skyloft-waterfall-cave-first-chest", "label": "Waterfall Cave First Chest", "type": "chestflag", "scene": "Skyloft", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-central-skyloft-waterfall-cave-second-chest", "label": "Waterfall Cave Second Chest", "type": "chestflag", "scene": "Skyloft", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-central-skyloft-shed-chest", "label": "Shed Chest", "type": "chestflag", "scene": "Skyloft", "flag": 6, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Sky",
+      "fields": [
+        { "id": "chest-sky-chest-in-breakable-boulder-near-fun-fun-island", "label": "Chest in Breakable Boulder near Fun Fun Island", "type": "chestflag", "scene": "Sky", "flag": 6, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-sky-chest-in-breakable-boulder-near-lumpy-pumpkin", "label": "Chest in Breakable Boulder near Lumpy Pumpkin", "type": "chestflag", "scene": "Sky", "flag": 5, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." }
+      ]
+    },
+    {
+      "title": "Chests — Thunderhead",
+      "fields": [
+        { "id": "chest-thunderhead-east-island-chest", "label": "East Island Chest", "type": "chestflag", "scene": "Sky", "flag": 30, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Sealed Grounds",
+      "fields": [
+        { "id": "chest-sealed-grounds-chest-inside-sealed-temple", "label": "Chest inside Sealed Temple", "type": "chestflag", "scene": "Sealed Grounds", "flag": 0, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Faron Woods",
+      "fields": [
+        { "id": "chest-faron-woods-deep-woods-chest", "label": "Deep Woods Chest", "type": "chestflag", "scene": "Faron Woods", "flag": 10, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-faron-woods-chest-behind-upper-bombable-rock", "label": "Chest behind Upper Bombable Rock", "type": "chestflag", "scene": "Faron Woods", "flag": 0, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-faron-woods-chest-inside-great-tree", "label": "Chest inside Great Tree", "type": "chestflag", "scene": "Faron Woods", "flag": 20, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lake Floria",
+      "fields": [
+        { "id": "chest-lake-floria-lake-floria-chest", "label": "Lake Floria Chest", "type": "chestflag", "scene": "Lake Floria", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lake-floria-dragon-lair-south-chest", "label": "Dragon Lair South Chest", "type": "chestflag", "scene": "Lake Floria", "flag": 20, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lake-floria-dragon-lair-east-chest", "label": "Dragon Lair East Chest", "type": "chestflag", "scene": "Lake Floria", "flag": 21, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Eldin Volcano",
+      "fields": [
+        { "id": "chest-eldin-volcano-chest-behind-bombable-wall-in-first-room", "label": "Chest behind Bombable Wall in First Room", "type": "chestflag", "scene": "Eldin Volcano", "flag": 8, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-eldin-volcano-chest-after-crawlspace", "label": "Chest after Crawlspace", "type": "chestflag", "scene": "Eldin Volcano", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-eldin-volcano-chest-behind-bombable-wall-near-cliff", "label": "Chest behind Bombable Wall near Cliff", "type": "chestflag", "scene": "Eldin Volcano", "flag": 9, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-eldin-volcano-chest-behind-bombable-wall-near-volcano-ascent", "label": "Chest behind Bombable Wall near Volcano Ascent", "type": "chestflag", "scene": "Eldin Volcano", "flag": 7, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Mogma Turf",
+      "fields": [
+        { "id": "chest-mogma-turf-free-fall-chest", "label": "Free Fall Chest", "type": "chestflag", "scene": "Eldin Volcano", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-mogma-turf-chest-behind-bombable-wall-at-entrance", "label": "Chest behind Bombable Wall at Entrance", "type": "chestflag", "scene": "Eldin Volcano", "flag": 1, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-mogma-turf-sand-slide-chest", "label": "Sand Slide Chest", "type": "chestflag", "scene": "Eldin Volcano", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-mogma-turf-chest-behind-bombable-wall-in-fire-maze", "label": "Chest behind Bombable Wall in Fire Maze", "type": "chestflag", "scene": "Eldin Volcano", "flag": 6, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Volcano Summit",
+      "fields": [
+        { "id": "chest-volcano-summit-chest-behind-bombable-wall-in-waterfall-area", "label": "Chest behind Bombable Wall in Waterfall Area", "type": "chestflag", "scene": "Volcano Summit", "flag": 31, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Bokoblin Base",
+      "fields": [
+        { "id": "chest-bokoblin-base-chest-near-bone-bridge", "label": "Chest near Bone Bridge", "type": "chestflag", "scene": "Volcano Summit", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-chest-on-cliff", "label": "Chest on Cliff", "type": "chestflag", "scene": "Volcano Summit", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-chest-near-drawbridge", "label": "Chest near Drawbridge", "type": "chestflag", "scene": "Volcano Summit", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-chest-east-of-earth-temple-entrance", "label": "Chest East of Earth Temple Entrance", "type": "chestflag", "scene": "Volcano Summit", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-chest-west-of-earth-temple-entrance", "label": "Chest West of Earth Temple Entrance", "type": "chestflag", "scene": "Volcano Summit", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-first-chest-in-volcano-summit", "label": "First Chest in Volcano Summit", "type": "chestflag", "scene": "Volcano Summit", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-bokoblin-base-raised-chest-in-volcano-summit", "label": "Raised Chest in Volcano Summit", "type": "chestflag", "scene": "Volcano Summit", "flag": 9, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-bokoblin-base-chest-in-volcano-summit-alcove", "label": "Chest in Volcano Summit Alcove", "type": "chestflag", "scene": "Volcano Summit", "flag": 7, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lanayru Mine",
+      "fields": [
+        { "id": "chest-lanayru-mine-chest-behind-first-landing", "label": "Chest behind First Landing", "type": "chestflag", "scene": "Lanayru Desert", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mine-chest-near-first-timeshift-stone", "label": "Chest near First Timeshift Stone", "type": "chestflag", "scene": "Lanayru Desert", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mine-chest-behind-statue", "label": "Chest behind Statue", "type": "chestflag", "scene": "Lanayru Desert", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mine-chest-at-the-end-of-mine", "label": "Chest at the End of Mine", "type": "chestflag", "scene": "Lanayru Desert", "flag": 2, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lanayru Desert",
+      "fields": [
+        { "id": "chest-lanayru-desert-chest-near-party-wheel", "label": "Chest near Party Wheel", "type": "chestflag", "scene": "Lanayru Desert", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-chest-near-caged-robot", "label": "Chest near Caged Robot", "type": "chestflag", "scene": "Lanayru Desert", "flag": 20, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-chest-on-platform-near-fire-node", "label": "Chest on Platform near Fire Node", "type": "chestflag", "scene": "Lanayru Desert", "flag": 9, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-chest-on-platform-near-lightning-node", "label": "Chest on Platform near Lightning Node", "type": "chestflag", "scene": "Lanayru Desert", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-chest-near-sand-oasis", "label": "Chest near Sand Oasis", "type": "chestflag", "scene": "Lanayru Desert", "flag": 7, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-secret-passageway-chest", "label": "Secret Passageway Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 10, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-fire-node-shortcut-chest", "label": "Fire Node - Shortcut Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 15, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-fire-node-first-small-chest", "label": "Fire Node - First Small Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 14, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-fire-node-second-small-chest", "label": "Fire Node - Second Small Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 16, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-fire-node-left-ending-chest", "label": "Fire Node - Left Ending Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 17, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-fire-node-right-ending-chest", "label": "Fire Node - Right Ending Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 18, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-lightning-node-first-chest", "label": "Lightning Node - First Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 11, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-lightning-node-second-chest", "label": "Lightning Node - Second Chest", "type": "chestflag", "scene": "Lanayru Desert", "flag": 12, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-desert-lightning-node-raised-chest-near-generator", "label": "Lightning Node - Raised Chest near Generator", "type": "chestflag", "scene": "Lanayru Desert", "flag": 13, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lanayru Caves",
+      "fields": [
+        { "id": "chest-lanayru-caves-chest", "label": "Chest", "type": "sceneflag", "scene": "Lanayru Gorge", "flag": 86, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lanayru Sand Sea",
+      "fields": [
+        { "id": "chest-lanayru-sand-sea-skipper-s-retreat-chest-after-moblin", "label": "Skipper's Retreat - Chest after Moblin", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 14, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-skipper-s-retreat-chest-on-top-of-cacti-pil", "label": "Skipper's Retreat - Chest on top of Cacti Pillar", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 12, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-skipper-s-retreat-chest-in-shack", "label": "Skipper's Retreat - Chest in Shack", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-skipper-s-retreat-skydive-chest", "label": "Skipper's Retreat - Skydive Chest", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 13, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-pirate-stronghold-first-chest", "label": "Pirate Stronghold - First Chest", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 11, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-pirate-stronghold-second-chest", "label": "Pirate Stronghold - Second Chest", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 9, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-sand-sea-pirate-stronghold-third-chest", "label": "Pirate Stronghold - Third Chest", "type": "chestflag", "scene": "Lanayru Sand Sea", "flag": 10, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Skyview",
+      "fields": [
+        { "id": "chest-skyview-chest-on-tree-branch", "label": "Chest on Tree Branch", "type": "chestflag", "scene": "Skyview", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-skyview-chest-behind-two-eyes", "label": "Chest behind Two Eyes", "type": "chestflag", "scene": "Skyview", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-skyview-chest-after-stalfos-fight", "label": "Chest after Stalfos Fight", "type": "chestflag", "scene": "Skyview", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-skyview-chest-behind-three-eyes", "label": "Chest behind Three Eyes", "type": "chestflag", "scene": "Skyview", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-skyview-chest-near-boss-door", "label": "Chest near Boss Door", "type": "chestflag", "scene": "Skyview", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-skyview-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Skyview", "flag": 2, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Earth Temple",
+      "fields": [
+        { "id": "chest-earth-temple-vent-chest", "label": "Vent Chest", "type": "chestflag", "scene": "Earth Temple", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-earth-temple-chest-behind-bombable-rock", "label": "Chest behind Bombable Rock", "type": "chestflag", "scene": "Earth Temple", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-earth-temple-chest-left-of-main-room-bridge", "label": "Chest Left of Main Room Bridge", "type": "chestflag", "scene": "Earth Temple", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-earth-temple-chest-in-west-room", "label": "Chest in West Room", "type": "chestflag", "scene": "Earth Temple", "flag": 0, "description": "Not set on the sample 100% Wii save, so this one isn't verified yet." },
+        { "id": "chest-earth-temple-chest-after-double-lizalfos-fight", "label": "Chest after Double Lizalfos Fight", "type": "chestflag", "scene": "Earth Temple", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-earth-temple-chest-guarded-by-lizalfos", "label": "Chest Guarded by Lizalfos", "type": "chestflag", "scene": "Earth Temple", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-earth-temple-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Earth Temple", "flag": 4, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Lanayru Mining Facility",
+      "fields": [
+        { "id": "chest-lanayru-mining-facility-chest-behind-bars", "label": "Chest behind Bars", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-first-chest-in-hub-room", "label": "First Chest in Hub Room", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-chest-in-first-west-room", "label": "Chest in First West Room", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-chest-after-armos-fight", "label": "Chest after Armos Fight", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-chest-in-key-locked-room", "label": "Chest in Key Locked Room", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-raised-chest-in-hop-across-boxes-roo", "label": "Raised Chest in Hop across Boxes Room", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-lower-chest-in-hop-across-boxes-room", "label": "Lower Chest in Hop across Boxes Room", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 12, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-chest-behind-first-crawlspace", "label": "Chest behind First Crawlspace", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-chest-in-spike-maze", "label": "Chest in Spike Maze", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 9, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 7, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-lanayru-mining-facility-shortcut-chest-in-main-hub", "label": "Shortcut Chest in Main Hub", "type": "chestflag", "scene": "Lanayru Mining Facility", "flag": 10, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Ancient Cistern",
+      "fields": [
+        { "id": "chest-ancient-cistern-chest-in-east-part", "label": "Chest in East Part", "type": "chestflag", "scene": "Ancient Cistern", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-ancient-cistern-chest-after-whip-hooks", "label": "Chest after Whip Hooks", "type": "chestflag", "scene": "Ancient Cistern", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-ancient-cistern-chest-near-vines", "label": "Chest near Vines", "type": "chestflag", "scene": "Ancient Cistern", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-ancient-cistern-chest-behind-the-waterfall", "label": "Chest behind the Waterfall", "type": "chestflag", "scene": "Ancient Cistern", "flag": 20, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-ancient-cistern-chest-in-key-locked-room", "label": "Chest in Key Locked Room", "type": "chestflag", "scene": "Ancient Cistern", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-ancient-cistern-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Ancient Cistern", "flag": 4, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Sandship",
+      "fields": [
+        { "id": "chest-sandship-chest-at-the-stern", "label": "Chest at the Stern", "type": "sceneflag", "scene": "Sandship", "flag": 21, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-chest-before-4-door-corridor", "label": "Chest before 4-Door Corridor", "type": "chestflag", "scene": "Sandship", "flag": 7, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-chest-behind-combination-lock", "label": "Chest behind Combination Lock", "type": "chestflag", "scene": "Sandship", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-treasure-room-first-chest", "label": "Treasure Room First Chest", "type": "chestflag", "scene": "Sandship", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-treasure-room-second-chest", "label": "Treasure Room Second Chest", "type": "chestflag", "scene": "Sandship", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-treasure-room-third-chest", "label": "Treasure Room Third Chest", "type": "chestflag", "scene": "Sandship", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-treasure-room-fourth-chest", "label": "Treasure Room Fourth Chest", "type": "chestflag", "scene": "Sandship", "flag": 3, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-treasure-room-fifth-chest", "label": "Treasure Room Fifth Chest", "type": "chestflag", "scene": "Sandship", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-chest-after-scervo-fight", "label": "Chest after Scervo Fight", "type": "chestflag", "scene": "Sandship", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sandship-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Sandship", "flag": 9, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Fire Sanctuary",
+      "fields": [
+        { "id": "chest-fire-sanctuary-chest-in-first-room", "label": "Chest in First Room", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-chest-in-second-room", "label": "Chest in Second Room", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 10, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-chest-on-balcony", "label": "Chest on Balcony", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 6, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-chest-near-first-trapped-mogma", "label": "Chest near First Trapped Mogma", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 5, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-first-chest-in-water-fruit-room", "label": "First Chest in Water Fruit Room", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 9, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-second-chest-in-water-fruit-room", "label": "Second Chest in Water Fruit Room", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 8, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-rescue-first-trapped-mogma", "label": "Rescue First Trapped Mogma", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 4, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-rescue-second-trapped-mogma", "label": "Rescue Second Trapped Mogma", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 1, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-chest-after-bombable-wall", "label": "Chest after Bombable Wall", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 7, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-plats-chest", "label": "Plats' Chest", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 2, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-chest-in-staircase-room", "label": "Chest in Staircase Room", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 11, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-fire-sanctuary-boss-key-chest", "label": "Boss Key Chest", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 3, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Chests — Sky Keep",
+      "fields": [
+        { "id": "chest-sky-keep-first-chest", "label": "First Chest", "type": "chestflag", "scene": "Sky Keep", "flag": 0, "description": "Set on the sample 100% Wii save." },
+        { "id": "chest-sky-keep-chest-after-dreadfuse", "label": "Chest after Dreadfuse", "type": "chestflag", "scene": "Sky Keep", "flag": 1, "description": "Set on the sample 100% Wii save." }
+      ]
+    }
+  ]
+}

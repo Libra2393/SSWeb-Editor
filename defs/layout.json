@@ -1,0 +1,37 @@
+{
+  "name": "The Legend of Zelda: Skyward Sword — wiiking2.sav",
+  "platform": "wii",
+  "fileSize": "0xFBE0",
+  "endian": "big",
+  "magic": {
+    "offset": "0x0",
+    "length": 4,
+    "values": { "SOUE": "NTSC-U", "SOUP": "PAL", "SOUJ": "NTSC-J", "SOUK": "Korea" }
+  },
+  "scopes": {
+    "file": { "label": "Whole file", "base": "0x0", "size": "0xFBE0" },
+    "slot": {
+      "label": "File {n}",
+      "base": "0x20",
+      "stride": "0x53C0",
+      "size": "0x53C0",
+      "count": 3
+    },
+    "tail": { "label": "Trailer", "base": "0xFBA0", "size": "0x40", "description": "Unknown 0x40 bytes after the third slot." }
+  },
+  "checksums": [
+    {
+      "scope": "slot",
+      "algorithm": "crc32",
+      "start": "0x0",
+      "length": "0x53BC",
+      "store": "0x53BC",
+      "description": "CRC32 of the slot's 0x53BC data bytes, stored big-endian right after them."
+    }
+  ],
+  "slotSummary": {
+    "name": "general.playerName",
+    "empty": "general.isNew",
+    "playTime": "general.playTime"
+  }
+}

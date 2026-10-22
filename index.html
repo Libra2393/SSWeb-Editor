@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later. See LICENSE and CREDITS.md. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skyward Sword Save Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">▲</span>
+      <div>
+        <h1>Skyward Sword Save Editor</h1>
+        <p class="sub" id="fileInfo">No file loaded</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="openBtn" class="btn">Open wiiking2.sav</button>
+      <button id="saveBtn" class="btn primary" disabled title="Write back to the opened file">Save</button>
+      <button id="downloadBtn" class="btn" disabled>Download copy</button>
+      <details class="menu">
+        <summary class="btn" aria-label="More">⋯</summary>
+        <div class="menu-body">
+          <button id="downloadOrigBtn" disabled>Download original (as loaded)</button>
+          <button id="downloadSkipBtn" hidden>Download skip.dat (from SD import)</button>
+          <button id="fixAllBtn" disabled>Recompute all checksums</button>
+          <button id="addDefBtn">Add definition file…</button>
+          <button id="pickDefsBtn">Load definitions folder…</button>
+        </div>
+      </details>
+    </div>
+    <input type="file" id="fileInput" hidden>
+    <input type="file" id="defFileInput" accept=".json,application/json" multiple hidden>
+    <input type="file" id="defsDirInput" webkitdirectory hidden>
+  </header>
+
+  <main id="main">
+    <section id="dropZone" class="drop">
+      <div class="drop-inner">
+        <h2>Open a save</h2>
+        <p>Drop a raw <code>wiiking2.sav</code> here or use <b>Open</b>. Dolphin keeps it unencrypted in its NAND folder:</p>
+        <ul class="paths">
+          <li><span>Linux</span><code>~/.local/share/dolphin-emu/Wii/title/00010000/&lt;region&gt;/data/</code></li>
+          <li><span>Windows</span><code>Documents\Dolphin Emulator\Wii\title\00010000\&lt;region&gt;\data\</code></li>
+          <li><span>macOS</span><code>~/Library/Application Support/Dolphin/Wii/title/00010000/&lt;region&gt;/data/</code></li>
+        </ul>
+        <p>The last folder depends on your copy of the game:</p>
+        <ul class="paths regions">
+          <li><span>NTSC-U</span><code>534f5545</code><small class="muted">SOUE</small></li>
+          <li><span>PAL</span><code>534f5550</code><small class="muted">SOUP</small></li>
+          <li><span>NTSC-J</span><code>534f554a</code><small class="muted">SOUJ</small></li>
+          <li><span>Korea</span><code>534f554b</code><small class="muted">SOUK</small></li>
+        </ul>
+        <p class="muted">Close the game in Dolphin before saving over the file.</p>
+        <p><b>Skyward Sword HD</b> saves (also <code>wiiking2.sav</code>, 122,400 bytes) open too. Get them with a save manager such as JKSV on a Switch, or from an emulator's save folder for title <code>01002DA013484000</code>. Keep a backup: HD saving hasn't been tested on a console yet.</p>
+        <p id="defsStatus" class="muted"></p>
+      </div>
+    </section>
+
+    <section id="editor" hidden>
+      <nav class="slots" id="slots" aria-label="Save files"></nav>
+      <div class="slot-tools" id="slotTools"></div>
+      <nav class="tabs" id="tabs" role="tablist"></nav>
+      <div id="content"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <details id="warnings" hidden>
+      <summary></summary>
+      <ul></ul>
+    </details>
+    <span class="muted">Field definitions are loaded from <code>defs/</code>. Edit those JSON files to add fields.</span>
+    <span class="muted">Built on research by the WiiKing2 editor, the zeldaret decompilation, the Skyward Sword Randomizer and its Archipelago world — <a href="CREDITS.md" target="_blank" rel="noopener">Credits</a> · <a href="README.md#legal-united-states" target="_blank" rel="noopener">Legal (United States)</a> · <a href="LICENSE" target="_blank" rel="noopener">GPL-3.0</a></span>
+    <span class="muted">Unofficial fan project. The Legend of Zelda and Skyward Sword are trademarks of Nintendo; this editor is not affiliated with or endorsed by Nintendo, and includes no Nintendo code, assets or keys.</span>
+  </footer>
+
+  <dialog id="sdDialog" aria-labelledby="sdTitle">
+    <form method="dialog" id="sdForm">
+      <h2 id="sdTitle">Import a Wii SD-card save export</h2>
+      <p><span id="sdFileName"></span> is a save the Wii exported to an SD card. It is encrypted, so the editor needs the Wii SD key and IV to read it.</p>
+      <div class="legal">
+        <h3>Before you continue (United States)</h3>
+        <ul>
+          <li>This is not legal advice.</li>
+          <li><b>The DMCA (17 U.S.C. § 1201)</b> prohibits getting around encryption that controls access to copyrighted works, and distributing tools for doing so. Section 1201(f) allows some circumvention for interoperability. Moving your own save data to an emulator you own is commonly seen as falling under that, but we're not aware of a court ruling or Copyright Office exemption that specifically covers it. The Copyright Office's video game exemptions cover narrow cases (preservation by libraries and archives, and games whose authentication servers were shut down); none is aimed at save files.</li>
+          <li>Because of this, the editor <b>does not include or download any Nintendo keys</b>. You supply them, and they stay in this browser.</li>
+          <li>The editor <b>only decrypts</b>. It cannot re-encrypt, re-sign or create SD exports, and saving always writes the raw <code>wiiking2.sav</code> used by Dolphin.</li>
+          <li>Use it only with saves you made or have the right to use. Nintendo's terms of service may also restrict modifying saves.</li>
+        </ul>
+        <p class="small">More detail: “Legal (United States)” in the README.</p>
+      </div>
+      <label class="check"><input type="checkbox" id="sdOwn" required> This is my own save, and I'm importing it to keep playing on hardware or software I own.</label>
+      <label class="field-line">SD key <input type="text" id="sdKey" class="mono" autocomplete="off" spellcheck="false" placeholder="32 hex digits" required></label>
+      <label class="field-line">SD IV <input type="text" id="sdIv" class="mono" autocomplete="off" spellcheck="false" placeholder="32 hex digits" required></label>
+      <label class="check"><input type="checkbox" id="sdRemember"> Remember the key and IV in this browser</label>
+      <p id="sdError" class="error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn" id="sdCancel">Cancel</button>
+        <button type="submit" class="btn primary" id="sdImport" value="import">Import</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

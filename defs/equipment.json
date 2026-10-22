@@ -1,0 +1,639 @@
+{
+  "id": "equipment",
+  "title": "Equipment",
+  "scope": "slot",
+  "description": "Each pouch and storage slot holds an item and an amount: the count for satchels, quivers, bomb bags and potions, the durability for shields. An empty slot is item (empty) with amount 0.",
+  "groups": [
+    {
+      "title": "Adventure Pouch",
+      "fields": [
+        {
+          "id": "pouch1",
+          "label": "Slot 1",
+          "type": "row",
+          "fields": [
+            { "id": "pouch1Item", "label": "Item", "type": "u32", "offset": "0x07C0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch1Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07C0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch2",
+          "label": "Slot 2",
+          "type": "row",
+          "fields": [
+            { "id": "pouch2Item", "label": "Item", "type": "u32", "offset": "0x07C4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch2Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07C4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch3",
+          "label": "Slot 3",
+          "type": "row",
+          "fields": [
+            { "id": "pouch3Item", "label": "Item", "type": "u32", "offset": "0x07C8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch3Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07C8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch4",
+          "label": "Slot 4",
+          "type": "row",
+          "fields": [
+            { "id": "pouch4Item", "label": "Item", "type": "u32", "offset": "0x07CC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch4Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07CC", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch5",
+          "label": "Slot 5",
+          "type": "row",
+          "fields": [
+            { "id": "pouch5Item", "label": "Item", "type": "u32", "offset": "0x07D0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch5Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07D0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch6",
+          "label": "Slot 6",
+          "type": "row",
+          "fields": [
+            { "id": "pouch6Item", "label": "Item", "type": "u32", "offset": "0x07D4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch6Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07D4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch7",
+          "label": "Slot 7",
+          "type": "row",
+          "fields": [
+            { "id": "pouch7Item", "label": "Item", "type": "u32", "offset": "0x07D8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch7Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07D8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "pouch8",
+          "label": "Slot 8",
+          "type": "row",
+          "fields": [
+            { "id": "pouch8Item", "label": "Item", "type": "u32", "offset": "0x07DC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "pouch8Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07DC", "shift": 16, "bits": 16 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Selections",
+      "fields": [
+        { "id": "shieldSlot", "label": "Equipped shield", "type": "u8", "offset": "0x53B1", "enum": "pouchSlots", "description": "Which pouch slot holds the shield Link carries." },
+        { "id": "lastPouchSlot", "label": "Last used pouch slot", "type": "u8", "offset": "0x53B0", "enum": "pouchSlots" },
+        { "id": "dowsing", "label": "Selected dowsing", "type": "u8", "offset": "0x53B2", "enum": "dowsing" }
+      ]
+    },
+    {
+      "title": "Item Check (storage)",
+      "description": "Peatrice's Item Check in the Bazaar holds up to 60 items.",
+      "fields": [
+        {
+          "id": "storage1",
+          "label": "Slot 1",
+          "type": "row",
+          "fields": [
+            { "id": "storage1Item", "label": "Item", "type": "u32", "offset": "0x07E0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage1Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07E0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage2",
+          "label": "Slot 2",
+          "type": "row",
+          "fields": [
+            { "id": "storage2Item", "label": "Item", "type": "u32", "offset": "0x07E4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage2Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07E4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage3",
+          "label": "Slot 3",
+          "type": "row",
+          "fields": [
+            { "id": "storage3Item", "label": "Item", "type": "u32", "offset": "0x07E8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage3Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07E8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage4",
+          "label": "Slot 4",
+          "type": "row",
+          "fields": [
+            { "id": "storage4Item", "label": "Item", "type": "u32", "offset": "0x07EC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage4Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07EC", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage5",
+          "label": "Slot 5",
+          "type": "row",
+          "fields": [
+            { "id": "storage5Item", "label": "Item", "type": "u32", "offset": "0x07F0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage5Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07F0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage6",
+          "label": "Slot 6",
+          "type": "row",
+          "fields": [
+            { "id": "storage6Item", "label": "Item", "type": "u32", "offset": "0x07F4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage6Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07F4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage7",
+          "label": "Slot 7",
+          "type": "row",
+          "fields": [
+            { "id": "storage7Item", "label": "Item", "type": "u32", "offset": "0x07F8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage7Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07F8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage8",
+          "label": "Slot 8",
+          "type": "row",
+          "fields": [
+            { "id": "storage8Item", "label": "Item", "type": "u32", "offset": "0x07FC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage8Amount", "label": "Amount / durability", "type": "u32", "offset": "0x07FC", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage9",
+          "label": "Slot 9",
+          "type": "row",
+          "fields": [
+            { "id": "storage9Item", "label": "Item", "type": "u32", "offset": "0x0800", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage9Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0800", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage10",
+          "label": "Slot 10",
+          "type": "row",
+          "fields": [
+            { "id": "storage10Item", "label": "Item", "type": "u32", "offset": "0x0804", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage10Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0804", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage11",
+          "label": "Slot 11",
+          "type": "row",
+          "fields": [
+            { "id": "storage11Item", "label": "Item", "type": "u32", "offset": "0x0808", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage11Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0808", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage12",
+          "label": "Slot 12",
+          "type": "row",
+          "fields": [
+            { "id": "storage12Item", "label": "Item", "type": "u32", "offset": "0x080C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage12Amount", "label": "Amount / durability", "type": "u32", "offset": "0x080C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage13",
+          "label": "Slot 13",
+          "type": "row",
+          "fields": [
+            { "id": "storage13Item", "label": "Item", "type": "u32", "offset": "0x0810", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage13Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0810", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage14",
+          "label": "Slot 14",
+          "type": "row",
+          "fields": [
+            { "id": "storage14Item", "label": "Item", "type": "u32", "offset": "0x0814", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage14Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0814", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage15",
+          "label": "Slot 15",
+          "type": "row",
+          "fields": [
+            { "id": "storage15Item", "label": "Item", "type": "u32", "offset": "0x0818", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage15Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0818", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage16",
+          "label": "Slot 16",
+          "type": "row",
+          "fields": [
+            { "id": "storage16Item", "label": "Item", "type": "u32", "offset": "0x081C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage16Amount", "label": "Amount / durability", "type": "u32", "offset": "0x081C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage17",
+          "label": "Slot 17",
+          "type": "row",
+          "fields": [
+            { "id": "storage17Item", "label": "Item", "type": "u32", "offset": "0x0820", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage17Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0820", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage18",
+          "label": "Slot 18",
+          "type": "row",
+          "fields": [
+            { "id": "storage18Item", "label": "Item", "type": "u32", "offset": "0x0824", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage18Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0824", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage19",
+          "label": "Slot 19",
+          "type": "row",
+          "fields": [
+            { "id": "storage19Item", "label": "Item", "type": "u32", "offset": "0x0828", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage19Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0828", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage20",
+          "label": "Slot 20",
+          "type": "row",
+          "fields": [
+            { "id": "storage20Item", "label": "Item", "type": "u32", "offset": "0x082C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage20Amount", "label": "Amount / durability", "type": "u32", "offset": "0x082C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage21",
+          "label": "Slot 21",
+          "type": "row",
+          "fields": [
+            { "id": "storage21Item", "label": "Item", "type": "u32", "offset": "0x0830", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage21Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0830", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage22",
+          "label": "Slot 22",
+          "type": "row",
+          "fields": [
+            { "id": "storage22Item", "label": "Item", "type": "u32", "offset": "0x0834", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage22Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0834", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage23",
+          "label": "Slot 23",
+          "type": "row",
+          "fields": [
+            { "id": "storage23Item", "label": "Item", "type": "u32", "offset": "0x0838", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage23Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0838", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage24",
+          "label": "Slot 24",
+          "type": "row",
+          "fields": [
+            { "id": "storage24Item", "label": "Item", "type": "u32", "offset": "0x083C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage24Amount", "label": "Amount / durability", "type": "u32", "offset": "0x083C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage25",
+          "label": "Slot 25",
+          "type": "row",
+          "fields": [
+            { "id": "storage25Item", "label": "Item", "type": "u32", "offset": "0x0840", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage25Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0840", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage26",
+          "label": "Slot 26",
+          "type": "row",
+          "fields": [
+            { "id": "storage26Item", "label": "Item", "type": "u32", "offset": "0x0844", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage26Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0844", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage27",
+          "label": "Slot 27",
+          "type": "row",
+          "fields": [
+            { "id": "storage27Item", "label": "Item", "type": "u32", "offset": "0x0848", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage27Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0848", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage28",
+          "label": "Slot 28",
+          "type": "row",
+          "fields": [
+            { "id": "storage28Item", "label": "Item", "type": "u32", "offset": "0x084C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage28Amount", "label": "Amount / durability", "type": "u32", "offset": "0x084C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage29",
+          "label": "Slot 29",
+          "type": "row",
+          "fields": [
+            { "id": "storage29Item", "label": "Item", "type": "u32", "offset": "0x0850", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage29Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0850", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage30",
+          "label": "Slot 30",
+          "type": "row",
+          "fields": [
+            { "id": "storage30Item", "label": "Item", "type": "u32", "offset": "0x0854", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage30Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0854", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage31",
+          "label": "Slot 31",
+          "type": "row",
+          "fields": [
+            { "id": "storage31Item", "label": "Item", "type": "u32", "offset": "0x0858", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage31Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0858", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage32",
+          "label": "Slot 32",
+          "type": "row",
+          "fields": [
+            { "id": "storage32Item", "label": "Item", "type": "u32", "offset": "0x085C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage32Amount", "label": "Amount / durability", "type": "u32", "offset": "0x085C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage33",
+          "label": "Slot 33",
+          "type": "row",
+          "fields": [
+            { "id": "storage33Item", "label": "Item", "type": "u32", "offset": "0x0860", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage33Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0860", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage34",
+          "label": "Slot 34",
+          "type": "row",
+          "fields": [
+            { "id": "storage34Item", "label": "Item", "type": "u32", "offset": "0x0864", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage34Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0864", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage35",
+          "label": "Slot 35",
+          "type": "row",
+          "fields": [
+            { "id": "storage35Item", "label": "Item", "type": "u32", "offset": "0x0868", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage35Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0868", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage36",
+          "label": "Slot 36",
+          "type": "row",
+          "fields": [
+            { "id": "storage36Item", "label": "Item", "type": "u32", "offset": "0x086C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage36Amount", "label": "Amount / durability", "type": "u32", "offset": "0x086C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage37",
+          "label": "Slot 37",
+          "type": "row",
+          "fields": [
+            { "id": "storage37Item", "label": "Item", "type": "u32", "offset": "0x0870", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage37Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0870", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage38",
+          "label": "Slot 38",
+          "type": "row",
+          "fields": [
+            { "id": "storage38Item", "label": "Item", "type": "u32", "offset": "0x0874", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage38Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0874", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage39",
+          "label": "Slot 39",
+          "type": "row",
+          "fields": [
+            { "id": "storage39Item", "label": "Item", "type": "u32", "offset": "0x0878", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage39Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0878", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage40",
+          "label": "Slot 40",
+          "type": "row",
+          "fields": [
+            { "id": "storage40Item", "label": "Item", "type": "u32", "offset": "0x087C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage40Amount", "label": "Amount / durability", "type": "u32", "offset": "0x087C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage41",
+          "label": "Slot 41",
+          "type": "row",
+          "fields": [
+            { "id": "storage41Item", "label": "Item", "type": "u32", "offset": "0x0880", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage41Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0880", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage42",
+          "label": "Slot 42",
+          "type": "row",
+          "fields": [
+            { "id": "storage42Item", "label": "Item", "type": "u32", "offset": "0x0884", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage42Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0884", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage43",
+          "label": "Slot 43",
+          "type": "row",
+          "fields": [
+            { "id": "storage43Item", "label": "Item", "type": "u32", "offset": "0x0888", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage43Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0888", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage44",
+          "label": "Slot 44",
+          "type": "row",
+          "fields": [
+            { "id": "storage44Item", "label": "Item", "type": "u32", "offset": "0x088C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage44Amount", "label": "Amount / durability", "type": "u32", "offset": "0x088C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage45",
+          "label": "Slot 45",
+          "type": "row",
+          "fields": [
+            { "id": "storage45Item", "label": "Item", "type": "u32", "offset": "0x0890", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage45Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0890", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage46",
+          "label": "Slot 46",
+          "type": "row",
+          "fields": [
+            { "id": "storage46Item", "label": "Item", "type": "u32", "offset": "0x0894", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage46Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0894", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage47",
+          "label": "Slot 47",
+          "type": "row",
+          "fields": [
+            { "id": "storage47Item", "label": "Item", "type": "u32", "offset": "0x0898", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage47Amount", "label": "Amount / durability", "type": "u32", "offset": "0x0898", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage48",
+          "label": "Slot 48",
+          "type": "row",
+          "fields": [
+            { "id": "storage48Item", "label": "Item", "type": "u32", "offset": "0x089C", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage48Amount", "label": "Amount / durability", "type": "u32", "offset": "0x089C", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage49",
+          "label": "Slot 49",
+          "type": "row",
+          "fields": [
+            { "id": "storage49Item", "label": "Item", "type": "u32", "offset": "0x08A0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage49Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08A0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage50",
+          "label": "Slot 50",
+          "type": "row",
+          "fields": [
+            { "id": "storage50Item", "label": "Item", "type": "u32", "offset": "0x08A4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage50Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08A4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage51",
+          "label": "Slot 51",
+          "type": "row",
+          "fields": [
+            { "id": "storage51Item", "label": "Item", "type": "u32", "offset": "0x08A8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage51Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08A8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage52",
+          "label": "Slot 52",
+          "type": "row",
+          "fields": [
+            { "id": "storage52Item", "label": "Item", "type": "u32", "offset": "0x08AC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage52Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08AC", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage53",
+          "label": "Slot 53",
+          "type": "row",
+          "fields": [
+            { "id": "storage53Item", "label": "Item", "type": "u32", "offset": "0x08B0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage53Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08B0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage54",
+          "label": "Slot 54",
+          "type": "row",
+          "fields": [
+            { "id": "storage54Item", "label": "Item", "type": "u32", "offset": "0x08B4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage54Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08B4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage55",
+          "label": "Slot 55",
+          "type": "row",
+          "fields": [
+            { "id": "storage55Item", "label": "Item", "type": "u32", "offset": "0x08B8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage55Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08B8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage56",
+          "label": "Slot 56",
+          "type": "row",
+          "fields": [
+            { "id": "storage56Item", "label": "Item", "type": "u32", "offset": "0x08BC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage56Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08BC", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage57",
+          "label": "Slot 57",
+          "type": "row",
+          "fields": [
+            { "id": "storage57Item", "label": "Item", "type": "u32", "offset": "0x08C0", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage57Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08C0", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage58",
+          "label": "Slot 58",
+          "type": "row",
+          "fields": [
+            { "id": "storage58Item", "label": "Item", "type": "u32", "offset": "0x08C4", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage58Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08C4", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage59",
+          "label": "Slot 59",
+          "type": "row",
+          "fields": [
+            { "id": "storage59Item", "label": "Item", "type": "u32", "offset": "0x08C8", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage59Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08C8", "shift": 16, "bits": 16 }
+          ]
+        },
+        {
+          "id": "storage60",
+          "label": "Slot 60",
+          "type": "row",
+          "fields": [
+            { "id": "storage60Item", "label": "Item", "type": "u32", "offset": "0x08CC", "shift": 0, "bits": 16, "enum": "pouchItems" },
+            { "id": "storage60Amount", "label": "Amount / durability", "type": "u32", "offset": "0x08CC", "shift": 16, "bits": 16 }
+          ]
+        }
+      ]
+    }
+  ]
+}

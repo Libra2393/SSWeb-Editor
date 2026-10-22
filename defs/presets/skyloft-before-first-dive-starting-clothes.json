@@ -1,0 +1,10 @@
+{
+  "id": "skyloft-before-first-dive-starting-clothes",
+  "extends": "skyloft-before-first-dive",
+  "title": "Skyloft — prologue done, before the first dive (starting clothes)",
+  "description": "The same post-prologue state, but Link keeps the clothes he wears at the start instead of the knight uniform. The game ties the uniform to the story flag that also unlocks Fi and changes some Skyloft areas, so Fi may not respond and some places may look as they did before the Wing Ceremony.",
+  "scope": "slot",
+  "apply": [
+    { "type": "storyflag", "flag": 36, "value": false, "note": "Knight uniform off (also gates Fi)" }
+  ]
+}

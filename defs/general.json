@@ -1,0 +1,83 @@
+{
+  "id": "general",
+  "title": "General",
+  "scope": "slot",
+  "groups": [
+    {
+      "title": "File",
+      "fields": [
+        { "id": "playerName", "label": "Hero's name", "type": "string", "encoding": "utf16", "offset": "0x08D4", "length": 16 },
+        { "id": "isNew", "label": "Slot is empty (new)", "type": "bool", "offset": "0x53AD", "description": "Non-zero means the game shows this slot as an empty, new file." },
+        { "id": "heroMode", "label": "Hero Mode", "type": "flag", "offset": "0x08FE", "mask": "0x0800", "storage": "u16" },
+        { "id": "introViewed", "label": "Opening cutscene viewed", "type": "flag", "offset": "0x0940", "mask": "0x0002", "storage": "u16" },
+        { "id": "playTime", "label": "Play time", "type": "duration", "storage": "u64", "offset": "0x0000", "tickRate": 60750000,
+          "variants": { "hd": { "description": "Assumes the Wii tick rate; not yet confirmed for HD." } } },
+        { "id": "saveTime", "label": "Saved at", "type": "wiitime", "offset": "0x0008", "tickRate": 60750000, "description": "Wii clock ticks since 2000-01-01 00:00, local time.",
+          "variants": { "hd": { "epoch": "1970-01-01", "tickRate": 1, "description": "Unix time (seconds since 1970), shown in UTC." } } },
+        { "id": "isNight", "label": "Night", "type": "flag", "offset": "0x53B3", "mask": "0x01" }
+      ]
+    },
+    {
+      "title": "Status",
+      "fields": [
+        { "id": "rupees", "label": "Rupees", "type": "u16", "offset": "0x0A5E", "min": 0, "max": 9900 },
+        { "id": "totalHearts", "label": "Heart capacity", "type": "u16", "offset": "0x5302", "unit": "¼ hearts", "description": "Stored in quarter hearts: 18 hearts (the maximum) = 72." },
+        { "id": "currentHealth", "label": "Current health", "type": "u16", "offset": "0x5306", "unit": "¼ hearts", "description": "Saves often hold more than the capacity here; the game appears to clamp it on load." },
+        { "id": "unkHearts", "label": "Unknown hearts value", "type": "u16", "offset": "0x5304", "description": "Unused by the game according to the decompilation; 24 in every sample seen." },
+        { "id": "gratitudeCrystals", "label": "Gratitude crystals", "type": "u16", "offset": "0x0A50", "shift": 3, "bits": 7 },
+        { "id": "interfaceType", "label": "Interface", "type": "u16", "offset": "0x09D2", "shift": 13, "bits": 2, "enum": "interfaceTypes" },
+        { "id": "interfaceFiTold", "label": "Fi explained interface", "type": "flag", "offset": "0x09D2", "mask": "0x0800", "storage": "u16" }
+      ]
+    },
+    {
+      "title": "Location",
+      "fields": [
+        { "id": "locationId", "label": "Load-screen location", "type": "u32", "offset": "0x08D0", "enum": "locations", "description": "Index of the area name shown on the load screen (file_area_index)." }
+      ]
+    },
+    {
+      "title": "Spawn (t1)",
+      "description": "Where the file loads. The decompilation names these *_t1/_t2/_t3; t1 and t3 matched in every sample save.",
+      "fields": [
+        { "id": "stage", "label": "Stage", "type": "string", "encoding": "ascii", "offset": "0x531C", "length": 32, "description": "Folder name of the stage, e.g. F000 for Skyloft." },
+        { "id": "room", "label": "Room", "type": "u16", "offset": "0x5308" },
+        { "id": "layerT1", "label": "Layer", "type": "u8", "offset": "0x53A5" },
+        { "id": "entranceT1", "label": "Entrance", "type": "u8", "offset": "0x53A8" },
+        { "id": "entranceT1LoadFlag", "label": "Entrance load flag", "type": "u8", "offset": "0x53A9" },
+        { "id": "angleT1", "label": "Facing angle", "type": "s16", "offset": "0x530E" },
+        { "id": "pos1", "label": "Position", "type": "row", "fields": [ { "id": "pos1X", "label": "X", "type": "f32", "offset": "0x0010" }, { "id": "pos1Y", "label": "Y", "type": "f32", "offset": "0x0014" }, { "id": "pos1Z", "label": "Z", "type": "f32", "offset": "0x0018" } ] }
+      ]
+    },
+    {
+      "title": "Spawn (t2)",
+      "description": "Holds the last Surface region in the sample saves (empty before the first dive).",
+      "fields": [
+        { "id": "stageT2", "label": "Stage", "type": "string", "encoding": "ascii", "offset": "0x533C", "length": 32 },
+        { "id": "layerT2", "label": "Layer", "type": "u8", "offset": "0x53A6" },
+        { "id": "entranceT2", "label": "Entrance", "type": "u8", "offset": "0x53AA" },
+        { "id": "angleT2", "label": "Facing angle", "type": "s16", "offset": "0x5310" },
+        { "id": "pos2", "label": "Position", "type": "row", "fields": [ { "id": "pos2X", "label": "X", "type": "f32", "offset": "0x001C" }, { "id": "pos2Y", "label": "Y", "type": "f32", "offset": "0x0020" }, { "id": "pos2Z", "label": "Z", "type": "f32", "offset": "0x0024" } ] }
+      ]
+    },
+    {
+      "title": "Spawn (t3)",
+      "description": "Matched t1 in every sample save.",
+      "fields": [
+        { "id": "stageT3", "label": "Stage", "type": "string", "encoding": "ascii", "offset": "0x535C", "length": 32 },
+        { "id": "roomT3", "label": "Room", "type": "s16", "offset": "0x530C" },
+        { "id": "layerT3", "label": "Layer", "type": "u8", "offset": "0x53A7" },
+        { "id": "entranceT3", "label": "Entrance", "type": "u8", "offset": "0x53AB" },
+        { "id": "angleT3", "label": "Facing angle", "type": "s16", "offset": "0x5312" },
+        { "id": "pos3", "label": "Position", "type": "row", "fields": [ { "id": "pos3X", "label": "X", "type": "f32", "offset": "0x0028" }, { "id": "pos3Y", "label": "Y", "type": "f32", "offset": "0x002C" }, { "id": "pos3Z", "label": "Z", "type": "f32", "offset": "0x0030" } ] }
+      ]
+    },
+    {
+      "title": "Region",
+      "scope": "file",
+      "fields": [
+        { "id": "region", "label": "Game ID", "type": "string", "encoding": "ascii", "offset": "0x0000", "length": 4, "options": {"SOUE": "SOUE — NTSC-U", "SOUP": "SOUP — PAL", "SOUJ": "SOUJ — NTSC-J", "SOUK": "SOUK — Korea"}, "description": "Shared by all three slots. Must match the game disc you play, and Dolphin looks for the save in the folder named after it.",
+          "variants": { "hd": null } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Never commit saves, exports, keys or extracted game data
+*.sav
+*.bin
+*.dat
+*.keys
+*.nsp
+*.nso
+*.raw
+test-data/
+.DS_Store

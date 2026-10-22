@@ -1,0 +1,741 @@
+{
+  "id": "story",
+  "title": "Story flags",
+  "scope": "slot",
+  "layout": "flags",
+  "description": "Event, quest and chest flags from the WiiKing2 research notes. Labels describe what the bit was seen to do and may be imprecise.",
+  "groups": [
+    {
+      "title": "0x08E4",
+      "fields": [
+        {
+          "id": "f08E4_01",
+          "label": "Return third tablet",
+          "type": "flag",
+          "offset": "0x08E4",
+          "mask": "0x0100",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E4_04",
+          "label": "Show new harp to old woman",
+          "type": "flag",
+          "offset": "0x08E4",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E4_10",
+          "label": "Travel to Isle Of songs",
+          "type": "flag",
+          "offset": "0x08E4",
+          "mask": "0x1000",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E4_40",
+          "label": "Activate Gate of time",
+          "type": "flag",
+          "offset": "0x08E4",
+          "mask": "0x4000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08E6",
+      "fields": [
+        {
+          "id": "f08E6_08",
+          "label": "Loftwing race",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x0800",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E6_20",
+          "label": "Groose gone",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x2000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08E7",
+      "fields": [
+        {
+          "id": "f08E7_01",
+          "label": "Fly to isle of songs to learn third song",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x0001",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E7_04",
+          "label": "Chase after Girahim, who abducted Zelda",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x0004",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E7_40",
+          "label": "Enter the structure that has appeared underneath the isle of the goddess.",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x0040",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E7_80",
+          "label": "Search for your missing loft wing",
+          "type": "flag",
+          "offset": "0x08E6",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08E8",
+      "fields": [
+        {
+          "id": "f08E8_20",
+          "label": "Use the slingshot to reach the temple where zelda is. also enables item selection",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x2000",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E8_40",
+          "label": "Ask Water Dragon about the sacred flame.",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x4000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08E9",
+      "fields": [
+        {
+          "id": "f08E9_01",
+          "label": "Follow Fi",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x0001",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E9_02",
+          "label": "Use map to search for loftwing",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x0002",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E9_10",
+          "label": "Knight Tunic, Fi. if this set and the value of 0x08E6 has been or'd with 0x08 the loftwing is enabled",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x0010",
+          "storage": "u16"
+        },
+        {
+          "id": "f08E9_80",
+          "label": "Gather Information on zelda from kikwis",
+          "type": "flag",
+          "offset": "0x08E8",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08EA",
+      "fields": [
+        {
+          "id": "f08EA_80",
+          "label": "Search for the key to the eldin volcano temple",
+          "type": "flag",
+          "offset": "0x08EA",
+          "mask": "0x8000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08EB",
+      "fields": [
+        {
+          "id": "f08EB_08",
+          "label": "Find sacred wather for the water dragon",
+          "type": "flag",
+          "offset": "0x08EA",
+          "mask": "0x0008",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EB_10",
+          "label": "Explore area behind waterfall",
+          "type": "flag",
+          "offset": "0x08EA",
+          "mask": "0x0010",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08EC",
+      "fields": [
+        {
+          "id": "f08EC_02",
+          "label": "Look for sacred flame in the ancient cistern",
+          "type": "flag",
+          "offset": "0x08EC",
+          "mask": "0x0200",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EC_04",
+          "label": "Seach the sandship for the sacred flame",
+          "type": "flag",
+          "offset": "0x08EC",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EC_20",
+          "label": "Search for the three triforce peices in the sky keep",
+          "type": "flag",
+          "offset": "0x08EC",
+          "mask": "0x2000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08EE",
+      "fields": [
+        {
+          "id": "f08EE_10",
+          "label": "Find the third sacred flame",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x1000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08EF",
+      "fields": [
+        {
+          "id": "f08EF_01",
+          "label": "Gust Bellows Stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0001",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_02",
+          "label": "ClawShot stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0002",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_04",
+          "label": "Whip Stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0004",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_08",
+          "label": "Slingshot stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0008",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_10",
+          "label": "BombBag stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0010",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_20",
+          "label": "Bow, Beetle and Bug Net stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0020",
+          "storage": "u16"
+        },
+        {
+          "id": "f08EF_40",
+          "label": "Sword Stolen",
+          "type": "flag",
+          "offset": "0x08EE",
+          "mask": "0x0040",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F0",
+      "fields": [
+        {
+          "id": "f08F0_01",
+          "label": "Go to faron woods and search for zelda",
+          "type": "flag",
+          "offset": "0x08F0",
+          "mask": "0x0100",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F0_04",
+          "label": "Hit game of time with skyward strike",
+          "type": "flag",
+          "offset": "0x08F0",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F0_10",
+          "label": "Defeat Girahim in the past",
+          "type": "flag",
+          "offset": "0x08F0",
+          "mask": "0x1000",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F0_80",
+          "label": "Search for zelda who seems to have landed safely",
+          "type": "flag",
+          "offset": "0x08F0",
+          "mask": "0x8000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F1",
+      "fields": [
+        {
+          "id": "f08F1_80",
+          "label": "Farore's Courage first trial",
+          "type": "flag",
+          "offset": "0x08F0",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F2",
+      "fields": [
+        {
+          "id": "f08F2_01",
+          "label": "Eldin Pillar",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x0100",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F2_02",
+          "label": "Lanayru Pillar",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x0200",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F2_04",
+          "label": "Something about the ballad of the Goddess",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F2_20",
+          "label": "Search for zelda in the eldin province",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x2000",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F2_40",
+          "label": "Search for zelda in the earth temple",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x4000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F3",
+      "fields": [
+        {
+          "id": "f08F3_80",
+          "label": "Faron Pillar",
+          "type": "flag",
+          "offset": "0x08F2",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F5",
+      "fields": [
+        {
+          "id": "f08F5_20",
+          "label": "Open gate with Nayru's wisdom",
+          "type": "flag",
+          "offset": "0x08F4",
+          "mask": "0x0020",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F5_40",
+          "label": "Open gate with Din's Power",
+          "type": "flag",
+          "offset": "0x08F4",
+          "mask": "0x0040",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F6",
+      "fields": [
+        {
+          "id": "f08F6_20",
+          "label": "Use completed key to open the door to earth temple",
+          "type": "flag",
+          "offset": "0x08F6",
+          "mask": "0x2000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F8",
+      "fields": [
+        {
+          "id": "f08F8_08",
+          "label": "Search for zelda in skyview temple",
+          "type": "flag",
+          "offset": "0x08F8",
+          "mask": "0x0800",
+          "storage": "u16"
+        },
+        {
+          "id": "f08F8_10",
+          "label": "Thunderhead light stream",
+          "type": "flag",
+          "offset": "0x08F8",
+          "mask": "0x1000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08F9",
+      "fields": [
+        {
+          "id": "f08F9_80",
+          "label": "Look for entrance to lanayru mining facility",
+          "type": "flag",
+          "offset": "0x08F8",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08FA",
+      "fields": [
+        {
+          "id": "f08FA_04",
+          "label": "Seal away monster",
+          "type": "flag",
+          "offset": "0x08FA",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FA_10",
+          "label": "Search skyloft for more information about the triforce",
+          "type": "flag",
+          "offset": "0x08FA",
+          "mask": "0x1000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08FB",
+      "fields": [
+        {
+          "id": "f08FB_01",
+          "label": "Enables getting off loftwing at anytime",
+          "type": "flag",
+          "offset": "0x08FA",
+          "mask": "0x0001",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FB_04",
+          "label": "Ask the three dragons about the song of the hero",
+          "type": "flag",
+          "offset": "0x08FA",
+          "mask": "0x0004",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FB_40",
+          "label": "Horwell stands above the door waiting for Link",
+          "type": "flag",
+          "offset": "0x08FA",
+          "mask": "0x0040",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08FC",
+      "fields": [
+        {
+          "id": "f08FC_04",
+          "label": "Use water dragon scale to explore flooded faron woods",
+          "type": "flag",
+          "offset": "0x08FC",
+          "mask": "0x0400",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FC_08",
+          "label": "Use Fireshield earings to explore new areas",
+          "type": "flag",
+          "offset": "0x08FC",
+          "mask": "0x0800",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FC_10",
+          "label": "Use Clawshots to investigate lanayru desert",
+          "type": "flag",
+          "offset": "0x08FC",
+          "mask": "0x1000",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FC_20",
+          "label": "Search for the second stone of trials",
+          "type": "flag",
+          "offset": "0x08FC",
+          "mask": "0x2000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x08FE",
+      "fields": [
+        {
+          "id": "f08FE_08",
+          "label": "Hero Mode",
+          "type": "flag",
+          "offset": "0x08FE",
+          "mask": "0x0800",
+          "storage": "u16"
+        },
+        {
+          "id": "f08FE_10",
+          "label": "Defeat revived demise in the past",
+          "type": "flag",
+          "offset": "0x08FE",
+          "mask": "0x1000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x0900",
+      "fields": [
+        {
+          "id": "f0900_01",
+          "label": "North east of fun fun island (Behind bars)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x0100",
+          "storage": "u16"
+        },
+        {
+          "id": "f0900_08",
+          "label": "East Skyloft chest (on floating island)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x0800",
+          "storage": "u16"
+        },
+        {
+          "id": "f0900_10",
+          "label": "West Skyloft chest (dive for it)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x1000",
+          "storage": "u16"
+        },
+        {
+          "id": "f0900_20",
+          "label": "West Skyloft chest (on floating island above skyloft, contains Heart piece)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x2000",
+          "storage": "u16"
+        },
+        {
+          "id": "f0900_40",
+          "label": "Beedles island (behind the fence, contains rupee medal)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x4000",
+          "storage": "u16"
+        },
+        {
+          "id": "f0900_80",
+          "label": "Island of the Bamboo cutting mini game (contains gold rupee)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x8000",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x0901",
+      "fields": [
+        {
+          "id": "f0901_01",
+          "label": "Volcano looking island, (outside ledge, contains heart medal)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x0001",
+          "storage": "u16"
+        },
+        {
+          "id": "f0901_02",
+          "label": "Volcano looking island, (inside ledge, contains heart piece)",
+          "type": "flag",
+          "offset": "0x0900",
+          "mask": "0x0002",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x0902",
+      "fields": [
+        {
+          "id": "f0902_01",
+          "label": "West Skyloft Chest (on floating island)",
+          "type": "flag",
+          "offset": "0x0902",
+          "mask": "0x0100",
+          "storage": "u16"
+        },
+        {
+          "id": "f0902_08",
+          "label": "Skyloft Bazaar Goddess Chest",
+          "type": "flag",
+          "offset": "0x0902",
+          "mask": "0x0800",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x090D",
+      "fields": [
+        {
+          "id": "f090D_02",
+          "label": "Transport water basin to eldin volcano",
+          "type": "flag",
+          "offset": "0x090C",
+          "mask": "0x0002",
+          "storage": "u16"
+        },
+        {
+          "id": "f090D_20",
+          "label": "Sling Shot Stolen",
+          "type": "flag",
+          "offset": "0x090C",
+          "mask": "0x0020",
+          "storage": "u16"
+        },
+        {
+          "id": "f090D_40",
+          "label": "Beetle Stolen",
+          "type": "flag",
+          "offset": "0x090C",
+          "mask": "0x0040",
+          "storage": "u16"
+        },
+        {
+          "id": "f090D_80",
+          "label": "Bombs",
+          "type": "flag",
+          "offset": "0x090C",
+          "mask": "0x0080",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x0919",
+      "fields": [
+        {
+          "id": "f0919_20",
+          "label": "Rattle Returned",
+          "type": "flag",
+          "offset": "0x0918",
+          "mask": "0x0020",
+          "storage": "u16"
+        }
+      ]
+    },
+    {
+      "title": "0x0938",
+      "fields": [
+        {
+          "id": "f0938_20",
+          "label": "Dowsing",
+          "type": "flag",
+          "offset": "0x0938",
+          "mask": "0x2000",
+          "storage": "u16"
+        }
+      ]
+    }
+  ]
+}

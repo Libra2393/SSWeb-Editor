@@ -1,0 +1,572 @@
+{
+  "about": "Coverage tracker. Regions come from the zeldaret/ss decompilation's save struct (CC0); each wishlist item is 'in editor' automatically when all its fields exist, otherwise its status is 'known' (location known, not yet a field), 'research' or 'not-possible'.",
+  "regions": [
+    {
+      "id": "times",
+      "label": "Play time and save time",
+      "scope": "slot",
+      "start": "0x0000",
+      "end": "0x0010"
+    },
+    {
+      "id": "positions",
+      "label": "Spawn positions t1/t2/t3",
+      "scope": "slot",
+      "start": "0x0010",
+      "end": "0x0034"
+    },
+    {
+      "id": "beacons",
+      "label": "Placed beacons (32 maps × 5)",
+      "scope": "slot",
+      "start": "0x0034",
+      "end": "0x07B4"
+    },
+    {
+      "id": "beedle",
+      "label": "Beedle's shop path",
+      "scope": "slot",
+      "start": "0x07B4",
+      "end": "0x07BC"
+    },
+    {
+      "id": "unk7bc",
+      "label": "Unknown",
+      "scope": "slot",
+      "start": "0x07BC",
+      "end": "0x07C0"
+    },
+    {
+      "id": "pouch",
+      "label": "Adventure Pouch",
+      "scope": "slot",
+      "start": "0x07C0",
+      "end": "0x07E0"
+    },
+    {
+      "id": "itemcheck",
+      "label": "Item Check storage",
+      "scope": "slot",
+      "start": "0x07E0",
+      "end": "0x08D0"
+    },
+    {
+      "id": "area",
+      "label": "Load-screen area",
+      "scope": "slot",
+      "start": "0x08D0",
+      "end": "0x08D4"
+    },
+    {
+      "id": "name",
+      "label": "Hero's name",
+      "scope": "slot",
+      "start": "0x08D4",
+      "end": "0x08E4"
+    },
+    {
+      "id": "story",
+      "label": "Story flags (1201)",
+      "scope": "slot",
+      "start": "0x08E4",
+      "end": "0x09E4"
+    },
+    {
+      "id": "item",
+      "label": "Item flags, counters, rupees, ammo",
+      "scope": "slot",
+      "start": "0x09E4",
+      "end": "0x0A64"
+    },
+    {
+      "id": "dungeon",
+      "label": "Dungeon flags",
+      "scope": "slot",
+      "start": "0x0A64",
+      "end": "0x0BC4"
+    },
+    {
+      "id": "unkbc4",
+      "label": "Unknown",
+      "scope": "slot",
+      "start": "0x0BC4",
+      "end": "0x1A64"
+    },
+    {
+      "id": "scene",
+      "label": "Scene flags",
+      "scope": "slot",
+      "start": "0x1A64",
+      "end": "0x1C04"
+    },
+    {
+      "id": "unk1c04",
+      "label": "Unknown",
+      "scope": "slot",
+      "start": "0x1C04",
+      "end": "0x2A64"
+    },
+    {
+      "id": "tbox",
+      "label": "Chest flags",
+      "scope": "slot",
+      "start": "0x2A64",
+      "end": "0x2ACC"
+    },
+    {
+      "id": "unk2acc",
+      "label": "Unknown",
+      "scope": "slot",
+      "start": "0x2ACC",
+      "end": "0x2F64"
+    },
+    {
+      "id": "kills",
+      "label": "Enemy kill counters",
+      "scope": "slot",
+      "start": "0x2F64",
+      "end": "0x302C"
+    },
+    {
+      "id": "hits",
+      "label": "Hit-by-enemy counters",
+      "scope": "slot",
+      "start": "0x302C",
+      "end": "0x30F4"
+    },
+    {
+      "id": "temp",
+      "label": "Temporary flags",
+      "scope": "slot",
+      "start": "0x30F4",
+      "end": "0x30FC"
+    },
+    {
+      "id": "zone",
+      "label": "Zone flags",
+      "scope": "slot",
+      "start": "0x30FC",
+      "end": "0x32F4"
+    },
+    {
+      "id": "objects",
+      "label": "Stage object flags",
+      "scope": "slot",
+      "start": "0x32F4",
+      "end": "0x52F4"
+    },
+    {
+      "id": "potions",
+      "label": "Potion timers",
+      "scope": "slot",
+      "start": "0x52F4",
+      "end": "0x5300"
+    },
+    {
+      "id": "health",
+      "label": "Hearts",
+      "scope": "slot",
+      "start": "0x5300",
+      "end": "0x5308"
+    },
+    {
+      "id": "spawnrooms",
+      "label": "Spawn rooms and angles",
+      "scope": "slot",
+      "start": "0x5308",
+      "end": "0x531C"
+    },
+    {
+      "id": "stages",
+      "label": "Spawn stages t1/t2/t3",
+      "scope": "slot",
+      "start": "0x531C",
+      "end": "0x537C"
+    },
+    {
+      "id": "beaconsplaced",
+      "label": "Placed-beacon flags",
+      "scope": "slot",
+      "start": "0x537C",
+      "end": "0x539C"
+    },
+    {
+      "id": "skykeep",
+      "label": "Sky Keep room layout",
+      "scope": "slot",
+      "start": "0x539C",
+      "end": "0x53A5"
+    },
+    {
+      "id": "spawnmisc",
+      "label": "Spawn layers and entrances",
+      "scope": "slot",
+      "start": "0x53A5",
+      "end": "0x53AD"
+    },
+    {
+      "id": "state",
+      "label": "New file, B item, pouch/shield/dowsing, night",
+      "scope": "slot",
+      "start": "0x53AD",
+      "end": "0x53BC"
+    },
+    {
+      "id": "checksum",
+      "label": "Checksum",
+      "scope": "slot",
+      "start": "0x53BC",
+      "end": "0x53C0"
+    }
+  ],
+  "hdRegions": [
+    {
+      "id": "hdextra",
+      "label": "HD-only per-slot data",
+      "scope": "slotExtra",
+      "start": "0x0000",
+      "end": "0x2238",
+      "note": "Covered by the slot checksum; contents unknown."
+    },
+    {
+      "id": "hdextra2",
+      "label": "HD-only per-slot data 2",
+      "scope": "slotExtra2",
+      "start": "0x0000",
+      "end": "0x0118",
+      "note": "Covered by the slot checksum; contents unknown."
+    }
+  ],
+  "items": [
+    {
+      "category": "File",
+      "title": "Hero's name",
+      "fields": [
+        "general.playerName"
+      ]
+    },
+    {
+      "category": "File",
+      "title": "Play time and save date",
+      "fields": [
+        "general.playTime",
+        "general.saveTime"
+      ]
+    },
+    {
+      "category": "File",
+      "title": "Hero Mode",
+      "fields": [
+        "general.heroMode"
+      ]
+    },
+    {
+      "category": "File",
+      "title": "Empty / new file flag",
+      "fields": [
+        "general.isNew"
+      ]
+    },
+    {
+      "category": "File",
+      "title": "Day or night",
+      "fields": [
+        "general.isNight"
+      ]
+    },
+    {
+      "category": "Status",
+      "title": "Hearts (capacity and current)",
+      "fields": [
+        "general.totalHearts",
+        "general.currentHealth"
+      ]
+    },
+    {
+      "category": "Status",
+      "title": "Rupees",
+      "fields": [
+        "general.rupees"
+      ]
+    },
+    {
+      "category": "Status",
+      "title": "Gratitude crystals",
+      "fields": [
+        "general.gratitudeCrystals"
+      ]
+    },
+    {
+      "category": "Status",
+      "title": "Potion effect timers",
+      "status": "known",
+      "note": "Air, stamina and guardian potion timers at 0x52F4–0x52FF (decompilation)."
+    },
+    {
+      "category": "Location",
+      "title": "Spawn stage, room, layer, entrance, position",
+      "fields": [
+        "general.stage",
+        "general.room",
+        "general.layerT1",
+        "general.entranceT1",
+        "general.pos1X"
+      ]
+    },
+    {
+      "category": "Location",
+      "title": "Load-screen area name",
+      "fields": [
+        "general.locationId"
+      ]
+    },
+    {
+      "category": "Location",
+      "title": "Start at any bird statue",
+      "status": "research",
+      "note": "Needs each statue's stage/room/entrance; the randomizer's entrance data is a likely source."
+    },
+    {
+      "category": "Items",
+      "title": "Swords",
+      "fields": [
+        "inventory.practiceSword",
+        "inventory.goddessSword",
+        "inventory.trueMasterSword"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "B-wheel items and upgrades",
+      "fields": [
+        "inventory.slingshot",
+        "inventory.beetle",
+        "inventory.bow",
+        "inventory.clawshots",
+        "inventory.whip",
+        "inventory.gustBellows",
+        "inventory.bombs",
+        "inventory.bugNet"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Key items (Sailcloth, Harp, mitts, scale, earrings)",
+      "fields": [
+        "inventory.sailcloth",
+        "inventory.harp",
+        "inventory.diggingMitts",
+        "inventory.waterDragonScale",
+        "inventory.fireshieldEarrings"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Wallets",
+      "fields": [
+        "inventory.mediumWallet",
+        "inventory.tycoonWallet"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Extra wallets (+300 each)",
+      "status": "known",
+      "note": "Item 199 (Extra Wallet) in the item flag table; may be a counter."
+    },
+    {
+      "category": "Items",
+      "title": "Tablets",
+      "fields": [
+        "inventory.emeraldTablet",
+        "inventory.rubyTablet",
+        "inventory.amberTablet"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Songs and Triforce pieces",
+      "fields": [
+        "inventory.balladGoddess",
+        "inventory.songOfTheHero",
+        "inventory.triforceTop"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Arrows, bombs and seeds",
+      "fields": [
+        "inventory.arrows",
+        "inventory.bombAmmo",
+        "inventory.seeds"
+      ]
+    },
+    {
+      "category": "Items",
+      "title": "Bugs and treasures (owned and count)",
+      "fields": [
+        "collection.hornetOwned",
+        "collection.hornetCount",
+        "collection.goldenSkullCount"
+      ]
+    },
+    {
+      "category": "Equipment",
+      "title": "Adventure Pouch contents and durability",
+      "fields": [
+        "equipment.pouch1Item",
+        "equipment.pouch1Amount"
+      ]
+    },
+    {
+      "category": "Equipment",
+      "title": "Equipped shield / dowsing selection",
+      "fields": [
+        "equipment.shieldSlot",
+        "equipment.dowsing"
+      ]
+    },
+    {
+      "category": "Equipment",
+      "title": "Item Check storage",
+      "fields": [
+        "equipment.storage1Item"
+      ]
+    },
+    {
+      "category": "Equipment",
+      "title": "Number of pouch slots unlocked",
+      "status": "known",
+      "note": "Item flags for the Adventure Pouch (112) and Pouch Expansion (113)."
+    },
+    {
+      "category": "Equipment",
+      "title": "Dowsing modes unlocked",
+      "status": "known",
+      "note": "Story flags (e.g. 102 treasure, 104 crystals, 105 rupees, 108 hearts, 110 goddess cubes)."
+    },
+    {
+      "category": "Equipment",
+      "title": "Equipped B item",
+      "fields": [
+        "inventory.equippedWeapon"
+      ]
+    },
+    {
+      "category": "Appearance",
+      "title": "Starting clothes vs knight uniform",
+      "fields": [
+        "inventory.knightUniform"
+      ]
+    },
+    {
+      "category": "Appearance",
+      "title": "Tunic colour",
+      "status": "not-possible",
+      "note": "Not stored in the save; needs modified game textures."
+    },
+    {
+      "category": "Appearance",
+      "title": "Loftwing colour",
+      "status": "not-possible",
+      "note": "Not stored in the save."
+    },
+    {
+      "category": "Collectibles",
+      "title": "Heart pieces (21 of 24 mapped)",
+      "note": "Per-location flags from the randomizer data, checked on a 100% save.",
+      "fields": [
+        "locations.hp-upper-skyloft-in-zelda-s-closet",
+        "locations.hp-upper-skyloft-pumpkin-archery-600-points",
+        "locations.hp-central-skyloft-shed-goddess-chest"
+      ]
+    },
+    {
+      "category": "Collectibles",
+      "title": "Remaining 3 heart pieces",
+      "status": "research",
+      "note": "Batreaux's reward and two others aren't tracked by a single flag in the randomizer data."
+    },
+    {
+      "category": "Collectibles",
+      "title": "Goddess cubes (27)",
+      "status": "research",
+      "note": "Story flags; the Archipelago cube table wasn't downloadable when checked."
+    },
+    {
+      "category": "Collectibles",
+      "title": "Goddess chests (27) and other chests (112)",
+      "note": "8 chests behind bombable walls or in boulders aren’t verified yet.",
+      "fields": [
+        "locations.gc-central-skyloft-west-cliff-goddess-chest",
+        "locations.gc-central-skyloft-bazaar-goddess-chest",
+        "locations.gc-central-skyloft-shed-goddess-chest",
+        "locations.chest-upper-skyloft-sparring-hall-chest",
+        "locations.chest-upper-skyloft-chest-near-goddess-statue",
+        "locations.chest-central-skyloft-waterfall-cave-first-chest"
+      ]
+    },
+    {
+      "category": "Collectibles",
+      "title": "Loose gratitude crystals (15)",
+      "note": "All 15 verified on a 100% save.",
+      "fields": [
+        "locations.crystal-upper-skyloft-crystal-in-link-s-room",
+        "locations.crystal-upper-skyloft-crystal-in-knight-academy-plant",
+        "locations.crystal-upper-skyloft-crystal-in-zelda-s-room"
+      ]
+    },
+    {
+      "category": "Collectibles",
+      "title": "Tadtones",
+      "status": "research"
+    },
+    {
+      "category": "Progress",
+      "title": "Story flags by number (all 1201)",
+      "status": "known",
+      "note": "Every flag is in defs/flags/storyflags.json; the Story flags tab only lists the ~70 from the old research notes."
+    },
+    {
+      "category": "Progress",
+      "title": "Dungeon keys, maps and boss keys",
+      "status": "known",
+      "note": "Dungeon flags at 0x0A64; per-dungeon layout still to map."
+    },
+    {
+      "category": "Progress",
+      "title": "Silent Realm tears",
+      "status": "research"
+    },
+    {
+      "category": "Progress",
+      "title": "Bird statues activated",
+      "status": "known",
+      "note": "Story flags 800–807 and similar."
+    },
+    {
+      "category": "Progress",
+      "title": "Sky Keep room layout",
+      "status": "known",
+      "note": "9 bytes at 0x539C."
+    },
+    {
+      "category": "Progress",
+      "title": "Beacons placed on maps",
+      "status": "known",
+      "note": "Positions at 0x0034 and flags at 0x537C."
+    },
+    {
+      "category": "Progress",
+      "title": "Enemy kill counters",
+      "status": "known",
+      "note": "100 counters at 0x2F64."
+    },
+    {
+      "category": "Other files",
+      "title": "skip.dat cutscene skips",
+      "status": "research",
+      "note": "Separate file on Wii and Switch; old notes describe a few bits."
+    }
+  ]
+}
