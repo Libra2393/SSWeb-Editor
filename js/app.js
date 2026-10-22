@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Part of the Skyward Sword save editor. See LICENSE and CREDITS.md.
+// Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 import { SaveFile, num } from "./codec.js";
 import { loadFromServer, loadFromFiles, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries } from "./defs.js";

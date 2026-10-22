@@ -1,4 +1,6 @@
-# Skyward Sword save editor (browser)
+# SSWeb Editor
+
+A browser-based save editor for The Legend of Zelda: Skyward Sword (Wii) and Skyward Sword HD (Switch).
 
 Edits the raw `wiiking2.sav` that Dolphin stores unencrypted under `Wii/title/00010000/534f55xx/data/`, and
 the Skyward Sword HD save from the Switch. Everything the editor knows about the formats lives in

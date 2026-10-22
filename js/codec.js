@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Part of the Skyward Sword save editor. See LICENSE and CREDITS.md.
+// Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 // Reads and writes typed fields in a save buffer, driven entirely by the JSON definitions.
 

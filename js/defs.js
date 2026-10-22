@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Part of the Skyward Sword save editor. See LICENSE and CREDITS.md.
+// Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 // Loads the JSON definition files and resolves them into the structures the editor renders from.
 // The manifest can list several file formats (e.g. the Wii and HD saves). Each gets its own copy of the

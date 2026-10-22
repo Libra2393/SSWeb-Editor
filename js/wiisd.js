@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Part of the Skyward Sword save editor. See LICENSE and CREDITS.md.
+// Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 // Import-only reader for Wii SD-card save exports (the data.bin the Wii writes to an SD card).
 //
