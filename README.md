@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/banner.png" alt="SSWeb Editor: save editor for Skyward Sword (Wii) and Skyward Sword HD (Switch)" width="100%"></p>
+
 # SSWeb Editor
 
 A browser-based save editor for The Legend of Zelda: Skyward Sword (Wii) and Skyward Sword HD (Switch).

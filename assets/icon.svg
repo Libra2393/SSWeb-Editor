@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- SSWeb Editor icon: a gold feather over a sky tile. Original artwork, GPL-3.0-or-later like the rest of the project. -->
+  <title>SSWeb Editor</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fd0ee"/>
+      <stop offset="0.55" stop-color="#4f9cc4"/>
+      <stop offset="1" stop-color="#2c6585"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#a87a14"/>
+      <stop offset="0.45" stop-color="#e9bf4f"/>
+      <stop offset="1" stop-color="#fff0b8"/>
+    </linearGradient>
+    <linearGradient id="spine" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#6e4f0c"/>
+      <stop offset="1" stop-color="#c9971f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.62" cy="0.36" r="0.5">
+      <stop offset="0" stop-color="#fff6d6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fff6d6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="tile"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <rect width="512" height="512" fill="url(#glow)"/>
+    <!-- clouds -->
+    <g fill="#ffffff">
+      <g opacity="0.55">
+        <ellipse cx="96" cy="420" rx="120" ry="46"/>
+        <ellipse cx="190" cy="402" rx="84" ry="52"/>
+        <ellipse cx="290" cy="430" rx="110" ry="44"/>
+      </g>
+      <g opacity="0.9">
+        <ellipse cx="60" cy="478" rx="130" ry="50"/>
+        <ellipse cx="200" cy="462" rx="96" ry="58"/>
+        <ellipse cx="350" cy="486" rx="150" ry="52"/>
+        <ellipse cx="470" cy="470" rx="90" ry="46"/>
+      </g>
+      <g opacity="0.45">
+        <ellipse cx="420" cy="150" rx="70" ry="20"/>
+        <ellipse cx="455" cy="138" rx="44" ry="22"/>
+      </g>
+    </g>
+
+    <!-- feather: spine through the middle of a two-sided vane -->
+    <g>
+      <path d="M150 412 C 136 312, 226 176, 394 96 C 386 210, 312 330, 202 420 Z" fill="url(#gold)"/>
+      <!-- barb splits: V-shaped cuts into both edges, coloured like the sky behind them -->
+      <path d="M162 323 L 175 336 L 168 306 Z" fill="#4a94bb"/>
+      <path d="M203 248 L 222 264 L 216 231 Z" fill="#59a4ca"/>
+      <path d="M263 182 L 281 196 L 281 167 Z" fill="#67b0d4"/>
+      <path d="M373 191 L 349 197 L 366 208 Z" fill="#62abd0"/>
+      <path d="M331 275 L 298 277 L 320 292 Z" fill="#4f9cc3"/>
+      <path d="M276 349 L 242 351 L 262 364 Z" fill="#448aaf"/>
+      <!-- highlight -->
+      <path d="M170 372 C 178 292, 246 196, 362 122" fill="none" stroke="#fff8dc" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+      <!-- spine / quill -->
+      <path d="M120 456 C 196 352, 280 230, 394 96" fill="none" stroke="url(#spine)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M120 456 L 152 414" stroke="#5c420a" stroke-width="12" stroke-linecap="round"/>
+    </g>
+
+    <!-- sparkles -->
+    <g fill="#fffbe8">
+      <path d="M408 236 l7 -21 l7 21 l21 7 l-21 7 l-7 21 l-7 -21 l-21 -7 Z" opacity="0.95"/>
+      <path d="M118 150 l4 -12 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 Z" opacity="0.8"/>
+    </g>
+  </g>
+</svg>

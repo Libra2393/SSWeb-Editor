@@ -90,6 +90,15 @@ def build(out: Path) -> None:
     html = html.replace("Field definitions are loaded from <code>defs/</code>. Edit those JSON files to add fields.",
                         f"Standalone build ({ver}): the field definitions are built in. Use ⋯ → Add definition file to try new ones.")
 
+    # The icon has to travel inside the file too: inline it as a data URI and drop the PNG touch icon.
+    import base64
+    icon = "data:image/svg+xml;base64," + base64.b64encode((ROOT / "assets" / "icon.svg").read_bytes()).decode()
+    for needle in ('href="assets/icon.svg"', 'src="assets/icon.svg"'):
+        if needle not in html:
+            sys.exit(f"index.html no longer contains {needle}; update this script")
+        html = html.replace(needle, needle.split("=")[0] + f'="{icon}"')
+    html = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>', "", html)
+
     # In the offline file, say so instead of offering the download.
     note = re.search(r'<p id="offlineNote"[^>]*>.*?</p>', html, re.S)
     if not note:

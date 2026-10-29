@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 640" width="1280" height="640">
+  <!-- SSWeb Editor artwork. Original, GPL-3.0-or-later like the rest of the project. Export PNGs with tools/render_art.sh -->
+  <title>SSWeb Editor</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6daf1"/><stop offset="0.6" stop-color="#5ea6cb"/><stop offset="1" stop-color="#33739a"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.78" cy="0.25" r="0.55">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity="0.75"/><stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-30%" width="120%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#163a52" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="640" fill="url(#sky)"/>
+  <rect width="1280" height="640" fill="url(#sun)"/>
+  <g transform="translate(896.0 300) scale(0.62)" opacity="0.55"><path d="M-90 0 C -60 -18, -20 -26, 10 -22 C 40 -30, 80 -20, 96 0 Z" fill="#3f86ad"/><path d="M-92 0 L 96 0 C 80 30, 40 46, 22 92 C 6 60, -8 70, -18 104 C -30 66, -60 40, -92 0 Z" fill="#336f92"/><path d="M-60 -16 C -54 -40, -36 -44, -30 -20 Z M 30 -24 C 36 -54, 58 -56, 62 -16 Z" fill="#3a7ea4"/></g><g transform="translate(1126.4 270) scale(0.9)" opacity="0.7"><path d="M-90 0 C -60 -18, -20 -26, 10 -22 C 40 -30, 80 -20, 96 0 Z" fill="#3f86ad"/><path d="M-92 0 L 96 0 C 80 30, 40 46, 22 92 C 6 60, -8 70, -18 104 C -30 66, -60 40, -92 0 Z" fill="#336f92"/><path d="M-60 -16 C -54 -40, -36 -44, -30 -20 Z M 30 -24 C 36 -54, 58 -56, 62 -16 Z" fill="#3a7ea4"/></g><g transform="translate(716.8000000000001 318) scale(0.42)" opacity="0.45"><path d="M-90 0 C -60 -18, -20 -26, 10 -22 C 40 -30, 80 -20, 96 0 Z" fill="#3f86ad"/><path d="M-92 0 L 96 0 C 80 30, 40 46, 22 92 C 6 60, -8 70, -18 104 C -30 66, -60 40, -92 0 Z" fill="#336f92"/><path d="M-60 -16 C -54 -40, -36 -44, -30 -20 Z M 30 -24 C 36 -54, 58 -56, 62 -16 Z" fill="#3a7ea4"/></g>
+  <g fill="#ffffff" opacity="0.55"><ellipse cx="60" cy="554" rx="200" ry="46"/><ellipse cx="330" cy="544" rx="230" ry="52"/><ellipse cx="620" cy="560" rx="210" ry="44"/><ellipse cx="880" cy="540" rx="250" ry="54"/><ellipse cx="1180" cy="556" rx="220" ry="48"/></g>
+  <g fill="#ffffff" opacity="0.95"><ellipse cx="-40" cy="610" rx="220" ry="70"/><ellipse cx="170" cy="626" rx="200" ry="62"/><ellipse cx="400" cy="600" rx="240" ry="74"/><ellipse cx="650" cy="622" rx="230" ry="64"/><ellipse cx="900" cy="604" rx="260" ry="76"/><ellipse cx="1150" cy="624" rx="220" ry="66"/><ellipse cx="1330" cy="606" rx="200" ry="70"/></g>
+  <image href="icon.svg" xlink:href="icon.svg" x="525" y="62" width="230" height="230" filter="url(#shadow)"/>
+  <g font-family="Noto Serif, Georgia, 'Times New Roman', serif" text-anchor="middle" filter="url(#shadow)">
+    <text x="640" y="398" font-size="104" font-weight="700" fill="#fffdf8">SSWeb Editor</text>
+    <text x="640" y="456" font-size="32" fill="#fff6dc">Save editor for Skyward Sword (Wii) and Skyward Sword HD (Switch)</text>
+    <text x="640" y="504" font-size="25" fill="#fffdf8" opacity="0.92">Free · runs in your browser · works offline</text>
+  </g>
+  <text x="1256" y="624" text-anchor="end" font-family="Noto Serif, Georgia, 'Times New Roman', serif" font-size="16" fill="#24506b" opacity="0.8">Unofficial fan project · not affiliated with Nintendo</text>
+</svg>

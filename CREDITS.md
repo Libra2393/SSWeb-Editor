@@ -78,6 +78,12 @@ included.
 
 Testing used saves shared by players, Dolphin and Eden.
 
+## Artwork
+
+The icon, banner and social preview in `assets/` are original artwork drawn for this project as SVG (a gold
+feather over a sky of clouds and floating islands). They use no Nintendo art and are licensed with the rest of the
+project under GPL-3.0-or-later. `tools/render_art.sh` exports the PNG versions.
+
 ## Trademarks
 
 The Legend of Zelda and Skyward Sword are trademarks of Nintendo. This is an unofficial fan project; it is not
