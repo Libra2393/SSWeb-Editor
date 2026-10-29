@@ -80,10 +80,11 @@ def build(out: Path) -> None:
     defs = collect_defs()
     ver = version()
 
-    # Side files don't exist next to a single HTML file; point their links at the repository instead.
-    for name, target in (("CREDITS.md", "blob/main/CREDITS.md"), ("README.md", "blob/main/README.md"),
-                         ("LICENSE", "blob/main/LICENSE")):
-        html = html.replace(f'href="{name}', f'href="{REPO_URL}/{target}')
+    # Links to CREDITS.md, README.md and LICENSE already point at the repository (see index.html), so they
+    # work from a single file too.
+    for name in ("CREDITS.md", "README.md", "LICENSE"):
+        if f'href="{name}' in html:
+            sys.exit(f"index.html links to {name} relatively; point it at {REPO_URL}/blob/main/{name}")
 
     # The standalone page has its definitions built in.
     html = html.replace("Field definitions are loaded from <code>defs/</code>. Edit those JSON files to add fields.",
