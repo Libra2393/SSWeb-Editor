@@ -2,6 +2,11 @@
 
 A browser-based save editor for The Legend of Zelda: Skyward Sword (Wii) and Skyward Sword HD (Switch).
 
+- **Use it online:** https://libra2393.github.io/SSWeb-Editor/
+- **Use it offline:** [download SSWeb-Editor.html](https://github.com/Libra2393/SSWeb-Editor/releases/latest/download/SSWeb-Editor.html) (the whole editor in one file). Double-click it to open it
+  in your browser; it works with no internet and no install, on Windows, Linux or macOS. Every release is listed
+  under [Releases](https://github.com/Libra2393/SSWeb-Editor/releases).
+
 Edits the raw `wiiking2.sav` that Dolphin stores unencrypted under `Wii/title/00010000/534f55xx/data/`, and
 the Skyward Sword HD save from the Switch. Everything the editor knows about the formats lives in
 `defs/*.json`.

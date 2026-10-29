@@ -90,6 +90,14 @@ def build(out: Path) -> None:
     html = html.replace("Field definitions are loaded from <code>defs/</code>. Edit those JSON files to add fields.",
                         f"Standalone build ({ver}): the field definitions are built in. Use ⋯ → Add definition file to try new ones.")
 
+    # In the offline file, say so instead of offering the download.
+    note = re.search(r'<p id="offlineNote"[^>]*>.*?</p>', html, re.S)
+    if not note:
+        sys.exit('index.html no longer has <p id="offlineNote">; update this script')
+    html = html.replace(note.group(0), '<p id="offlineNote" class="offline-note"><b>This is the offline version.</b> '
+                        'It runs from this file with no internet. Newer versions: '
+                        f'<a href="{REPO_URL}/releases">{REPO_URL.split("//")[1]}/releases</a></p>')
+
     head_note = (f"<!-- SSWeb Editor, standalone build ({ver}). Source: {REPO_URL}\n"
                  "     Licensed under the GNU GPL v3.0 or later; the full license text and the credits are embedded\n"
                  "     at the end of this file. This file is the complete, unminified source of the editor. -->\n")
