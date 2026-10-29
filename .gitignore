@@ -8,3 +8,6 @@
 *.raw
 test-data/
 .DS_Store
+
+# Standalone build output (attach to GitHub Releases instead)
+dist/

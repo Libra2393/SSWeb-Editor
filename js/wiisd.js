@@ -34,6 +34,7 @@ export function parseKey(text) {
  */
 export async function readSdExport(bytes, keyBytes, ivBytes) {
   if (!looksLikeSdExport(bytes)) throw new Error("This isn't a Wii SD-card save export.");
+  if (!globalThis.crypto?.subtle) throw new Error("This browser doesn't allow decryption on this page. Open the editor from its website, or as a file in Chrome, Edge or Firefox.");
   const key = await crypto.subtle.importKey("raw", keyBytes, "AES-CBC", false, ["encrypt", "decrypt"]);
 
   // The first 8 bytes of the decrypted header are the title ID (00010000 + game ID). That's enough to tell

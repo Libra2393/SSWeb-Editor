@@ -19,6 +19,21 @@ python3 -m http.server -d ss-save-editor-web 8000
 
 Then open http://localhost:8000.
 
+### Offline / standalone version (Windows, Linux, macOS)
+
+`tools/build_standalone.py` packs the whole editor (code, styles and every file in `defs/`) into a single
+`dist/SSWeb-Editor.html` that works with no internet and no install: download it, double-click it, and it opens in
+your browser. It needs only Python 3 to build:
+
+```
+python3 tools/build_standalone.py
+```
+
+Rebuild it whenever `defs/` or the code changes; the footer shows the build's commit and date. To share it, attach
+the file to a GitHub Release (**Releases → Draft a new release**) rather than committing it (`dist/` is ignored).
+In Chrome and Edge, **Save** writes back to the opened file; Firefox downloads a copy instead. The GPL text and the
+credits are embedded in the file, so every copy carries its license.
+
 ### Publishing on GitHub Pages
 
 The editor is static files only, so GitHub Pages can serve this folder as it is: push it to a repository, then

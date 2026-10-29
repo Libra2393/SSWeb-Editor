@@ -2,7 +2,7 @@
 // Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 import { SaveFile, num } from "./codec.js";
-import { loadFromServer, loadFromFiles, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries } from "./defs.js";
+import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries } from "./defs.js";
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -38,7 +38,15 @@ const state = {
 
 async function init() {
   try {
-    setDefs(await loadFromServer());
+    // The standalone build (tools/build_standalone.py) embeds every definition file in the page, so it works
+    // from disk with no server. The hosted version fetches defs/ as usual.
+    const embedded = globalThis.SSWEB_EMBEDDED_DEFS;
+    setDefs(embedded
+      ? await loadWith(async (name) => {
+          if (!(name in embedded)) throw new Error(`${name} is missing from this build`);
+          return structuredClone(embedded[name]);
+        })
+      : await loadFromServer());
   } catch (e) {
     $("#defsStatus").innerHTML = "";
     $("#defsStatus").append(
