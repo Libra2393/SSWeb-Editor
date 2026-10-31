@@ -74,6 +74,13 @@ keys; the editor asks the user for them.
 
 The story-flag research the decompilation's flag notes are based on.
 
+### Tiael — GameFAQs save, 2011
+<https://gamefaqs.gamespot.com/wii/960633-the-legend-of-zelda-skyward-sword/saves>
+
+The "After Levias fight before starting the Song of the Hero quests" NTSC save, posted 8 December 2011 for
+players caught by the Song of the Hero bug and retrieved from the Internet Archive. The `after-levias` preset copies
+its game state (flags, spawn, stats, pouch and storage). The save itself isn't included.
+
 ## Own research
 
 The Skyward Sword HD save layout (little-endian slots, the 4th autosave slot and the two per-slot data blocks),

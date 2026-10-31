@@ -1,12 +1,13 @@
 {
   "id": "skyloft-before-first-dive",
   "title": "Skyloft — prologue done, before the first dive",
-  "description": "Wing Ceremony won, Goddess Sword, Sailcloth and Emerald Tablet obtained, and the Faron light pillar open. Link loads on Skyloft with his Loftwing and 6 hearts, ready to dive to the Surface. Name, play time and Hero Mode are kept. Meant for practice files, not timed runs.",
+  "description": "Wing Ceremony won, Goddess Sword, Sailcloth and Emerald Tablet obtained, and the Faron light pillar open. Link loads on Skyloft with his Loftwing and 6 hearts, ready to dive to the Surface. Play time is set to 2 h, an estimate of a typical first playthrough of the opening. Name and Hero Mode are kept. Meant for practice files, not timed runs.",
   "scope": "slot",
   "sources": "Story flag numbers and descriptions from the zeldaret/ss decompilation (CC0) and the Skyward Sword Randomizer's start flags (MIT); spawn values from a real HD save made on Skyloft.",
   "apply": [
     { "field": "general.playerName", "value": "Link", "onlyIfEmpty": true },
     { "field": "general.isNew", "value": false },
+    { "field": "general.playTime", "value": 7200, "note": "2 h, an estimate of a first playthrough of the opening" },
     { "field": "general.isNight", "value": false },
     { "field": "general.totalHearts", "value": 24 },
     { "field": "general.currentHealth", "value": 24 },

@@ -11,7 +11,7 @@
         { "id": "heroMode", "label": "Hero Mode", "type": "flag", "offset": "0x08FE", "mask": "0x0800", "storage": "u16" },
         { "id": "introViewed", "label": "Opening cutscene viewed", "type": "flag", "offset": "0x0940", "mask": "0x0002", "storage": "u16" },
         { "id": "playTime", "label": "Play time", "type": "duration", "storage": "u64", "offset": "0x0000", "tickRate": 60750000,
-          "variants": { "hd": { "description": "Assumes the Wii tick rate; not yet confirmed for HD." } } },
+          "description": "Wii clock ticks; HD uses the same rate (checked in Sky Recomp)." },
         { "id": "saveTime", "label": "Saved at", "type": "wiitime", "offset": "0x0008", "tickRate": 60750000, "description": "Wii clock ticks since 2000-01-01 00:00, local time.",
           "variants": { "hd": { "epoch": "1970-01-01", "tickRate": 1, "description": "Unix time (seconds since 1970), shown in UTC." } } },
         { "id": "isNight", "label": "Night", "type": "flag", "offset": "0x53B3", "mask": "0x01" }

@@ -20,7 +20,8 @@
   },
   "presets": [
     "presets/skyloft-before-first-dive.json",
-    "presets/skyloft-before-first-dive-starting-clothes.json"
+    "presets/skyloft-before-first-dive-starting-clothes.json",
+    "presets/after-levias.json"
   ],
   "tracker": "tracker.json",
   "flagUsage": "flags/flag-usage.json"

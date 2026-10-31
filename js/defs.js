@@ -120,12 +120,20 @@ function expandPresetExtends(presets, warnings) {
  *     "apply": [ { "field": "general.rupees", "value": 0 },          an existing field by key
  *                { "type": "storyflag", "flag": 3, "value": true } ] } or an inline field
  * An entry with "onlyIfEmpty": true is skipped when the field already holds a value (e.g. keep a name).
+ *   { "type": "words", "offset": "0x08E4", "words": "0001 8000 …" } writes a run of 16-bit words (hex, in the
+ *   save's own byte order), e.g. a whole flag array copied from a reference save by tools/preset-from-save.mjs.
  * See expandPresetExtends for building one preset on another.
  * Inline entries are resolved like section fields but not listed in the editor.
  */
 function resolvePreset(defs, preset, source) {
   preset.source = source;
   preset.scope = preset.scope || "slot";
+  preset.apply = (preset.apply || []).flatMap((entry) => {
+    if (entry.type !== "words") return [entry];
+    const start = num(entry.offset);
+    return String(entry.words).trim().split(/\s+/).map((w, i) =>
+      ({ type: "u16", offset: "0x" + (start + i * 2).toString(16), value: parseInt(w, 16), id: `${entry.id || "words"}_${i}` }));
+  });
   const section = { id: `preset:${preset.id}`, source };
   (preset.apply || []).forEach((entry, i) => {
     const where = `${source} → apply[${i}]`;

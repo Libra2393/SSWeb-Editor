@@ -166,17 +166,34 @@ writes a list of values into the selected slot and leaves everything else alone:
   "apply": [
     { "field": "general.isNew", "value": false },
     { "field": "general.playerName", "value": "Link", "onlyIfEmpty": true },
-    { "type": "storyflag", "flag": 3, "value": true }
+    { "type": "storyflag", "flag": 3, "value": true },
+    { "type": "words", "offset": "0x08E4", "words": "0001 8000 …" }
   ] }
 ```
 
 `field` names an existing field by key; any other entry is an inline field (usually a flag reference).
+`"type": "words"` writes a run of 16-bit words (hex) in the save's own byte order, so the same preset works on Wii
+and HD saves; it's how whole flag arrays are copied from a reference save.
 `"extends": "<preset id>"` starts from another preset's entries and adds its own after them, so they win; the
 "starting clothes" preset is the prologue preset plus one entry that turns the knight uniform off. The
 included preset, `skyloft-before-first-dive`, puts a file at the end of the prologue for practice: Wing Ceremony
-won, Goddess Sword, Sailcloth and Emerald Tablet, Faron light pillar open, 6 hearts, loading on Skyloft. Its
+won, Goddess Sword, Sailcloth and Emerald Tablet, Faron light pillar open, 6 hearts, loading on Skyloft, with
+2 h of play time (an estimate; there's no reference save for this point). Its
 story flags come from the decompilation's descriptions and the Skyward Sword Randomizer's start flags; the
-spawn values come from a real HD save made on Skyloft. **It has not been tested in the game yet.**
+spawn values come from a real HD save made on Skyloft.
+
+`after-levias` is the save people asked for on the GameFAQs board in 2011: Bilocyte beaten, Levias has explained
+the Song of the Hero, and none of its parts are learned yet. All six dungeons, three Silent Realms and Imprisoned 2
+are done, with the Master Sword and 17 hearts, loading on Skyloft at the reference's 49 h 38 m of play time. It's a copy of a real NTSC save from that point,
+made with `tools/preset-from-save.mjs`:
+
+```bash
+node tools/preset-from-save.mjs <wiiking2.sav> <slot 1-4> <preset id> "<title>" > defs/presets/<id>.json
+```
+
+The tool copies the story, item, dungeon, scene and chest flag arrays as words, plus spawn, stats, pouch and storage.
+It leaves the name, play time, Hero Mode, kill and hit statistics, map beacons and undescribed bytes to the save the
+preset is applied to. Add a description and sources by hand afterwards.
 
 Every field needs an `id` that is unique within its section, plus a `label`. `description` shows as a tooltip.
 `enum` names a table in `enums.json`, keyed by decimal or `"0x"` values.
@@ -279,7 +296,8 @@ This is not legal advice. If you're unsure, ask a lawyer.
 - The last 0x40 bytes after slot 3 are unknown (shown as the "Trailer" scope in Raw bytes).
 - `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet.
 - The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2; the starting-clothes
-  variant hasn't been tried in-game.
+  variant hasn't been tried in-game. The after-Levias preset reproduces its reference save's flags exactly
+  (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
   boulders aren't verified, and 3 heart pieces (including Batreaux's) aren't mapped yet.
 - Link's outfit can only be switched between his starting clothes and the knight uniform (story flag 36, which
