@@ -321,6 +321,7 @@ export function flagUsesOf(defs, kind, flag, scene) {
 
 /** "F000 room 0 (layer 2): TBox, opened (chest flag)" */
 export function describeUse(u) {
+  if (u.object === "Event") return `event ${u.stage}${u.room ? ` › ${u.room}` : ""}: ${u.role}`;
   const where = `${u.stage}${u.room === "stage" ? "" : ` room ${u.room}`}${u.layer ? ` (layer ${u.layer})` : ""}`;
   return `${where}: ${u.object}, ${u.role}`;
 }

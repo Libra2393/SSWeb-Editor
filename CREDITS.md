@@ -46,8 +46,9 @@ story and scene flags (`patches.yaml`) that the prologue preset was built from.
 
 The **object field layouts** used by `tools/romfs-flag-index.mjs` (which bits of an object's parameters hold its
 flags, for chests, items, dig spots, area triggers, exits, event triggers, NPCs and push blocks) and its readers
-for U8 archives and BZS object lists follow the randomizer's `gamepatches.py` and `sslib` (`u8file.py`,
-`bzs.py`, itself based on mrcheeze's skyward-sword-tools).
+for U8 archives, BZS object lists and MSBF event flows (including which event nodes set and check flags) follow the
+randomizer's `gamepatches.py` and `sslib` (`u8file.py`, `bzs.py` (itself based on mrcheeze's skyward-sword-tools)
+and `msb.py`).
 
 ### Skyward Sword Archipelago world — Battlecats59 and contributors
 <https://github.com/Battlecats59/SS_APWorld> · no license file

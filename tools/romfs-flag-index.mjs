@@ -23,7 +23,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 // ---------------------------------------------------------------- reading the game data
 
 /** Lists files in a Switch RomFS image (or a folder it was extracted to) as { path -> () => bytes }. */
-function openRomfs(src) {
+export function openRomfs(src) {
   if (statSync(src).isDirectory()) {
     const out = new Map();
     const walk = (d) => { for (const e of readdirSync(d, { withFileTypes: true })) { const p = join(d, e.name); if (e.isDirectory()) walk(p); else out.set(relative(src, p).split("\\").join("/"), () => readFileSync(p)); } };
@@ -152,6 +152,50 @@ function bzs(data) {
   return node("V001", v.getInt16(4), v.getInt32(8));
 }
 
+/** MSBF event flow (layout from the randomizer's sslib/msb.py): nodes, branch table and named entry points. */
+function msbf(data) {
+  const v = new DataView(data.buffer, data.byteOffset, data.byteLength);
+  if (Buffer.from(data.subarray(0, 8)).toString("latin1") !== "MsgFlwBn") throw new Error("not an MSBF file");
+  const out = { nodes: [], branches: [], entries: [] };
+  for (let pos = 0x20; pos + 0x10 <= data.length;) {
+    const id = Buffer.from(data.subarray(pos, pos + 4)).toString("latin1"), len = v.getInt32(pos + 4);
+    const seg = pos + 0x10;
+    if (id === "FLW3") {
+      const n = v.getInt16(seg), nb = v.getInt16(seg + 2);
+      for (let i = 0; i < n; i++) {
+        const o = seg + 0x10 + 0x10 * i;
+        out.nodes.push({ type: v.getInt8(o), subType: v.getInt8(o + 1), param1: v.getInt16(o + 4), param2: v.getInt16(o + 6),
+                         next: v.getInt16(o + 8), param3: v.getInt16(o + 10), param4: v.getInt16(o + 12), param5: v.getInt16(o + 14) });
+      }
+      for (let i = 0; i < nb; i++) out.branches.push(v.getInt16(seg + 0x10 + 0x10 * n + 2 * i));
+    } else if (id === "FEN1") {
+      const count = v.getInt32(seg);
+      for (let i = 0; i < count; i++) {
+        let c = v.getInt32(seg + 4 + 8 * i), ptr = seg + v.getInt32(seg + 8 + 8 * i);
+        for (; c > 0; c--) {
+          const sl = data[ptr], name = Buffer.from(data.subarray(ptr + 1, ptr + 1 + sl)).toString("latin1");
+          out.entries.push({ name, node: v.getInt32(ptr + 1 + sl) });
+          ptr += 5 + sl;
+        }
+      }
+    }
+    pos = (seg + len + 0xf) & ~0xf; // segments are 16-byte aligned
+  }
+  return out;
+}
+
+/** Every event flow file in one language's message archives: [{ file, flow }]. */
+export function eventFlows(romfs, lang = "US/Object/en_US") {
+  const out = [];
+  for (const path of [...romfs.keys()].filter((p) => p.startsWith(lang + "/") && p.endsWith(".arc")).sort()) {
+    for (const f of u8(romfs.get(path)())) {
+      if (!f.path.endsWith(".msbf")) continue;
+      out.push({ archive: path.split("/").pop().replace(/\.arc$/, ""), file: f.path.split("/").pop().replace(/\.msbf$/, ""), flow: msbf(f.data) });
+    }
+  }
+  return out;
+}
+
 // ---------------------------------------------------------------- walking every stage
 
 function* objectsOf(tree, where) {
@@ -212,6 +256,9 @@ const DECODERS = {
             ["scene", "set on entering the area", (o) => scene(o.params1)], ["scene", "unset on entering the area", (o) => scene(o.params1 >>> 8)]],
   NpcTke: [["scene", "makes the NPC appear", (o) => scene(o.anglex)], ["scene", "makes the NPC leave", (o) => scene(o.anglex >> 8)]],
   PushBlk: [["scene", "set when pushed into place", (o) => scene(o.params1 >>> 12)]],
+  // Found by matching known collectible flags against the object dump (see the README):
+  Chandel: [["scene", "set when the chandelier falls", (o) => scene(o.params1 >>> 24)]],
+  chest: [["scene", "set when the closet/wardrobe is opened", (o) => scene(o.params1)]],
 };
 const NPC = [["story", "makes the NPC appear", (o) => story(o.params1 >>> 10)], ["story", "makes the NPC leave", (o) => story(o.params1 >>> 21)]];
 const RECORDS = {
@@ -240,6 +287,49 @@ export function flagUses({ objects, stages }) {
   return uses;
 }
 
+// Event flows (MSBF). Node layouts from the randomizer's gamepatches.py (FlagEventTypes / FlagSwitchTypes):
+//   event  (type 3): subType 0 + param3 0/1 = set/unset story flag param2;
+//                    subType 1 + param3 2/3 = set/unset scene flag param1 in scene group param2 (-1 = current area)
+//   branch (type 2): param3 3 = check story flag param2; param3 6 = check scene flag param2 in the current area
+// "Current area" scene flags are tied to the scene groups each message archive covers (an assumption, marked so).
+const ARCHIVE_SCENES = {
+  "1-Town": [0, 21], "2-Forest": [1, 2, 3, 11, 12, 22], "3-Mountain": [4, 5, 14, 15, 23],
+  "4-Desert": [7, 8, 9, 17, 18, 24], "5-CenterField": [10, 20, 25],
+};
+
+/** Flag uses in the event flows: [{ kind, flag, scene, stage: event file, room: entry point, object: "Event", role }]. */
+export function eventUses(flows) {
+  const uses = [];
+  for (const { archive, file, flow } of flows) {
+    // Which named entry point reaches each node, so a use can be labelled with the event it belongs to.
+    const reachedBy = new Map();
+    for (const e of flow.entries) {
+      const todo = [e.node];
+      while (todo.length) {
+        const i = todo.pop();
+        if (i < 0 || i >= flow.nodes.length || reachedBy.has(i)) continue;
+        reachedBy.set(i, e.name);
+        const n = flow.nodes[i];
+        todo.push(n.next);
+        if (n.type === 2) for (let b = 0; b < n.param4; b++) todo.push(flow.branches[n.param5 + b]);
+      }
+    }
+    const add = (kind, flag, scene, role, i) => uses.push({ kind, flag, scene, stage: file, room: reachedBy.get(i) ?? null, layer: null, object: "Event", role });
+    flow.nodes.forEach((n, i) => {
+      if (n.type === 3 && n.subType === 0 && (n.param3 === 0 || n.param3 === 1) && n.param2 > 0 && n.param2 < 0x7ff)
+        add("story", n.param2, undefined, n.param3 === 0 ? "set by the event" : "unset by the event", i);
+      else if (n.type === 3 && n.subType === 1 && (n.param3 === 2 || n.param3 === 3) && n.param1 >= 0 && n.param1 < 0xff) {
+        const role = n.param3 === 2 ? "set by the event" : "unset by the event";
+        if (n.param2 >= 0) add("scene", n.param1, n.param2, role, i);
+        else for (const sc of ARCHIVE_SCENES[archive] || []) add("scene", n.param1, sc, role + " (if in this area)", i);
+      } else if (n.type === 2 && n.param3 === 3 && n.param2 > 0 && n.param2 < 0x7ff) add("story", n.param2, undefined, "checked by the event", i);
+      else if (n.type === 2 && n.param3 === 6 && n.param2 >= 0 && n.param2 < 0xff)
+        for (const sc of ARCHIVE_SCENES[archive] || []) add("scene", n.param2, sc, "checked by the event (if in this area)", i);
+    });
+  }
+  return uses;
+}
+
 /** Groups flag uses into the compact facts-only file the editor loads. */
 export function usageFile(uses, sceneNames) {
   const out = { story: {}, scene: {}, chest: {} };
@@ -253,8 +343,8 @@ export function usageFile(uses, sceneNames) {
   }
   return {
     name: "Flag usage",
-    source: "Generated by tools/romfs-flag-index.mjs from the game's own stage files (Skyward Sword HD v1.0.0; the Wii version uses the same stages). Facts only: which object in which stage, room and layer uses each flag, and how. Object field layouts from the Skyward Sword Randomizer (MIT) and the zeldaret/ss decompilation (CC0).",
-    format: "story: { flag: [[stage, room, layer, object, role], ...] }; scene and chest: { \"sceneIndex/flag\": [...] }. room is a number or \"stage\"; layer is the stage layer (null = all layers).",
+    source: "Generated by tools/romfs-flag-index.mjs from the game's own stage files and event flows (Skyward Sword HD v1.0.0; the Wii version uses the same formats). Facts only: which object or event uses each flag, and how. Field layouts from the Skyward Sword Randomizer (MIT) and the zeldaret/ss decompilation (CC0).",
+    format: "story: { flag: [[stage, room, layer, object, role], ...] }; scene and chest: { \"sceneIndex/flag\": [...] }. For objects, room is a number or \"stage\" and layer the stage layer (null = all layers). For events, object is \"Event\", stage is the event file and room the named entry point that reaches the flag command.",
     scenes: sceneNames,
     ...out,
   };
@@ -270,7 +360,10 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   console.log(`${objects.length} objects in ${stages.size} stages (${((Date.now() - t) / 1000).toFixed(1)} s)`);
   const di = process.argv.indexOf("--dump");
   if (di > 0) writeFileSync(process.argv[di + 1], JSON.stringify({ stages: Object.fromEntries(stages), objects }));
-  const uses = flagUses({ objects, stages });
+  const flows = eventFlows(openRomfs(src));
+  const evUses = eventUses(flows);
+  console.log(`${flows.length} event flow files: ${evUses.length} flag uses`);
+  const uses = [...flagUses({ objects, stages }), ...evUses];
   const scenes = JSON.parse(readFileSync(join(ROOT, "defs/flags/sceneflags.json"), "utf8")).scenes;
   const file = usageFile(uses, Object.fromEntries(Object.entries(scenes).map(([k, v]) => [v, k])));
   const out = join(ROOT, "defs/flags/flag-usage.json");

@@ -199,23 +199,29 @@ untick **Hide noise**. For clean results, save just before one action, do it, sa
 
 ## Where flags are used (game-data index)
 
-`tools/romfs-flag-index.mjs` reads your own game data and records which object in which stage, room and layer
-uses each story, scene and chest flag. Compare shows this as **Used by** for unknown flags, and the Coverage tab
+`tools/romfs-flag-index.mjs` reads your own game data and records which object (in which stage, room and layer) or
+which event flow uses each story, scene and chest flag. Compare shows this as **Used by** for unknown flags, and the Coverage tab
 counts how many flags are located.
 
 ```
 node tools/romfs-flag-index.mjs <romfs.bin or extracted romfs folder>
 ```
 
-Use the RomFS of Skyward Sword HD v1.0.0 (the Wii version's stages are the same format). It takes a few seconds,
-reads every `Stage/*/*_stg_l*.arc.LZ` (LZ11-compressed U8 archives of BZS object lists), and writes
-`defs/flags/flag-usage.json`, which holds facts only: flag numbers, stage and room names, object type names and
-what the object does with the flag. Decoded object types: chests, items, dig spots, push blocks, area triggers
-(`SwAreaT`), exits (`ScChang`), event triggers (`EvntTag`, `EvfTag`), NPCs, plus the event, layer-select and
-player-start records. Flags set only by event scripts (minigame prizes, dialogue) aren't covered yet.
+Use the RomFS of Skyward Sword HD v1.0.0 (the Wii version uses the same formats). It takes a few seconds and reads:
 
-Checked against the Collectibles tab, which came from different research: 144 of 145 chests and 23 of 27 loose
-items are found with the same flag in the same area. `--dump objects.json` also writes the full raw object list
+- every `Stage/*/*_stg_l*.arc.LZ` (LZ11-compressed U8 archives of BZS object lists). Decoded object types:
+  chests, Zelda's closet (`chest`), items, dig spots, push blocks, the Lumpy Pumpkin chandelier, area triggers
+  (`SwAreaT`), exits (`ScChang`), event triggers (`EvntTag`, `EvfTag`), NPCs, plus the event, layer-select and
+  player-start records;
+- the event flows (`US/Object/en_US/*.arc`, MSBF): every node that sets, unsets or checks a story or scene flag,
+  labelled with the event file and the named entry point that leads to it. Scene-flag checks in events don't name
+  an area, so they're listed for the areas that event archive covers, marked "(if in this area)".
+
+It writes `defs/flags/flag-usage.json` (facts only: flag numbers, stage, room and event names, object types and
+what each does with the flag). Generated from HD v1.0.0 it locates 626 story flags, 1,544 scene flags and 143
+chest flags. Checked against the Collectibles tab, which came from different research: 144 of 145 chests, all 27
+scene-flag collectibles and all 3 story-flag prizes are found. (The 145th chest isn't in the HD stage data.) Flags
+that the game's code sets directly, rather than its data files, can only be found by comparing saves. `--dump objects.json` also writes the full raw object list
 for research; it is derived from the game data, so keep it to yourself.
 
 ## Coverage tracker
