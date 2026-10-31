@@ -31,7 +31,7 @@ Then open http://localhost:8000.
 [Sky Recomp](https://github.com/Apolinario-coder/SkyRecomp), the PC recompilation of Skyward Sword HD v1.0.0,
 writes the same HD `wiiking2.sav` (with `skip.dat` and screenshots beside it). A save made in Sky Recomp v2.0.2
 opened here with valid checksums, read the same values as a real-game save from the same point, and round-tripped
-byte for byte. Its saves live in `save/save_0/` inside Sky Recomp's data folder:
+byte for byte, and a save edited here (the prologue preset) loads and plays in Sky Recomp. Its saves live in `save/save_0/` inside Sky Recomp's data folder:
 
 | System | Folder |
 | --- | --- |
@@ -248,7 +248,8 @@ This is not legal advice. If you're unsure, ask a lawyer.
 - Story-flag labels come from the old WiiKing2 research notes (`Skyward Sword Flags.txt`) and are rough.
 - The last 0x40 bytes after slot 3 are unknown (shown as the "Trailer" scope in Raw bytes).
 - `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet.
-- The prologue preset works in Skyward Sword HD v1.0.1 (Eden); the starting-clothes variant hasn't been tried in-game.
+- The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2; the starting-clothes
+  variant hasn't been tried in-game.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
   boulders aren't verified, and 3 heart pieces (including Batreaux's) aren't mapped yet.
 - Link's outfit can only be switched between his starting clothes and the knight uniform (story flag 36, which
