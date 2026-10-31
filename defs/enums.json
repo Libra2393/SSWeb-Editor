@@ -155,5 +155,29 @@
     "6": "Look (Fi)",
     "7": "Treasure",
     "8": "None"
+  },
+  "scenes": {
+    "0x00": "Skyloft",
+    "0x01": "Faron Woods",
+    "0x02": "Lake Floria",
+    "0x03": "Flooded Faron Woods",
+    "0x04": "Eldin Volcano",
+    "0x05": "Volcano Summit",
+    "0x07": "Lanayru Desert",
+    "0x08": "Lanayru Sand Sea",
+    "0x09": "Lanayru Gorge",
+    "0x0A": "Sealed Grounds",
+    "0x0B": "Skyview",
+    "0x0C": "Ancient Cistern",
+    "0x0E": "Earth Temple",
+    "0x0F": "Fire Sanctuary",
+    "0x11": "Lanayru Mining Facility",
+    "0x12": "Sandship",
+    "0x14": "Sky Keep",
+    "0x15": "Sky",
+    "0x16": "Faron Silent Realm",
+    "0x17": "Eldin Silent Realm",
+    "0x18": "Lanayru Silent Realm",
+    "0x19": "Skyloft Silent Realm"
   }
 }

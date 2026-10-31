@@ -55,6 +55,7 @@
         { "id": "stageT2", "label": "Stage", "type": "string", "encoding": "ascii", "offset": "0x533C", "length": 32 },
         { "id": "layerT2", "label": "Layer", "type": "u8", "offset": "0x53A6" },
         { "id": "entranceT2", "label": "Entrance", "type": "u8", "offset": "0x53AA" },
+        { "id": "roomT2", "label": "Room", "type": "u16", "offset": "0x530A" },
         { "id": "angleT2", "label": "Facing angle", "type": "s16", "offset": "0x5310" },
         { "id": "pos2", "label": "Position", "type": "row", "fields": [ { "id": "pos2X", "label": "X", "type": "f32", "offset": "0x001C" }, { "id": "pos2Y", "label": "Y", "type": "f32", "offset": "0x0020" }, { "id": "pos2Z", "label": "Z", "type": "f32", "offset": "0x0024" } ] }
       ]
@@ -68,7 +69,28 @@
         { "id": "layerT3", "label": "Layer", "type": "u8", "offset": "0x53A7" },
         { "id": "entranceT3", "label": "Entrance", "type": "u8", "offset": "0x53AB" },
         { "id": "angleT3", "label": "Facing angle", "type": "s16", "offset": "0x5312" },
+        { "id": "nightT3", "label": "Night", "type": "bool", "offset": "0x53B4" },
         { "id": "pos3", "label": "Position", "type": "row", "fields": [ { "id": "pos3X", "label": "X", "type": "f32", "offset": "0x0028" }, { "id": "pos3Y", "label": "Y", "type": "f32", "offset": "0x002C" }, { "id": "pos3Z", "label": "Z", "type": "f32", "offset": "0x0030" } ] }
+      ]
+    },
+    {
+      "title": "Game state",
+      "description": "Names from the decompilation; the observations are from real saves.",
+      "fields": [
+        { "id": "sceneFlagIndex", "label": "Live scene-flag area", "type": "s16", "offset": "0x5318", "enum": "scenes", "description": "scene_flag_index: which area's scene flags were in use when the file was saved. The game rewrites it on every save (Lanayru Caves use Lanayru Gorge's)." },
+        { "id": "areasVisited", "label": "Areas visited (bitmask)", "type": "u32", "offset": "0x07BC", "description": "field_0x07BC in the decompilation. Bits appear as new regions are reached: 0 Skyloft, 1 Sealed Grounds/Faron, 2–3 Skyview, 4 Ancient Cistern, 5 Eldin, 6 Fire Sanctuary, 7–8 Lanayru, 9 Lanayru Gorge (set by its intro cutscene; checked in Sky Recomp), 10–11 Sand Sea." },
+        { "id": "savedFromPrompt", "label": "Saved from a save prompt?", "type": "u8", "offset": "0x53B5", "description": "field_0x53b5 in the decompilation. 1 in saves made at the prompt after a dungeon and in HD autosaves, 0 in statue saves; not confirmed." },
+        { "id": "beedlePathSegment", "label": "Beedle's airship: path segment", "type": "s32", "offset": "0x07B4" },
+        { "id": "beedlePathFraction", "label": "Beedle's airship: position in segment", "type": "f32", "offset": "0x07B8" },
+        { "id": "beedleRotation", "label": "Beedle's airship: heading", "type": "s16", "offset": "0x5314" },
+        { "id": "skyKeep", "label": "Sky Keep room layout", "type": "row", "description": "The 3×3 grid of Sky Keep rooms (skykeep_puzzle); 0xFF is the empty space.", "fields": [
+          { "id": "skyKeep1", "label": "1", "type": "u8", "offset": "0x539C" }, { "id": "skyKeep2", "label": "2", "type": "u8", "offset": "0x539D" }, { "id": "skyKeep3", "label": "3", "type": "u8", "offset": "0x539E" },
+          { "id": "skyKeep4", "label": "4", "type": "u8", "offset": "0x539F" }, { "id": "skyKeep5", "label": "5", "type": "u8", "offset": "0x53A0" }, { "id": "skyKeep6", "label": "6", "type": "u8", "offset": "0x53A1" },
+          { "id": "skyKeep7", "label": "7", "type": "u8", "offset": "0x53A2" }, { "id": "skyKeep8", "label": "8", "type": "u8", "offset": "0x53A3" }, { "id": "skyKeep9", "label": "9", "type": "u8", "offset": "0x53A4" } ] },
+        { "id": "potionTimers", "label": "Potion timers", "type": "row", "description": "Time left on active potions: air, air+, stamina, stamina+, guardian, guardian+.", "fields": [
+          { "id": "airPotion", "label": "Air", "type": "u16", "offset": "0x52F4" }, { "id": "airPotionPlus", "label": "Air+", "type": "u16", "offset": "0x52F6" },
+          { "id": "staminaPotion", "label": "Stamina", "type": "u16", "offset": "0x52F8" }, { "id": "staminaPotionPlus", "label": "Stamina+", "type": "u16", "offset": "0x52FA" },
+          { "id": "guardianPotion", "label": "Guardian", "type": "u16", "offset": "0x52FC" }, { "id": "guardianPotionPlus", "label": "Guardian+", "type": "u16", "offset": "0x52FE" } ] }
       ]
     },
     {
