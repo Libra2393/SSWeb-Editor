@@ -1,13 +1,13 @@
 {
   "id": "skyloft-before-first-dive",
   "title": "Skyloft — prologue done, before the first dive",
-  "description": "Wing Ceremony won, Goddess Sword, Sailcloth and Emerald Tablet obtained, and the Faron light pillar open. Link loads on Skyloft with his Loftwing and 6 hearts, ready to dive to the Surface. Play time is set to 2 h, an estimate of a typical first playthrough of the opening. Name and Hero Mode are kept. Meant for practice files, not timed runs.",
+  "description": "Wing Ceremony won, Goddess Sword, Sailcloth and Emerald Tablet obtained, and the Faron light pillar open. Link loads on Skyloft with his Loftwing and 6 hearts, ready to dive to the Surface. Play time is set to 1 h 50 m, as long as a first playthrough of the opening took on video. Name and Hero Mode are kept. Meant for practice files, not timed runs.",
   "scope": "slot",
-  "sources": "Story flag numbers and descriptions from the zeldaret/ss decompilation (CC0) and the Skyward Sword Randomizer's start flags (MIT); spawn values from a real HD save made on Skyloft.",
+  "sources": "Story flag numbers and descriptions from the zeldaret/ss decompilation (CC0) and the Skyward Sword Randomizer's start flags (MIT); spawn values from a real HD save made on Skyloft. Play time measured from Peter Plays' Skyward Sword HD walkthrough on YouTube: parts 1 and 2 (48:47 and 61:54, recorded continuously, less the channel intros) end at this point.",
   "apply": [
     { "field": "general.playerName", "value": "Link", "onlyIfEmpty": true },
     { "field": "general.isNew", "value": false },
-    { "field": "general.playTime", "value": 7200, "note": "2 h, an estimate of a first playthrough of the opening" },
+    { "field": "general.playTime", "value": 6600, "note": "1 h 50 m, measured from a first playthrough on video (see sources)" },
     { "field": "general.isNight", "value": false },
     { "field": "general.totalHearts", "value": 24 },
     { "field": "general.currentHealth", "value": 24 },

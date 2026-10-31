@@ -178,7 +178,7 @@ and HD saves; it's how whole flag arrays are copied from a reference save.
 "starting clothes" preset is the prologue preset plus one entry that turns the knight uniform off. The
 included preset, `skyloft-before-first-dive`, puts a file at the end of the prologue for practice: Wing Ceremony
 won, Goddess Sword, Sailcloth and Emerald Tablet, Faron light pillar open, 6 hearts, loading on Skyloft, with
-2 h of play time (an estimate; there's no reference save for this point). Its
+1 h 50 m of play time, measured from a first playthrough of the opening on video. Its
 story flags come from the decompilation's descriptions and the Skyward Sword Randomizer's start flags; the
 spawn values come from a real HD save made on Skyloft.
 
