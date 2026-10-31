@@ -81,6 +81,12 @@ The "After Levias fight before starting the Song of the Hero quests" NTSC save, 
 players caught by the Song of the Hero bug and retrieved from the Internet Archive. The `after-levias` preset copies
 its game state (flags, spawn, stats, pouch and storage). The save itself isn't included.
 
+### minimini352 — SS All Dungeons practice saves, 2022
+<https://github.com/minimini352/SS-All-Dungeons-Saves>
+
+Twenty-five Wii (Japanese) practice saves for the All Dungeons speedrun, one per split. The All Dungeons practice
+presets reproduce the files in each (the game state of slots 1–3); the SD exports themselves aren't included.
+
 ## Own research
 
 The Skyward Sword HD save layout (little-endian slots, the 4th autosave slot and the two per-slot data blocks),

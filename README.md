@@ -173,7 +173,11 @@ writes a list of values into the selected slot and leaves everything else alone:
 
 `field` names an existing field by key; any other entry is an inline field (usually a flag reference).
 `"type": "words"` writes a run of 16-bit words (hex) in the save's own byte order, so the same preset works on Wii
-and HD saves; it's how whole flag arrays are copied from a reference save.
+and HD saves; it's how whole flag arrays are copied from a reference save. `"type": "image"` makes a slot an exact
+copy of a reference slot (`"runs": [["0x08E4", "<hex bytes>"], …]`, everything else before the checksum cleared).
+Any entry can carry `"slot": 1`–`4` to write that file instead of the selected one, so one preset can lay out
+several files. `"formats": ["wii"]` shows a preset only for those formats, and `"group"` sorts it under a heading
+in the preset list.
 `"extends": "<preset id>"` starts from another preset's entries and adds its own after them, so they win; the
 "starting clothes" preset is the prologue preset plus one entry that turns the knight uniform off. The
 included preset, `skyloft-before-first-dive`, puts a file at the end of the prologue for practice: Wing Ceremony
@@ -193,7 +197,20 @@ node tools/preset-from-save.mjs <wiiking2.sav> <slot 1-4> <preset id> "<title>" 
 
 The tool copies the story, item, dungeon, scene and chest flag arrays as words, plus spawn, stats, pouch and storage.
 It leaves the name, play time, Hero Mode, kill and hit statistics, map beacons and undescribed bytes to the save the
-preset is applied to. Add a description and sources by hand afterwards.
+preset is applied to. Add a description and sources by hand afterwards. Give `all` instead of a slot number to copy
+every file, and `--image` to copy slots byte for byte (limited to the reference's format); `--group "<name>"` sets
+the list heading.
+
+The **All Dungeons practice** group (Wii only) holds 25 presets, one per split of minimini352's
+[All Dungeons practice saves](https://github.com/minimini352/SS-All-Dungeons-Saves), from the start of the run to
+the Horde. Each replaces files 1–3 with exact copies of that save's files: the main file plus the helper files the
+route uses for Back in Time. They were made on the Japanese version and keep its file names and play times.
+Cutscene skipping also needs a `skip.dat` with the cutscenes marked as seen, which presets don't write. They were
+made with:
+
+```bash
+node tools/preset-from-save.mjs <split>/wiiking2.sav all all-dungeons-NN "AD NN — <split>" --image --group "All Dungeons practice (Wii, from minimini352)"
+```
 
 Every field needs an `id` that is unique within its section, plus a `label`. `description` shows as a tooltip.
 `enum` names a table in `enums.json`, keyed by decimal or `"0x"` values.

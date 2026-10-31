@@ -2,7 +2,7 @@
 // Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 import { SaveFile, num } from "./codec.js";
-import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries } from "./defs.js";
+import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries, writePreset } from "./defs.js";
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
 import { diffSlots } from "./compare.js";
 
@@ -437,7 +437,12 @@ function renderSlotTools() {
 function presetControls() {
   const presets = (state.defs.presets || []).filter((p) => p.scope === "slot");
   if (!presets.length) return [];
-  const pick = el("select", { "aria-label": "Preset" }, ...presets.map((p, i) => el("option", { value: i }, p.title || p.id)));
+  const option = (p) => el("option", { value: presets.indexOf(p) }, p.title || p.id);
+  const groups = [...new Set(presets.map((p) => p.group || ""))];
+  const pick = el("select", { "aria-label": "Preset" }, ...groups.flatMap((g) => {
+    const items = presets.filter((p) => (p.group || "") === g).map(option);
+    return g ? [el("optgroup", { label: g }, ...items)] : items;
+  }));
   return [
     el("span", { class: "tool-sep" }),
     el("button", { class: "btn small", title: "Overwrite parts of this file with a prepared starting state", onclick: () => applyPreset(presets[Number(pick.value)]) }, "Apply preset"),
@@ -447,19 +452,16 @@ function presetControls() {
 
 /** Writes every value a preset lists into the current slot. Checksums are updated on save as for any edit. */
 function applyPreset(preset) {
-  const where = scopeLabel("slot", state.slot);
-  if (!confirm(`${preset.title}\n\n${preset.description || ""}\n\nApply to ${where}? Fields the preset lists are overwritten; everything else is kept. Use "Revert changes" to undo before saving.`)) return;
-  const skipped = [];
-  let written = 0;
-  for (const entry of preset.apply || []) {
-    const f = entry.field ? state.defs.fieldsById.get(entry.field) : entry.resolved;
-    if (!f || f.invalid) { skipped.push(entry.field || entry.resolved?.flagRef || entry.resolved?.id); continue; }
-    if (entry.onlyIfEmpty && state.save.read(f, state.slot)) continue;
-    try { state.save.write(f, state.slot, entry.value); written++; }
-    catch (e) { skipped.push(`${entry.field || f.flagRef}: ${e.message}`); }
-  }
+  const fixed = [...new Set((preset.apply || []).filter((e) => e.slot).map((e) => e.slot - 1))].sort();
+  const replaces = (preset.apply || []).some((e) => e.image);
+  const targets = fixed.length ? fixed : [state.slot];
+  const where = targets.map((i) => scopeLabel("slot", i)).join(", ");
+  const how = replaces ? "The files it lists are replaced completely." : "Fields the preset lists are overwritten; everything else is kept.";
+  if (!confirm(`${preset.title}\n\n${preset.description || ""}\n\nApply to ${where}? ${how} Use "Revert changes" to undo before saving.`)) return;
+  const { written, skipped } = writePreset(state.defs, state.save, preset, state.slot);
+  if (fixed.length && !fixed.includes(state.slot)) state.slot = fixed[0];
   renderAll();
-  toast(`Applied “${preset.title}” to ${where}: ${written} values written` + (skipped.length ? `, ${skipped.length} skipped (${skipped.join(", ")})` : "") + ". Checksums update when you save.", skipped.length > 0);
+  toast(`Applied “${preset.title}” to ${where}: ${replaces ? "files replaced" : `${written} values written`}` + (skipped.length ? `, ${skipped.length} skipped (${skipped.join(", ")})` : "") + ". Checksums update when you save.", skipped.length > 0);
 }
 
 function renderTabs() {

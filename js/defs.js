@@ -62,7 +62,9 @@ export async function loadWith(get) {
       try { addSection(defs, structuredClone(json), name); }
       catch (e) { defs.warnings.push(`${name}: ${e.message}`); }
     }
-    defs.presets = expandPresetExtends(presets, defs.warnings).map(([json, name]) => resolvePreset(defs, structuredClone(json), name));
+    defs.presets = expandPresetExtends(presets, defs.warnings)
+      .filter(([json]) => !json.formats || json.formats.includes(format.id))
+      .map(([json, name]) => resolvePreset(defs, structuredClone(json), name));
     return defs;
   });
 }
@@ -97,6 +99,32 @@ export function addSection(defs, section, source = section.id) {
 }
 
 /**
+ * Writes a resolved preset into `save`. Entries go to their own "slot" (1-based) or to `slot` (0-based).
+ * Returns { written, skipped: [messages], slots: [0-based slots touched] }. Checksums are left to the caller.
+ */
+export function writePreset(defs, save, preset, slot) {
+  const skipped = [], slots = new Set();
+  let written = 0;
+  for (const entry of preset.apply || []) {
+    const to = entry.slot ? entry.slot - 1 : slot;
+    if (entry.image) {
+      const base = save.scopeBase("slot", to);
+      const end = num(defs.layout.checksums?.find((c) => c.scope === "slot")?.store ?? save.scope("slot").size);
+      save.bytes.fill(0, base, base + end);
+      for (const [off, data] of entry.image) save.bytes.set(data, base + off);
+      written++; slots.add(to);
+      continue;
+    }
+    const f = entry.field ? defs.fieldsById.get(entry.field) : entry.resolved;
+    if (!f || f.invalid) { skipped.push(entry.field || entry.resolved?.flagRef || entry.resolved?.id); continue; }
+    if (entry.onlyIfEmpty && save.read(f, to)) continue;
+    try { save.write(f, to, entry.value); written++; slots.add(to); }
+    catch (e) { skipped.push(`${entry.field || f.flagRef}: ${e.message}`); }
+  }
+  return { written, skipped, slots: [...slots].sort() };
+}
+
+/**
  * "extends": "<preset id>" starts a preset from another preset's entries; its own "apply" entries come after,
  * so they win when both set the same thing. Chains are followed; cycles and unknown ids are reported.
  */
@@ -122,6 +150,12 @@ function expandPresetExtends(presets, warnings) {
  * An entry with "onlyIfEmpty": true is skipped when the field already holds a value (e.g. keep a name).
  *   { "type": "words", "offset": "0x08E4", "words": "0001 8000 …" } writes a run of 16-bit words (hex, in the
  *   save's own byte order), e.g. a whole flag array copied from a reference save by tools/preset-from-save.mjs.
+ *   { "type": "image", "runs": [["0x08E4", "0001…"], …] } makes the slot an exact copy of a reference slot: every
+ *   byte before the checksum is cleared, then each run of hex bytes is written at its offset. Raw bytes are in
+ *   one byte order, so such presets list the formats they fit in "formats".
+ * Any entry may name a "slot" (1-based) to write a file other than the selected one, so a preset can lay out
+ * several files at once (e.g. the helper files a speedrun route keeps beside the main one).
+ * "formats": ["wii"] limits a preset to saves of those formats; "group" sorts it in the preset list.
  * See expandPresetExtends for building one preset on another.
  * Inline entries are resolved like section fields but not listed in the editor.
  */
@@ -132,11 +166,15 @@ function resolvePreset(defs, preset, source) {
     if (entry.type !== "words") return [entry];
     const start = num(entry.offset);
     return String(entry.words).trim().split(/\s+/).map((w, i) =>
-      ({ type: "u16", offset: "0x" + (start + i * 2).toString(16), value: parseInt(w, 16), id: `${entry.id || "words"}_${i}` }));
+      ({ type: "u16", offset: "0x" + (start + i * 2).toString(16), value: parseInt(w, 16), id: `${entry.id || "words"}_${i}`, slot: entry.slot }));
   });
   const section = { id: `preset:${preset.id}`, source };
   (preset.apply || []).forEach((entry, i) => {
     const where = `${source} → apply[${i}]`;
+    if (entry.type === "image") {
+      entry.image = (entry.runs || []).map(([off, hex]) => [num(off), Uint8Array.from(String(hex).match(/../g) || [], (h) => parseInt(h, 16))]);
+      return;
+    }
     if (!("value" in entry)) defs.warnings.push(`${where}: missing "value"`);
     if (entry.field) {
       if (!defs.fieldsById.has(entry.field)) defs.warnings.push(`${where}: unknown field "${entry.field}"`);
