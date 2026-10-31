@@ -26,6 +26,22 @@ python3 -m http.server -d ss-save-editor-web 8000
 
 Then open http://localhost:8000.
 
+### Sky Recomp saves
+
+[Sky Recomp](https://github.com/Apolinario-coder/SkyRecomp), the PC recompilation of Skyward Sword HD v1.0.0,
+writes the same HD `wiiking2.sav` (with `skip.dat` and screenshots beside it). A save made in Sky Recomp v2.0.2
+opened here with valid checksums, read the same values as a real-game save from the same point, and round-tripped
+byte for byte. Its saves live in `save/save_0/` inside Sky Recomp's data folder:
+
+| System | Folder |
+| --- | --- |
+| Linux | `~/.local/share/skyrecomp/save/save_0/` (tested) |
+| Windows | `save\save_0\` next to `skyrecomp.exe` (portable app) |
+| macOS | `~/Library/Application Support/com.skyrecomp.app/save/save_0/` |
+
+The Windows and macOS folders come from Sky Recomp's source (`runtime/paths.h`). Close Sky Recomp before replacing
+its save, and keep a backup.
+
 ### Offline / standalone version (Windows, Linux, macOS)
 
 `tools/build_standalone.py` packs the whole editor (code, styles and every file in `defs/`) into a single
