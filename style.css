@@ -245,3 +245,16 @@ ul.wish .chip { justify-self: start; }
 
 .foot a { color: var(--accent); }
 .offline-note { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; }
+
+/* compare */
+.compare { display: grid; gap: 14px; }
+.cmp-head { display: grid; gap: 8px; }
+.cmp-head select { width: auto; }
+.cmp-tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.cmp-tools label.check { margin: 0; }
+.cmp-table { display: grid; gap: 6px; }
+.cmp-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr) minmax(0, 1fr); gap: 12px; align-items: center; padding: 6px 0; border-top: 1px solid var(--line); }
+.cmp-row:first-child { border-top: 0; }
+.cmp-val { overflow-wrap: anywhere; }
+.cmp-region { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+@media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr; gap: 4px; } }

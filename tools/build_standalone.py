@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 REPO_URL = "https://github.com/Libra2393/SSWeb-Editor"
 
 # Dependency order: a module only imports from modules listed before it.
-MODULES = ["codec", "wiisd", "defs", "app"]
+MODULES = ["codec", "wiisd", "defs", "compare", "app"]
 
 IMPORT_RE = re.compile(r'^import\s*\{([^}]*)\}\s*from\s*"\./(\w+)\.js";\s*$', re.M)
 EXPORT_RE = re.compile(r"^export\s+(?:async\s+)?(?:function\*?|const|let|class)\s+(\w+)", re.M)

@@ -167,6 +167,20 @@ the footer, and the field is skipped. **⋯ → Add definition file** loads an e
 touching `defs/`, which is handy for trying out new findings. The **Raw bytes** tab shades the bytes that some
 definition covers, and its Inspect box reads or writes any type at any offset.
 
+## Comparing saves (finding new values)
+
+**⋯ → Compare with another save…** opens a second save of the same format and compares the selected slot with
+any slot in it (so a file can be compared with its own autosave). The **Compare** tab lists:
+
+- **Known values that changed**, by name, with before → after.
+- **Changes not in the editor yet**, decoded with the game's flag tables: story and item flags by number (often
+  with a name from the decompilation), scene and chest flags with their area, and anything else as byte ranges
+  labelled with the save-map region. **Copy definition** puts ready-made JSON on the clipboard for a new field.
+- The stage and room each save was made in, so changes can be tied to a place.
+
+Play time, save time, positions, facing and the checksum change on every save, so they're hidden unless you
+untick **Hide noise**. For clean results, save just before one action, do it, save again, and compare.
+
 ## Coverage tracker
 
 The **Coverage** tab shows how much of the save the editor understands, and what's still missing:

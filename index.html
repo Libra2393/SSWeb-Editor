@@ -28,6 +28,7 @@
         <div class="menu-body">
           <button id="downloadOrigBtn" disabled>Download original (as loaded)</button>
           <button id="downloadSkipBtn" hidden>Download skip.dat (from SD import)</button>
+          <button id="compareBtn" disabled>Compare with another save…</button>
           <button id="fixAllBtn" disabled>Recompute all checksums</button>
           <button id="addDefBtn">Add definition file…</button>
           <button id="pickDefsBtn">Load definitions folder…</button>
@@ -35,6 +36,7 @@
       </details>
     </div>
     <input type="file" id="fileInput" hidden>
+    <input type="file" id="compareInput" hidden>
     <input type="file" id="defFileInput" accept=".json,application/json" multiple hidden>
     <input type="file" id="defsDirInput" webkitdirectory hidden>
   </header>

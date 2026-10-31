@@ -4,6 +4,7 @@
 import { SaveFile, num } from "./codec.js";
 import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries } from "./defs.js";
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
+import { diffSlots } from "./compare.js";
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
@@ -30,6 +31,7 @@ const state = {
   flagFilter: "",
   raw: { target: "slot", poke: { offset: "0x0000", type: "u8", value: "" } },
   coverageFilter: "all",
+  compare: null, // { name, save, slot, hideNoise } while comparing with a second save
   variantWarnings: [],
   imported: null, // { from, titleId, skip } when the open save came out of a Wii SD export
 };
@@ -86,6 +88,12 @@ function wire() {
     const fixed = state.save.updateChecksums({ all: true });
     toast(fixed.length ? `Recomputed ${fixed.length} checksum(s).` : "This format's checksum algorithm isn't known, so nothing was recomputed.", !fixed.length);
     renderAll();
+  };
+  $("#compareBtn").onclick = () => $("#compareInput").click();
+  $("#compareInput").onchange = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (file) openComparison(file.name, await file.arrayBuffer());
   };
   $("#addDefBtn").onclick = () => $("#defFileInput").click();
   $("#defFileInput").onchange = async (e) => {
@@ -160,6 +168,7 @@ function openBytes(buf, name, handle, imported) {
   // encrypted export. It always downloads a plain wiiking2.sav instead.
   state.handle = imported ? null : handle;
   state.imported = imported;
+  state.compare = null;
   state.slot = firstUsedSlot();
   renderAll();
   const bad = badChecksums();
@@ -324,7 +333,7 @@ function renderAll() {
   const loaded = !!state.save;
   $("#dropZone").hidden = loaded;
   $("#editor").hidden = !loaded;
-  for (const id of ["#saveBtn", "#downloadBtn", "#downloadOrigBtn", "#fixAllBtn"]) $(id).disabled = !loaded;
+  for (const id of ["#saveBtn", "#downloadBtn", "#downloadOrigBtn", "#fixAllBtn", "#compareBtn"]) $(id).disabled = !loaded;
   if (!loaded) return;
   syncVariants();
   const { layout, format } = state.defs;
@@ -426,7 +435,7 @@ function applyPreset(preset) {
 function renderTabs() {
   const nav = $("#tabs");
   nav.replaceChildren();
-  const tabs = [...state.defs.sections.map((s) => [s.id, s.title || s.id]), ["__raw", "Raw bytes"], ...(state.defs.tracker ? [["__coverage", "Coverage"]] : [])];
+  const tabs = [...state.defs.sections.map((s) => [s.id, s.title || s.id]), ["__raw", "Raw bytes"], ...(state.compare ? [["__compare", "Compare"]] : []), ...(state.defs.tracker ? [["__coverage", "Coverage"]] : [])];
   if (!tabs.some(([id]) => id === state.tab)) state.tab = tabs[0][0];
   for (const [id, title] of tabs) {
     nav.append(el("button", {
@@ -441,6 +450,7 @@ function renderContent() {
   c.replaceChildren();
   if (state.tab === "__raw") return c.append(renderRaw());
   if (state.tab === "__coverage") return c.append(renderCoverage());
+  if (state.tab === "__compare" && state.compare) return c.append(renderCompare());
   const section = state.defs.sections.find((s) => s.id === state.tab);
   if (!section) return;
   const isFlags = section.layout === "flags";
@@ -684,6 +694,75 @@ function renderCoverage() {
   return wrap;
 }
 
+// ---------------------------------------------------------------- compare two saves
+
+/** Loads a second save of the same format to compare against the open one. */
+function openComparison(name, buf) {
+  const defs = formatFor(state.all, new Uint8Array(buf));
+  if (!defs || defs.format.id !== state.defs.format.id) {
+    return toast(`${name} isn't a ${state.defs.format.label} save, so it can't be compared with this one.`, true);
+  }
+  state.compare = { name, save: new SaveFile(buf, state.defs), slot: state.slot, hideNoise: true };
+  state.tab = "__compare";
+  renderTabs();
+  renderContent();
+}
+
+const fmtValue = (v) => typeof v === "boolean" ? (v ? "on" : "off")
+  : typeof v === "number" && !Number.isInteger(v) ? v.toFixed(2) : v === "" ? "(empty)" : String(v);
+
+function renderCompare() {
+  const cmp = state.compare;
+  const wrap = el("div", { class: "compare" });
+  const slotPick = el("select", { "aria-label": "Slot in the other save", onchange: (e) => { cmp.slot = Number(e.target.value); renderContent(); } },
+    ...[...Array(cmp.save.scopeCount("slot")).keys()].map((i) => el("option", { value: i, selected: i === cmp.slot }, scopeLabel("slot", i))));
+  const noise = el("input", { type: "checkbox", checked: cmp.hideNoise, onchange: (e) => { cmp.hideNoise = e.target.checked; renderContent(); } });
+  wrap.append(el("div", { class: "group cmp-head" },
+    el("div", {}, el("b", {}, `${state.fileName} · ${scopeLabel("slot", state.slot)}`), el("span", { class: "muted" }, "  (this file, “before”)  →  "),
+      el("b", {}, cmp.name), " ", slotPick, el("span", { class: "muted" }, "  (“after”)")),
+    el("div", { class: "cmp-tools" },
+      el("label", { class: "check" }, noise, el("span", {}, "Hide noise (play time, save time, positions, facing, checksum)")),
+      el("button", { class: "btn small", onclick: () => { state.compare = null; state.tab = state.defs.sections[0].id; renderTabs(); renderContent(); } }, "Close comparison"))));
+
+  const d = diffSlots(state.defs, state.save, state.slot, cmp.save, cmp.slot, { hideNoise: cmp.hideNoise });
+  const where = (w) => w.stage ? `${w.stage}${w.room != null ? `, room ${w.room}` : ""}` : "no location";
+  wrap.append(el("p", { class: "muted" },
+    `Location: ${where(d.location.a)} → ${where(d.location.b)}. Play time ${fmtDuration(d.location.a.playTime || 0)} → ${fmtDuration(d.location.b.playTime || 0)}.`,
+    cmp.hideNoise && d.noiseBytes ? ` ${d.noiseBytes} noise bytes hidden.` : ""));
+
+  if (!d.known.length && !d.unknown.length) {
+    wrap.append(el("div", { class: "group" }, el("p", {}, "No differences in this slot", cmp.hideNoise ? " apart from noise." : ".")));
+    return wrap;
+  }
+
+  const table = (title, note, rows) => el("div", { class: "group" }, el("h3", {}, title), note ? el("p", { class: "muted small" }, note) : null,
+    el("div", { class: "cmp-table", role: "table" }, ...rows));
+  if (d.known.length) {
+    wrap.append(table(`Known values that changed (${d.known.length})`, null, d.known.map((k) =>
+      el("div", { class: "cmp-row", role: "row" },
+        el("span", { class: "cmp-what" }, k.labels.join(" · ")),
+        el("span", { class: "cmp-val mono" }, fmtValue(k.from), el("span", { class: "muted" }, " → "), el("b", {}, fmtValue(k.to))),
+        el("span", { class: "muted small cmp-region" }, k.region)))));
+  }
+  if (d.unknown.length) {
+    wrap.append(table(`Not in the editor yet (${d.unknown.length})`,
+      "Changed bits no field describes. Flags are decoded with the game's own flag tables. “Copy definition” puts ready-made JSON on the clipboard: add a label and paste it into a section file in defs/.",
+      d.unknown.map((u) => el("div", { class: "cmp-row", role: "row" },
+        el("span", { class: "cmp-what" }, el("span", { class: "chip st-known" }, u.kind), " ", u.title,
+          el("span", { class: "muted small wish-note" }, u.detail)),
+        el("span", { class: "cmp-val mono" }, fmtValue(u.from), el("span", { class: "muted" }, " → "), el("b", {}, fmtValue(u.to))),
+        el("span", { class: "muted small cmp-region" }, u.region, " ",
+          el("button", { class: "btn small", onclick: () => copyDefinition({ ...u.suggestion, label: u.detail !== "no description yet" ? u.detail : "" }) }, "Copy definition"))))));
+  }
+  return wrap;
+}
+
+async function copyDefinition(def) {
+  const text = JSON.stringify(def);
+  try { await navigator.clipboard.writeText(text); toast("Definition copied. Give it a label and add it to a section in defs/."); }
+  catch { window.prompt("Copy this definition:", text); }
+}
+
 // ---------------------------------------------------------------- raw view
 
 function rawTargets() {
@@ -773,6 +852,10 @@ function renderWarnings() {
 }
 
 // Exposed for debugging from the console.
-window.ssEditor = { state, loadBuffer: (buf, name = "wiiking2.sav") => loadFile(new File([buf], name), null) };
+window.ssEditor = {
+  state,
+  loadBuffer: (buf, name = "wiiking2.sav") => loadFile(new File([buf], name), null),
+  compareBuffer: (buf, name = "other.sav") => openComparison(name, buf),
+};
 
 init();
