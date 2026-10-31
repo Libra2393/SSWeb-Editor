@@ -39,6 +39,7 @@ const state = {
 // ---------------------------------------------------------------- startup
 
 async function init() {
+  initTheme(); // before anything renders, so there is no flash of the wrong theme
   try {
     // The standalone build (tools/build_standalone.py) embeds every definition file in the page, so it works
     // from disk with no server. The hosted version fetches defs/ as usual.
@@ -75,6 +76,35 @@ function setDefs(all) {
     state.save = s;
     renderAll();
   }
+}
+
+// ---------------------------------------------------------------- theme (Auto / Dark / Light)
+
+const THEMES = { auto: "◐ Auto", dark: "☾ Dark", light: "☀ Light" };
+const THEME_KEY = "ssweb.theme";
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  if (theme === "auto") delete root.dataset.theme; else root.dataset.theme = theme;
+  const btn = $("#themeBtn");
+  btn.textContent = THEMES[theme];
+  btn.title = theme === "auto" ? "Theme: follows your system (click to change)" : `Theme: ${theme} (click to change)`;
+  const dark = theme === "dark" || (theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#0b1a12" : "#2b5aa8");
+}
+
+function initTheme() {
+  let theme = "auto";
+  try { theme = localStorage.getItem(THEME_KEY) || "auto"; } catch { /* storage blocked: use auto */ }
+  if (!(theme in THEMES)) theme = "auto";
+  applyTheme(theme);
+  $("#themeBtn").onclick = () => {
+    const order = Object.keys(THEMES);
+    theme = order[(order.indexOf(theme) + 1) % order.length];
+    applyTheme(theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch { /* not remembered */ }
+  };
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => theme === "auto" && applyTheme("auto"));
 }
 
 function wire() {

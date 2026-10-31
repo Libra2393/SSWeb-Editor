@@ -63,6 +63,9 @@ The editor is static files only, so GitHub Pages can serve this folder as it is:
 under **Settings → Pages** choose **Deploy from a branch**, branch `main`, folder `/ (root)`. The `.nojekyll`
 file makes Pages serve every file unchanged. If you open `index.html` straight from disk, use **⋯ → Load definitions folder** and pick `defs/`.
 
+The theme button in the header switches between **Auto** (follows your system), **Dark** (deep Hylian green with
+gold outlines) and **Light** (parchment with royal blue), and remembers your choice in that browser.
+
 In Chromium-based browsers, **Save** writes back to the file you opened. Other browsers download a copy instead.
 Changed slots get their CRC32 recomputed on save. Close the game in Dolphin first.
 
