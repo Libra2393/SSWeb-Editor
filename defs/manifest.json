@@ -22,5 +22,6 @@
     "presets/skyloft-before-first-dive.json",
     "presets/skyloft-before-first-dive-starting-clothes.json"
   ],
-  "tracker": "tracker.json"
+  "tracker": "tracker.json",
+  "flagUsage": "flags/flag-usage.json"
 }

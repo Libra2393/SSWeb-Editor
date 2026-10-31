@@ -197,6 +197,27 @@ any slot in it (so a file can be compared with its own autosave). The **Compare*
 Play time, save time, positions, facing and the checksum change on every save, so they're hidden unless you
 untick **Hide noise**. For clean results, save just before one action, do it, save again, and compare.
 
+## Where flags are used (game-data index)
+
+`tools/romfs-flag-index.mjs` reads your own game data and records which object in which stage, room and layer
+uses each story, scene and chest flag. Compare shows this as **Used by** for unknown flags, and the Coverage tab
+counts how many flags are located.
+
+```
+node tools/romfs-flag-index.mjs <romfs.bin or extracted romfs folder>
+```
+
+Use the RomFS of Skyward Sword HD v1.0.0 (the Wii version's stages are the same format). It takes a few seconds,
+reads every `Stage/*/*_stg_l*.arc.LZ` (LZ11-compressed U8 archives of BZS object lists), and writes
+`defs/flags/flag-usage.json`, which holds facts only: flag numbers, stage and room names, object type names and
+what the object does with the flag. Decoded object types: chests, items, dig spots, push blocks, area triggers
+(`SwAreaT`), exits (`ScChang`), event triggers (`EvntTag`, `EvfTag`), NPCs, plus the event, layer-select and
+player-start records. Flags set only by event scripts (minigame prizes, dialogue) aren't covered yet.
+
+Checked against the Collectibles tab, which came from different research: 144 of 145 chests and 23 of 27 loose
+items are found with the same flag in the same area. `--dump objects.json` also writes the full raw object list
+for research; it is derived from the game data, so keep it to yourself.
+
 ## Coverage tracker
 
 The **Coverage** tab shows how much of the save the editor understands, and what's still missing:

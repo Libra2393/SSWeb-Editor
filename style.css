@@ -258,3 +258,4 @@ ul.wish .chip { justify-self: start; }
 .cmp-val { overflow-wrap: anywhere; }
 .cmp-region { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 @media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr; gap: 4px; } }
+.cmp-uses { display: block; margin-top: 3px; color: var(--accent); }

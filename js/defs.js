@@ -39,6 +39,8 @@ export async function loadWith(get) {
   const flagTables = {};
   for (const [kind, name] of Object.entries(manifest.flagTables || {})) flagTables[kind] = await get(name);
   const tracker = manifest.tracker ? await get(manifest.tracker).catch(() => null) : null;
+  // Where the game uses each flag (tools/romfs-flag-index.mjs); optional.
+  const flagUsage = manifest.flagUsage ? await get(manifest.flagUsage).catch(() => null) : null;
   const presets = [];
   for (const name of manifest.presets || []) {
     try { presets.push([await get(name), name]); }
@@ -55,7 +57,7 @@ export async function loadWith(get) {
   for (const l of layouts) for (const id of Object.keys(l.magic?.values || {})) variantKeys.add(id);
 
   return formats.map((format, i) => {
-    const defs = { format, layout: layouts[i], enums, flagTables, tracker, sections: [], fieldsById: new Map(), warnings: [...loadErrors], variantKeys };
+    const defs = { format, layout: layouts[i], enums, flagTables, tracker, flagUsage, sections: [], fieldsById: new Map(), warnings: [...loadErrors], variantKeys };
     for (const [json, name] of sections) {
       try { addSection(defs, structuredClone(json), name); }
       catch (e) { defs.warnings.push(`${name}: ${e.message}`); }
@@ -304,6 +306,23 @@ export function bitCoverage(defs, scopeName) {
     for (let i = num(cs.store); i < num(cs.store) + 4; i++) masks[i] = 0xff;
   }
   return masks;
+}
+
+/**
+ * Where the game uses a flag, from defs/flags/flag-usage.json: [{ stage, room, layer, object, role }].
+ * kind is "story", "scene" or "chest"; scene is the scene index (for scene and chest flags).
+ */
+export function flagUsesOf(defs, kind, flag, scene) {
+  const u = defs.flagUsage?.[kind];
+  if (!u) return [];
+  const rows = u[kind === "story" ? String(flag) : `${scene}/${flag}`] || [];
+  return rows.map(([stage, room, layer, object, role]) => ({ stage, room, layer, object, role }));
+}
+
+/** "F000 room 0 (layer 2): TBox, opened (chest flag)" */
+export function describeUse(u) {
+  const where = `${u.stage}${u.room === "stage" ? "" : ` room ${u.room}`}${u.layer ? ` (layer ${u.layer})` : ""}`;
+  return `${where}: ${u.object}, ${u.role}`;
 }
 
 /** Enum entries as [number, label] pairs; keys may be decimal or "0x" hex strings. */

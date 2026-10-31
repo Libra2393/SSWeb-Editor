@@ -5,7 +5,7 @@
 // described yet, decoded into story/item/scene/chest flag numbers where the game's flag tables allow.
 
 import { num } from "./codec.js";
-import { leafFields, bitCoverage } from "./defs.js";
+import { leafFields, bitCoverage, flagUsesOf, describeUse } from "./defs.js";
 
 // Changes that happen on every save and say nothing about game progress.
 const NOISE = [
@@ -102,14 +102,19 @@ function decodeFlags(defs, a, b, baseA, baseB, i, changedBits) {
         if (n < 0) { rows.push(flagRow(kind, `unlisted bit ${bit} of word ${word}`, null, wa, wb, bit, 1, null)); continue; }
         if (rows.some((r) => r.n === n)) continue; // a multi-bit counter, already reported
         const [, sh, bits, name] = table.flags[n];
-        rows.push(flagRow(kind, `${kind === "story" ? "Story" : "Item"} flag #${n}`, name, wa, wb, sh, bits,
-          { id: `${kind}${n}`, type: `${kind}flag`, flag: n }, n));
+        const row = flagRow(kind, `${kind === "story" ? "Story" : "Item"} flag #${n}`, name, wa, wb, sh, bits,
+          { id: `${kind}${n}`, type: `${kind}flag`, flag: n }, n);
+        if (kind === "story") row.uses = flagUsesOf(defs, "story", n).map(describeUse);
+        rows.push(row);
       } else {
         const perScene = num(table.wordsPerScene);
         const scene = Math.floor(word / perScene), n = (word % perScene) * 16 + bit;
         const sceneName = Object.entries(table.scenes).find(([, v]) => v === scene)?.[0] ?? `scene ${scene}`;
-        rows.push(flagRow(kind, `${sceneName} / ${kind} flag ${n}`, null, wa, wb, bit, 1,
-          { id: `${kind}_${sceneName.toLowerCase().replace(/\W+/g, "_")}_${n}`, type: `${kind}flag`, scene: sceneName, flag: n }));
+        const row = flagRow(kind, `${sceneName} / ${kind} flag ${n}`, null, wa, wb, bit, 1,
+          { id: `${kind}_${sceneName.toLowerCase().replace(/\W+/g, "_")}_${n}`, type: `${kind}flag`, scene: sceneName, flag: n });
+        row.uses = flagUsesOf(defs, kind, n, scene).map(describeUse);
+        if (row.uses.length && row.detail === "no description yet") row.detail = "used in the game data (see below)";
+        rows.push(row);
       }
     }
     return rows;
