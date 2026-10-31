@@ -14,7 +14,7 @@
           "description": "Wii clock ticks; HD uses the same rate (checked in Sky Recomp)." },
         { "id": "saveTime", "label": "Saved at", "type": "wiitime", "offset": "0x0008", "tickRate": 60750000, "description": "Wii clock ticks since 2000-01-01 00:00, local time.",
           "variants": { "hd": { "epoch": "1970-01-01", "tickRate": 1, "description": "Unix time (seconds since 1970), shown in UTC." } } },
-        { "id": "isNight", "label": "Night", "type": "flag", "offset": "0x53B3", "mask": "0x01" }
+        { "id": "isNight", "label": "Night", "type": "flag", "offset": "0x53B3", "mask": "0x01", "description": "night_t1. Sleeping to night sets it together with the t3 night flag and story flag 737 (checked in Sky Recomp)." }
       ]
     },
     {
@@ -69,7 +69,7 @@
         { "id": "layerT3", "label": "Layer", "type": "u8", "offset": "0x53A7" },
         { "id": "entranceT3", "label": "Entrance", "type": "u8", "offset": "0x53AB" },
         { "id": "angleT3", "label": "Facing angle", "type": "s16", "offset": "0x5312" },
-        { "id": "nightT3", "label": "Night", "type": "bool", "offset": "0x53B4" },
+        { "id": "nightT3", "label": "Night", "type": "bool", "offset": "0x53B4", "description": "night_t3; follows the t1 night flag." },
         { "id": "pos3", "label": "Position", "type": "row", "fields": [ { "id": "pos3X", "label": "X", "type": "f32", "offset": "0x0028" }, { "id": "pos3Y", "label": "Y", "type": "f32", "offset": "0x002C" }, { "id": "pos3Z", "label": "Z", "type": "f32", "offset": "0x0030" } ] }
       ]
     },

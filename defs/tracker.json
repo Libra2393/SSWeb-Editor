@@ -119,14 +119,16 @@
       "label": "Enemy kill counters",
       "scope": "slot",
       "start": "0x2F64",
-      "end": "0x302C"
+      "end": "0x302C",
+      "note": "enemyKillCounts[100]: one u16 per enemy type. Counters seen in Sky Recomp: 20 (Lanayru), 36 and 79 (Faron Woods), 62 (Skyloft at night)."
     },
     {
       "id": "hits",
       "label": "Hit-by-enemy counters",
       "scope": "slot",
       "start": "0x302C",
-      "end": "0x30F4"
+      "end": "0x30F4",
+      "note": "hitByEnemyCounts[100]: times Link was hit, per enemy type, same numbering as the kill counters."
     },
     {
       "id": "temp",
@@ -229,7 +231,7 @@
       "scope": "slotExtra2",
       "start": "0x0000",
       "end": "0x0118",
-      "note": "Covered by the slot checksum; contents unknown."
+      "note": "Covered by the slot checksum. +0x00 and +0x54 hold the same 16-byte value, an ID of the file the slot was saved from: HD autosaves carry the ID of their source file. +0x10 changes too; the rest is unknown."
     }
   ],
   "items": [
