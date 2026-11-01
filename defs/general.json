@@ -43,7 +43,7 @@
         { "id": "room", "label": "Room", "type": "u16", "offset": "0x5308" },
         { "id": "layerT1", "label": "Layer", "type": "u8", "offset": "0x53A5" },
         { "id": "entranceT1", "label": "Entrance", "type": "u8", "offset": "0x53A8" },
-        { "id": "entranceT1LoadFlag", "label": "Entrance load flag", "type": "u8", "offset": "0x53A9" },
+        { "id": "entranceT1LoadFlag", "label": "Entrance load flag", "type": "u8", "offset": "0x53A9", "description": "1: the file loads at the entrance above instead of the saved position (autosaves made on entering an area use it). With it set, stage, room and entrance alone are enough to place Link; checked in Sky Recomp by loading into Flooded Faron Woods (F103, entrance 0) with no position." },
         { "id": "angleT1", "label": "Facing angle", "type": "s16", "offset": "0x530E" },
         { "id": "pos1", "label": "Position", "type": "row", "fields": [ { "id": "pos1X", "label": "X", "type": "f32", "offset": "0x0010" }, { "id": "pos1Y", "label": "Y", "type": "f32", "offset": "0x0014" }, { "id": "pos1Z", "label": "Z", "type": "f32", "offset": "0x0018" } ] }
       ]
@@ -78,7 +78,7 @@
       "description": "Names from the decompilation; the observations are from real saves.",
       "fields": [
         { "id": "sceneFlagIndex", "label": "Live scene-flag area", "type": "s16", "offset": "0x5318", "enum": "scenes", "description": "scene_flag_index: which area's scene flags were in use when the file was saved. The game rewrites it on every save (Lanayru Caves use Lanayru Gorge's)." },
-        { "id": "areasVisited", "label": "Areas visited (bitmask)", "type": "u32", "offset": "0x07BC", "description": "field_0x07BC in the decompilation. Bits appear as new regions are reached: 0 Skyloft, 1 Sealed Grounds/Faron, 2–3 Skyview, 4 Ancient Cistern, 5 Eldin, 6 Fire Sanctuary, 7–8 Lanayru, 9 Lanayru Gorge (set by its intro cutscene; checked in Sky Recomp), 10–11 Sand Sea." },
+        { "id": "areasVisited", "label": "Areas visited (bitmask)", "type": "u32", "hex": true, "offset": "0x07BC", "description": "field_0x07BC in the decompilation. Bits appear as new regions are reached: 0 Skyloft, 1 Sealed Grounds/Faron, 2–3 Skyview, 4 Ancient Cistern, 5 Eldin, 6 Fire Sanctuary, 7–8 Lanayru, 9 Lanayru Gorge (set by its intro cutscene; checked in Sky Recomp), 10–11 Sand Sea." },
         { "id": "savedFromPrompt", "label": "Saved from a save prompt?", "type": "u8", "offset": "0x53B5", "description": "field_0x53b5 in the decompilation. 1 in saves made at the prompt after a dungeon and in HD autosaves, 0 in statue saves; not confirmed." },
         { "id": "beedlePathSegment", "label": "Beedle's airship: path segment", "type": "s32", "offset": "0x07B4" },
         { "id": "beedlePathFraction", "label": "Beedle's airship: position in segment", "type": "f32", "offset": "0x07B8" },

@@ -10,6 +10,7 @@
     "equipment.json",
     "collection.json",
     "locations.json",
+    "dungeons.json",
     "story-flags.json"
   ],
   "flagTables": {

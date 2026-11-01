@@ -84,7 +84,8 @@
       "label": "Dungeon flags (256 areas × 8 words)",
       "scope": "slot",
       "start": "0x0A64",
-      "end": "0x1A64"
+      "end": "0x1A64",
+      "note": "8 words per area (area = scene-flag index). Game table: flags 1–7 word 0 bits 0–6, 12 bit 7, 16 bit 8 (3 = boss defeated); 15 = word 1 bits 0–3 (small keys); 8 = word 7 (rooms visited); 13 = word 3 (Silent Realm tears); 9–11 words 6–4, 14 word 2 unused so far."
     },
     {
       "id": "scene",
@@ -120,7 +121,7 @@
       "scope": "slot",
       "start": "0x2F64",
       "end": "0x302C",
-      "note": "enemyKillCounts[100]: one u16 per enemy type. Counters seen in Sky Recomp: 20 (Lanayru), 36 and 79 (Faron Woods), 62 (Skyloft at night)."
+      "note": "enemyKillCounts[100]: one u16 per enemy type. Counters seen in Sky Recomp: 20 (Lanayru), 36 and 79 (Faron Woods), 62 Chuchu (Skyloft at night; each half of a split Chuchu counts)."
     },
     {
       "id": "hits",
@@ -528,7 +529,7 @@
       "category": "Progress",
       "title": "Dungeon keys, maps and boss keys",
       "status": "known",
-      "note": "Dungeon flags at 0x0A64: 8 words per area index, read as (index & 0x1fff) × 8 by the game, so they run to 0x1A64. Records 22–25 are the Silent Realms (word 3 holds 15 bits, one per tear); per-dungeon bit meanings still to map."
+      "note": "On the Dungeons tab: boss defeated, small keys and rooms visited from the game's dungeon-flag table; map and boss key labels are probable (from comparing real saves). Silent Realm tears too."
     },
     {
       "category": "Progress",

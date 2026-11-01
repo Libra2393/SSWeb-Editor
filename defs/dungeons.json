@@ -1,0 +1,103 @@
+{
+  "id": "dungeons",
+  "title": "Dungeons",
+  "scope": "slot",
+  "description": "Dungeon flags: 8 words per area, at 0x0A64 + area × 16, read through the game's dungeon-flag table (17 entries, right after the item-flag table in the executable). Word 7 is the rooms-visited mask for every area, not just dungeons. Labels marked probable come from comparing real saves.",
+  "groups": [
+    {
+      "title": "Skyview Temple (area 11)",
+      "fields": [
+        { "id": "skyviewBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B14", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "skyviewMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B14", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "skyviewBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B14", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "skyviewBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B14", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "skyviewUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B14", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "skyviewKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B16", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "skyviewRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B22", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Earth Temple (area 14)",
+      "fields": [
+        { "id": "earthTempleBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B44", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "earthTempleMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B44", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "earthTempleBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B44", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "earthTempleBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B44", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "earthTempleUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B44", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "earthTempleKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B46", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "earthTempleRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B52", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Lanayru Mining Facility (area 17)",
+      "fields": [
+        { "id": "lmfBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B74", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "lmfMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B74", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "lmfBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B74", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "lmfBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B74", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "lmfUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B74", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "lmfKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B76", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "lmfRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B82", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Ancient Cistern (area 12)",
+      "fields": [
+        { "id": "acBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B24", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "acMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B24", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "acBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B24", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "acBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B24", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "acUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B24", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "acKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B26", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "acRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B32", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Sandship (area 18)",
+      "fields": [
+        { "id": "sandshipBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B84", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "sandshipMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B84", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "sandshipBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B84", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "sandshipBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B84", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "sandshipUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B84", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "sandshipKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B86", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "sandshipRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B92", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Fire Sanctuary (area 15)",
+      "fields": [
+        { "id": "fsBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0B54", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "fsMap", "label": "Map (probable)", "type": "flag", "offset": "0x0B54", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "fsBossKey", "label": "Boss key obtained (probable)", "type": "flag", "offset": "0x0B54", "mask": "0x0080", "storage": "u16", "description": "Dungeon flag 12. Set wherever the boss door was opened normally." },
+        { "id": "fsBossDoor", "label": "Boss key used (probable)", "type": "flag", "offset": "0x0B54", "mask": "0x0100", "storage": "u16", "description": "Dungeon flag 16. Set together with flag 12." },
+        { "id": "fsUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0B54", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "fsKeys", "label": "Small keys held", "type": "u16", "offset": "0x0B56", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "fsRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0B62", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Sky Keep (area 20)",
+      "fields": [
+        { "id": "skyKeepBoss", "label": "Boss defeated", "type": "flag", "offset": "0x0BA4", "mask": "0x0004", "storage": "u16", "description": "Dungeon flag 3 (the decompilation's boss-defeat tag checks it)." },
+        { "id": "skyKeepMap", "label": "Map (probable)", "type": "flag", "offset": "0x0BA4", "mask": "0x0002", "storage": "u16", "description": "Dungeon flag 2. Set for every dungeon in a completionist save; speedrun saves usually lack it." },
+        { "id": "skyKeepUnk4", "label": "Unknown flag 4", "type": "flag", "offset": "0x0BA4", "mask": "0x0008", "storage": "u16", "description": "Dungeon flag 4. Seen only in Skyview Temple and the Ancient Cistern." },
+        { "id": "skyKeepKeys", "label": "Small keys held", "type": "u16", "offset": "0x0BA6", "shift": 0, "bits": 4, "description": "Dungeon flag 15, the small-key counter." },
+        { "id": "skyKeepRooms", "label": "Rooms visited (bitmask)", "type": "u16", "hex": true, "offset": "0x0BB2", "description": "Dungeon flag 8: one bit per room entered (room 0 = bit 0); full for a cleared dungeon, e.g. 0x07FF for Skyview's 11 rooms." }
+      ]
+    },
+    {
+      "title": "Silent Realms",
+      "fields": [
+        { "id": "faronSRTears", "label": "Faron Silent Realm: tears (bitmask)", "type": "u16", "hex": true, "offset": "0x0BCA", "shift": 0, "bits": 15, "description": "Dungeon flag 13 of area 22: one bit per tear, 0x7FFF once the trial is done." },
+        { "id": "faronSRRooms", "label": "Faron Silent Realm: visited", "type": "u16", "hex": true, "offset": "0x0BD2", "description": "Dungeon flag 8 (rooms visited)." },
+        { "id": "eldinSRTears", "label": "Eldin Silent Realm: tears (bitmask)", "type": "u16", "hex": true, "offset": "0x0BDA", "shift": 0, "bits": 15, "description": "Dungeon flag 13 of area 23: one bit per tear, 0x7FFF once the trial is done." },
+        { "id": "eldinSRRooms", "label": "Eldin Silent Realm: visited", "type": "u16", "hex": true, "offset": "0x0BE2", "description": "Dungeon flag 8 (rooms visited)." },
+        { "id": "lanayruSRTears", "label": "Lanayru Silent Realm: tears (bitmask)", "type": "u16", "hex": true, "offset": "0x0BEA", "shift": 0, "bits": 15, "description": "Dungeon flag 13 of area 24: one bit per tear, 0x7FFF once the trial is done." },
+        { "id": "lanayruSRRooms", "label": "Lanayru Silent Realm: visited", "type": "u16", "hex": true, "offset": "0x0BF2", "description": "Dungeon flag 8 (rooms visited)." },
+        { "id": "skyloftSRTears", "label": "Skyloft Silent Realm: tears (bitmask)", "type": "u16", "hex": true, "offset": "0x0BFA", "shift": 0, "bits": 15, "description": "Dungeon flag 13 of area 25: one bit per tear, 0x7FFF once the trial is done." },
+        { "id": "skyloftSRRooms", "label": "Skyloft Silent Realm: visited", "type": "u16", "hex": true, "offset": "0x0C02", "description": "Dungeon flag 8 (rooms visited)." }
+      ]
+    }
+  ]
+}
