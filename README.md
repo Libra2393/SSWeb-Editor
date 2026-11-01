@@ -195,6 +195,11 @@ made with `tools/preset-from-save.mjs`:
 node tools/preset-from-save.mjs <wiiking2.sav> <slot 1-4> <preset id> "<title>" > defs/presets/<id>.json
 ```
 
+`after-water-dragon` extends it with the Water Dragon's part of the Song of the Hero learned (Faron flooded, all
+tadtones collected), loading in Faron Woods where the game puts Link after her song. Its flags and spawn are the
+changes a real Sky Recomp playthrough made from the after-Levias state to the game's own autosave at that point; its
+play time adds the 43 m 23 s that section took in a continuously recorded walkthrough.
+
 The tool copies the story, item, dungeon, scene and chest flag arrays as words, plus spawn, stats, pouch and storage.
 It leaves the name, play time, Hero Mode, kill and hit statistics, map beacons and undescribed bytes to the save the
 preset is applied to. Add a description and sources by hand afterwards. Give `all` instead of a slot number to copy
