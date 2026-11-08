@@ -329,7 +329,10 @@ This is not legal advice. If you're unsure, ask a lawyer.
   variant hasn't been tried in-game. The after-Levias preset reproduces its reference save's flags exactly
   (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
-  boulders aren't verified, and 2 heart pieces aren't mapped yet. Batreaux's rewards are Skyloft scene flags 70–75 (Collectibles tab), read from event flow 121-AkumaKun.
+  boulders aren't verified, and 1 heart piece isn't mapped yet: Beedle's, which HD tracks in a dedicated shop class rather than a flag in
+  the shop table. Batreaux's rewards are Skyloft scene flags 70–75 and the Lightning Round piece is story flag 511, both
+  read from the game's event flows. The 80-crystal Tycoon Wallet's claimed state and the Silent Realm trial-completion
+  flags aren't mapped yet.
 - Link's outfit can only be switched between his starting clothes and the knight uniform (story flag 36, which
   also gates Fi). Tunic colours aren't stored in the save at all; recolouring needs modified game textures.
 - The spawn fields are named t1/t2/t3 after the decompilation; what distinguishes them isn't fully understood.

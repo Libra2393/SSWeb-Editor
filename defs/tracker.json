@@ -471,9 +471,10 @@
     },
     {
       "category": "Collectibles",
-      "title": "Heart pieces (22 of 24 mapped)",
+      "title": "Heart pieces (23 of 24 mapped)",
       "note": "Per-location flags from the randomizer data, checked on a 100% save.",
       "fields": [
+        "locations.hp-thunder-dragon-lightning-round",
         "locations.hp-batreaux-10-crystals",
         "locations.hp-upper-skyloft-in-zelda-s-closet",
         "locations.hp-upper-skyloft-pumpkin-archery-600-points",
@@ -482,9 +483,9 @@
     },
     {
       "category": "Collectibles",
-      "title": "Remaining 2 heart pieces",
+      "title": "Remaining heart piece (Beedle)",
       "status": "research",
-      "note": "Two aren't tracked by a single flag in the randomizer data. Batreaux's is now mapped: Skyloft scene flag 71, from event flow 121-AkumaKun."
+      "note": "Beedle's 1600-rupee piece has no sold flag in the shop table: HD handles it in a dedicated SHOP_HEART_PIECE class. Needs a save before and after buying it."
     },
     {
       "category": "Collectibles",
@@ -535,13 +536,28 @@
     {
       "category": "Progress",
       "title": "Silent Realm tears",
-      "status": "research"
+      "fields": [
+        "dungeons.faronSRTears",
+        "dungeons.eldinSRTears",
+        "dungeons.lanayruSRTears",
+        "dungeons.skyloftSRTears"
+      ],
+      "note": "Tears collected per realm, as bitmasks on the Dungeons tab. Trial-completion flags aren't mapped yet."
     },
     {
       "category": "Progress",
       "title": "Bird statues activated",
-      "status": "known",
-      "note": "Story flags 800–807 and similar."
+      "note": "Faron and Eldin (story flags 800–807). Lanayru and other regions use a different statue parameter, not mapped yet.",
+      "fields": [
+        "locations.statue-800",
+        "locations.statue-801",
+        "locations.statue-802",
+        "locations.statue-803",
+        "locations.statue-804",
+        "locations.statue-805",
+        "locations.statue-806",
+        "locations.statue-807"
+      ]
     },
     {
       "category": "Progress",
@@ -564,7 +580,13 @@
     {
       "category": "Progress",
       "title": "Cutscenes seen (HD)",
-      "fields": ["cutscenes.b02m02", "cutscenes.b02m04", "cutscenes.b02m08", "cutscenes.b02m40", "cutscenes.b0cm10"],
+      "fields": [
+        "cutscenes.b02m02",
+        "cutscenes.b02m04",
+        "cutscenes.b02m08",
+        "cutscenes.b02m40",
+        "cutscenes.b0cm10"
+      ],
       "note": "Per-file bits in the HD save at 0x14F20. Only the opening's 5 bits are named; they don't gate skipping in HD."
     },
     {

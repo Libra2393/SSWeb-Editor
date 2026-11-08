@@ -38,8 +38,9 @@
       ]
     },
     {
-      "title": "Heart Pieces (22)",
+      "title": "Heart Pieces (23)",
       "fields": [
+        { "id": "hp-thunder-dragon-lightning-round", "label": "Thunder Dragon - Lightning Round", "type": "storyflag", "flag": 511, "description": "Event flow 460-RairyuMinigame gives this piece only while story flag 511 is clear, then sets it. Read from HD v1.0.0." },
         { "id": "hp-batreaux-10-crystals", "label": "Batreaux's House - 10 Crystals", "type": "sceneflag", "scene": "Skyloft", "flag": 71, "description": "Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "hp-upper-skyloft-in-zelda-s-closet", "label": "Upper Skyloft - In Zelda's Closet", "type": "sceneflag", "scene": "Skyloft", "flag": 32, "description": "Set on the sample 100% Wii save." },
         { "id": "hp-upper-skyloft-pumpkin-archery-600-points", "label": "Upper Skyloft - Pumpkin Archery -- 600 Points", "type": "storyflag", "flag": 359, "description": "Set on the sample 100% Wii save." },
@@ -66,7 +67,7 @@
     },
     {
       "title": "Batreaux's rewards",
-      "description": "The flow walks these in order and pays out the first one not yet given if you have enough crystals. Clear one to receive it again. The 80-crystal Tycoon Wallet is behind a different check, not mapped yet; the 30-crystal Cursed Medal is a chest.",
+      "description": "The flow walks these in order and pays out the first one not yet given if you have enough crystals. Clear one to receive it again. The 80-crystal Tycoon Wallet is crystal tier 6, but its claimed state isn't one of these flags (not mapped yet); the 30-crystal Cursed Medal is a chest.",
       "fields": [
         { "id": "batreaux-70", "label": "5 Crystals — Medium Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 70, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-71", "label": "10 Crystals — Piece of Heart", "type": "sceneflag", "scene": "Skyloft", "flag": 71, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
@@ -74,6 +75,20 @@
         { "id": "batreaux-73", "label": "40 Crystals — Gold Rupee", "type": "sceneflag", "scene": "Skyloft", "flag": 73, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-74", "label": "50 Crystals — Giant Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 74, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-75", "label": "70 Crystals — two Gold Rupees", "type": "sceneflag", "scene": "Skyloft", "flag": 75, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." }
+      ]
+    },
+    {
+      "title": "Bird statues activated — Faron & Eldin",
+      "description": "Statues on the surface set a story flag the first time Link activates them. Skyloft and dungeon statues have none (always active). Lanayru and the other regions use a different parameter, not mapped yet.",
+      "fields": [
+        { "id": "statue-800", "label": "Faron Woods Entry", "type": "storyflag", "flag": 800, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-801", "label": "In the Woods", "type": "storyflag", "flag": 801, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-802", "label": "Viewing Platform", "type": "storyflag", "flag": 802, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-803", "label": "Great Tree", "type": "storyflag", "flag": 803, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-804", "label": "Volcano Entry", "type": "storyflag", "flag": 804, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-805", "label": "Volcano East", "type": "storyflag", "flag": 805, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-806", "label": "Volcano Ascent", "type": "storyflag", "flag": 806, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." },
+        { "id": "statue-807", "label": "Temple Entrance", "type": "storyflag", "flag": 807, "description": "Activation flag stored in this statue's object parameters (anglex) in the stage data." }
       ]
     },
     {
