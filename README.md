@@ -325,6 +325,8 @@ This is not legal advice. If you're unsure, ask a lawyer.
   watching the opening set 5 bits there (`0x02`: `0x02 0x04 0x08 0x40`, `0x0C`: `0x10`) while `skip.dat`'s copy
   stayed zero, and the game offered Skip on the opening with every bit cleared, so in HD these bits don't gate
   skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.
+  `skip.dat` is a per-file record of watched cutscenes that the game rebuilds from the save's own copy: delete it and
+  the game writes a new one. Edit the in-save copy (the Cutscenes tab); `skip.dat` follows.
 - The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2; the starting-clothes
   variant hasn't been tried in-game. The after-Levias preset reproduces its reference save's flags exactly
   (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.
