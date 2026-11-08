@@ -1,0 +1,827 @@
+{
+  "id": "before-demise",
+  "title": "100% — at the statue before Demise",
+  "description": "A completed file waiting at the bird statue before Demise: every heart container and piece (18 hearts), every item and upgrade, maximum rupees, every bug and treasure, 80 gratitude crystals and all of Batreaux's rewards. Good for practising the final fight or exploring a finished game. Normal Mode.",
+  "scope": "slot",
+  "sources": "Flag arrays, spawn, stats, pouch and storage copied from file 2 of the project owner's own 100% NTSC (SOUE) Wii save, with tools/preset-from-save.mjs.",
+  "apply": [
+    {
+      "field": "general.playerName",
+      "value": "Link",
+      "onlyIfEmpty": true
+    },
+    {
+      "field": "general.isNew",
+      "value": false
+    },
+    {
+      "field": "general.playTime",
+      "value": 298884,
+      "note": "83 h 1 m, as in the reference save"
+    },
+    {
+      "field": "general.isNight",
+      "value": false
+    },
+    {
+      "field": "general.totalHearts",
+      "value": 72
+    },
+    {
+      "field": "general.currentHealth",
+      "value": 80
+    },
+    {
+      "field": "general.unkHearts",
+      "value": 24
+    },
+    {
+      "field": "general.locationId",
+      "value": 64
+    },
+    {
+      "field": "general.stage",
+      "value": "F403"
+    },
+    {
+      "field": "general.room",
+      "value": 1
+    },
+    {
+      "field": "general.layerT1",
+      "value": 0
+    },
+    {
+      "field": "general.entranceT1",
+      "value": 0
+    },
+    {
+      "field": "general.entranceT1LoadFlag",
+      "value": 0
+    },
+    {
+      "field": "general.angleT1",
+      "value": -631
+    },
+    {
+      "field": "general.pos1X",
+      "value": 15.677
+    },
+    {
+      "field": "general.pos1Y",
+      "value": 0.87
+    },
+    {
+      "field": "general.pos1Z",
+      "value": 2063.4836
+    },
+    {
+      "field": "general.stageT2",
+      "value": "F100"
+    },
+    {
+      "field": "general.layerT2",
+      "value": 0
+    },
+    {
+      "field": "general.entranceT2",
+      "value": 45
+    },
+    {
+      "field": "general.roomT2",
+      "value": 0
+    },
+    {
+      "field": "general.angleT2",
+      "value": -12749
+    },
+    {
+      "field": "general.pos2X",
+      "value": 7494.9185
+    },
+    {
+      "field": "general.pos2Y",
+      "value": 2100
+    },
+    {
+      "field": "general.pos2Z",
+      "value": -9460.4805
+    },
+    {
+      "field": "general.stageT3",
+      "value": "F403"
+    },
+    {
+      "field": "general.roomT3",
+      "value": 1
+    },
+    {
+      "field": "general.layerT3",
+      "value": 0
+    },
+    {
+      "field": "general.entranceT3",
+      "value": 0
+    },
+    {
+      "field": "general.angleT3",
+      "value": -631
+    },
+    {
+      "field": "general.nightT3",
+      "value": false
+    },
+    {
+      "field": "general.pos3X",
+      "value": 15.677
+    },
+    {
+      "field": "general.pos3Y",
+      "value": 0.87
+    },
+    {
+      "field": "general.pos3Z",
+      "value": 2063.4836
+    },
+    {
+      "field": "general.sceneFlagIndex",
+      "value": 10
+    },
+    {
+      "field": "general.areasVisited",
+      "value": 4095
+    },
+    {
+      "field": "general.savedFromPrompt",
+      "value": 0
+    },
+    {
+      "field": "general.beedlePathSegment",
+      "value": 3
+    },
+    {
+      "field": "general.beedlePathFraction",
+      "value": 0.7299
+    },
+    {
+      "field": "general.beedleRotation",
+      "value": -24742
+    },
+    {
+      "field": "general.skyKeep1",
+      "value": 0
+    },
+    {
+      "field": "general.skyKeep2",
+      "value": 1
+    },
+    {
+      "field": "general.skyKeep3",
+      "value": 2
+    },
+    {
+      "field": "general.skyKeep4",
+      "value": 3
+    },
+    {
+      "field": "general.skyKeep5",
+      "value": 4
+    },
+    {
+      "field": "general.skyKeep6",
+      "value": 5
+    },
+    {
+      "field": "general.skyKeep7",
+      "value": 6
+    },
+    {
+      "field": "general.skyKeep8",
+      "value": 7
+    },
+    {
+      "field": "general.skyKeep9",
+      "value": 255
+    },
+    {
+      "field": "general.airPotion",
+      "value": 0
+    },
+    {
+      "field": "general.airPotionPlus",
+      "value": 0
+    },
+    {
+      "field": "general.staminaPotion",
+      "value": 0
+    },
+    {
+      "field": "general.staminaPotionPlus",
+      "value": 0
+    },
+    {
+      "field": "general.guardianPotion",
+      "value": 0
+    },
+    {
+      "field": "general.guardianPotionPlus",
+      "value": 0
+    },
+    {
+      "field": "inventory.equippedWeapon",
+      "value": 1
+    },
+    {
+      "field": "equipment.pouch1Item",
+      "value": 125
+    },
+    {
+      "field": "equipment.pouch1Amount",
+      "value": 48
+    },
+    {
+      "field": "equipment.pouch2Item",
+      "value": 114
+    },
+    {
+      "field": "equipment.pouch2Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.pouch3Item",
+      "value": 81
+    },
+    {
+      "field": "equipment.pouch3Amount",
+      "value": 2
+    },
+    {
+      "field": "equipment.pouch4Item",
+      "value": 66
+    },
+    {
+      "field": "equipment.pouch4Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.pouch5Item",
+      "value": 81
+    },
+    {
+      "field": "equipment.pouch5Amount",
+      "value": 2
+    },
+    {
+      "field": "equipment.pouch6Item",
+      "value": 88
+    },
+    {
+      "field": "equipment.pouch6Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.pouch7Item",
+      "value": 114
+    },
+    {
+      "field": "equipment.pouch7Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.pouch8Item",
+      "value": 66
+    },
+    {
+      "field": "equipment.pouch8Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.shieldSlot",
+      "value": 8
+    },
+    {
+      "field": "equipment.lastPouchSlot",
+      "value": 8
+    },
+    {
+      "field": "equipment.dowsing",
+      "value": 5
+    },
+    {
+      "field": "equipment.storage1Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage1Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage2Item",
+      "value": 124
+    },
+    {
+      "field": "equipment.storage2Amount",
+      "value": 20
+    },
+    {
+      "field": "equipment.storage3Item",
+      "value": 121
+    },
+    {
+      "field": "equipment.storage3Amount",
+      "value": 48
+    },
+    {
+      "field": "equipment.storage4Item",
+      "value": 118
+    },
+    {
+      "field": "equipment.storage4Amount",
+      "value": 32
+    },
+    {
+      "field": "equipment.storage5Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage5Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage6Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage6Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage7Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage7Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage8Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage8Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage9Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage9Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage10Item",
+      "value": 130
+    },
+    {
+      "field": "equipment.storage10Amount",
+      "value": 30
+    },
+    {
+      "field": "equipment.storage11Item",
+      "value": 130
+    },
+    {
+      "field": "equipment.storage11Amount",
+      "value": 30
+    },
+    {
+      "field": "equipment.storage12Item",
+      "value": 130
+    },
+    {
+      "field": "equipment.storage12Amount",
+      "value": 30
+    },
+    {
+      "field": "equipment.storage13Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage13Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage14Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage14Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage15Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage15Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage16Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage16Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage17Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage17Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage18Item",
+      "value": 136
+    },
+    {
+      "field": "equipment.storage18Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage19Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage19Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage20Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage20Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage21Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage21Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage22Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage22Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage23Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage23Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage24Item",
+      "value": 133
+    },
+    {
+      "field": "equipment.storage24Amount",
+      "value": 15
+    },
+    {
+      "field": "equipment.storage25Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage25Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage26Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage26Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage27Item",
+      "value": 100
+    },
+    {
+      "field": "equipment.storage27Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage28Item",
+      "value": 100
+    },
+    {
+      "field": "equipment.storage28Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage29Item",
+      "value": 103
+    },
+    {
+      "field": "equipment.storage29Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage30Item",
+      "value": 101
+    },
+    {
+      "field": "equipment.storage30Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage31Item",
+      "value": 101
+    },
+    {
+      "field": "equipment.storage31Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage32Item",
+      "value": 102
+    },
+    {
+      "field": "equipment.storage32Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage33Item",
+      "value": 70
+    },
+    {
+      "field": "equipment.storage33Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage34Item",
+      "value": 104
+    },
+    {
+      "field": "equipment.storage34Amount",
+      "value": 1
+    },
+    {
+      "field": "equipment.storage35Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage35Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage36Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage36Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage37Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage37Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage38Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage38Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage39Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage39Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage40Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage40Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage41Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage41Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage42Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage42Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage43Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage43Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage44Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage44Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage45Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage45Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage46Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage46Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage47Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage47Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage48Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage48Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage49Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage49Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage50Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage50Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage51Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage51Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage52Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage52Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage53Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage53Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage54Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage54Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage55Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage55Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage56Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage56Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage57Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage57Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage58Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage58Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage59Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage59Amount",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage60Item",
+      "value": 0
+    },
+    {
+      "field": "equipment.storage60Amount",
+      "value": 0
+    },
+    {
+      "type": "words",
+      "id": "story",
+      "offset": "0x08E4",
+      "note": "Story flags (1201)",
+      "words": "fff8 ffff fbff e97f 7efb 1680 bffb efad effd fff7 ffc0 ffff bfef f008 fff3 277f bfbf fdff 06fd dffb f01e 6bf7 0002 0000 d80d c00e 7ff7 f77f 9fbb e7de 7bff 8fbc e009 fbeb 677f 03ba e7fe c7ff 97fd 3df7 fe6f 0fff 2860 ff67 f8fa 6cd6 1fae 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 f600 f23f dfff 00c7 0000 0200 0180 8000 007e 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 06d7 0000 0bca 033e 0000 1e4f 00c4 01a2 01ab 0303 091c 0206 0302 00c6 018d 0004 0760 00d6 0d41 182c 005d 07c3 1083 0202 0a45 0000 133b 0100 0024 02e0 0000 0b84 50e0 0e80 0000 1e00 0000 237a 0000 0559 ed02 002e 001e 0024"
+    },
+    {
+      "type": "words",
+      "id": "item",
+      "offset": "0x09E4",
+      "note": "Item flags, counters, rupees, ammo",
+      "words": "37fe f7f0 fba0 c4be ffff fdfc 7fdf ffb0 ffff 1fff 7fc3 dff0 3dd1 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0018 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 31e3 1280 0000 0000 0000 0000 0000 0005 26ac 0a00 c294"
+    },
+    {
+      "type": "words",
+      "id": "dungeon",
+      "offset": "0x0A64",
+      "note": "Dungeon flags (256 areas × 8 words)",
+      "words": "0000 0000 0000 0000 0000 0000 0000 007f 0000 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 0000 0000 0000 0000 001f 0000 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 0000 0000 0000 0000 01ff 0000 0000 0000 0000 0000 0000 0000 003f 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0007 0000 0000 0000 0000 0000 0000 0000 07ff 0000 0000 0000 0000 0000 0000 0000 03ff 0000 0000 0000 0000 0000 0000 0000 0007 018e 0000 0000 0000 0000 0000 0000 07ff 018e 0000 0000 0000 0000 0000 0000 04ff 0000 0000 0000 0000 0000 0000 0000 0000 0184 0000 0000 0000 0000 0000 0000 041f 0186 0000 0000 0000 0000 0000 0000 0fff 0000 0000 0000 0000 0000 0000 0000 0000 0186 0000 0000 0000 0000 0000 0000 03ff 0186 0000 0000 0000 0000 0000 0000 ffff 0000 0000 0000 0000 0000 0000 0000 0000 0002 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 0000 0000 0000 0000 0001 0000 0000 0000 7fff 0000 0000 0000 0001 0000 0000 0000 7fff 0000 0000 0000 01fc 0000 0000 0000 7fff 0000 0000 0000 0001 0000 0000 0000 7fff 0000 0000 0000 0001 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001"
+    },
+    {
+      "type": "words",
+      "id": "scene",
+      "offset": "0x1A64",
+      "note": "Scene flags",
+      "words": "6eff 7eff fbff ddfa effd c7f9 f5cf 2e0f eeff ff7f 6c6f efbf 007f 0000 0180 0000 f801 ae38 b706 7018 0009 0000 4030 8000 003e 8fb0 ffff 1008 0040 0000 0000 0000 7fff ffdf ff7f ff73 d3ef 0005 0d61 af58 cfff 187c 3f74 f01c fe7f 03dc 7bff 03f5 0000 0000 0000 0000 0000 0000 0000 0000 fcff fdff 01ff 3ff6 fefe fff3 2fff c101 c400 124f e77e e004 39c0 04f0 4000 8001 df00 7b97 4305 0000 0000 7fe5 1a00 3ffe 61d8 f9ee eeaf 0e9d ffcd 681f bb28 0002 ffff feff ffff ffff 6bff fffb fff9 dfff bfde dfff e5ff 7eff 307f 31df dff9 7eab 0000 0000 0000 0000 0000 0000 0000 0000 d2ff f9bd fff9 0fef 0000 0000 0000 0000 dd7e ffde ffde ffb7 fffb ff7b ffbf b3fd 0000 0000 0000 0000 0000 0000 0000 0000 df7f ffff 19eb dd6c e040 fb71 a16f c9cf f704 dfff eddf f3f7 959a 1c34 3658 03fc 0000 0000 0000 0000 0000 0000 0000 0000 7fff 67f0 7fd5 ed94 d743 abff ff0f f067 f8e2 03ff f91f 003c 03e0 0000 0010 0090 0000 0000 0000 0000 0000 0001 0010 0000 0000 0000 0000 0000 0000 0000 0040 0000 0000 0000 0000 0000 0000 0000 0020 0000 0006 0000 0000 0000 0000 0000 0030 0000"
+    },
+    {
+      "type": "words",
+      "id": "tbox",
+      "offset": "0x2A64",
+      "note": "Chest flags",
+      "words": "c0fc 2801 0400 0010 0001 0030 0000 0000 00d5 0000 01fc 8000 0000 0000 ffcf 001f 7e02 0000 0000 0000 0001 0000 005f 0000 003e 0010 0000 0000 007e 0000 0fff 0000 0000 0000 17f7 0000 03bf 0000 0000 0000 0003 0000 3f9f 53fe 0000 0000 0000 0000 0000 0000 0000 0000"
+    }
+  ],
+  "group": "Completed files"
+}

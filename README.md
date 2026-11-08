@@ -210,6 +210,10 @@ preset is applied to. Add a description and sources by hand afterwards. Give `al
 every file, and `--image` to copy slots byte for byte (limited to the reference's format); `--group "<name>"` sets
 the list heading.
 
+`before-demise` (group **Completed files**) is a finished file waiting at the bird statue before Demise: 18 hearts,
+every item and upgrade, maximum rupees, every bug and treasure and all of Batreaux's rewards, at 83 h 01 m. It was
+made from the project owner's own 100% Wii save with `tools/preset-from-save.mjs` and works on Wii and HD files.
+
 The **All Dungeons practice** group (Wii only) holds 25 presets, one per split of minimini352's
 [All Dungeons practice saves](https://github.com/minimini352/SS-All-Dungeons-Saves), from the start of the run to
 the Horde. Each replaces files 1–3 with exact copies of that save's files: the main file plus the helper files the
