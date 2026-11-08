@@ -19,6 +19,13 @@
       "size": "0x53C0",
       "count": 4,
       "companions": ["slotExtra", "slotExtra2", "skip"],
+      "clear": {
+        "keep": [
+          { "scope": "slotExtra2", "start": "0x0", "length": "0x10" },
+          { "scope": "slotExtra2", "start": "0x54", "length": "0x10" }
+        ],
+        "description": "An empty HD slot is all zeros apart from the empty flag, the checksum, and a 16-byte random ID (a version-4 UUID) stored twice in its second extra block. The ID belongs to the playthrough: a new game gets a fresh one and the autosave copies it. Clearing keeps the slot's ID; checked by clearing a file in Sky Recomp v2.0.2 and starting a new game in it."
+      },
       "description": "Same struct as the Wii slots, little-endian. The 4th slot looked like a later copy of file 3 in the one sample (possibly an autosave)."
     },
     "slotExtra": {

@@ -422,6 +422,7 @@ function renderSlotTools() {
       if (!state.save.scopeChanged("slot", state.slot)) return toast("Nothing to revert.");
       state.save.revertScope("slot", state.slot); renderAll(); toast("Reverted to the loaded version.");
     } }, "Revert changes"),
+    ...clearControls(),
     el("span", { class: "tool-sep" }),
     ...presetControls(),
     el("span", { class: "tool-sep" }),
@@ -432,6 +433,19 @@ function renderSlotTools() {
     } }, "Copy to"),
     target,
   );
+}
+
+/** "Clear file": only for formats whose layout says how the game empties a slot (see clearScope). */
+function clearControls() {
+  const empty = state.defs.fieldsById.get(state.defs.layout.slotSummary?.empty);
+  if (!state.defs.layout.scopes.slot?.clear || !empty || empty.invalid) return [];
+  return [el("button", { class: "btn small", onclick: () => {
+    const label = scopeLabel("slot", state.slot);
+    if (!confirm(`Clear ${label}? It becomes an empty, new file. Use "Revert changes" to undo before saving.`)) return;
+    state.save.clearScope("slot", state.slot);
+    state.save.write(empty, state.slot, true);
+    renderAll(); toast(`${label} cleared. The checksum is rewritten on save.`);
+  } }, "Clear file")];
 }
 
 function presetControls() {
