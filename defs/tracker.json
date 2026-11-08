@@ -585,9 +585,11 @@
         "cutscenes.b02m04",
         "cutscenes.b02m08",
         "cutscenes.b02m40",
-        "cutscenes.b0cm10"
+        "cutscenes.b0cm10",
+        "cutscenes.b03m01",
+        "cutscenes.b0cm40"
       ],
-      "note": "Per-file bits in the HD save at 0x14F20. Only the opening's 5 bits are named; they don't gate skipping in HD."
+      "note": "Per-file bits in the HD save at 0x14F20. Named so far: the opening (5 bits) and the first trip to the Sealed Grounds (2 bits). They don't gate skipping in HD."
     },
     {
       "category": "Other files",

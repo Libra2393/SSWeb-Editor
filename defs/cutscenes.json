@@ -51,6 +51,22 @@
           "offset": "0x0C",
           "mask": "0x10",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
+        },
+        {
+          "id": "b03m01",
+          "label": "First trip to the Sealed Grounds: seen (bit A)",
+          "type": "flag",
+          "offset": "0x03",
+          "mask": "0x01",
+          "description": "Set between the first dive and meeting the old woman in the Sealed Temple (Sky Recomp v2.0.2, HD). One is the arrival at the Sealed Grounds, the other the old woman's scene; which is which isn't known yet."
+        },
+        {
+          "id": "b0cm40",
+          "label": "First trip to the Sealed Grounds: seen (bit B)",
+          "type": "flag",
+          "offset": "0x0C",
+          "mask": "0x40",
+          "description": "Set between the first dive and meeting the old woman in the Sealed Temple (Sky Recomp v2.0.2, HD). One is the arrival at the Sealed Grounds, the other the old woman's scene; which is which isn't known yet."
         }
       ]
     },
@@ -197,13 +213,6 @@
           "type": "flag",
           "offset": "0x02",
           "mask": "0x80"
-        },
-        {
-          "id": "b03m01",
-          "label": "0x03 · 0x01",
-          "type": "flag",
-          "offset": "0x03",
-          "mask": "0x01"
         },
         {
           "id": "b03m02",
@@ -736,13 +745,6 @@
           "type": "flag",
           "offset": "0x0C",
           "mask": "0x20"
-        },
-        {
-          "id": "b0cm40",
-          "label": "0x0C · 0x40",
-          "type": "flag",
-          "offset": "0x0C",
-          "mask": "0x40"
         },
         {
           "id": "b0cm80",
