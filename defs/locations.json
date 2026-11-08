@@ -38,8 +38,9 @@
       ]
     },
     {
-      "title": "Heart Pieces (21)",
+      "title": "Heart Pieces (22)",
       "fields": [
+        { "id": "hp-batreaux-10-crystals", "label": "Batreaux's House - 10 Crystals", "type": "sceneflag", "scene": "Skyloft", "flag": 71, "description": "Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "hp-upper-skyloft-in-zelda-s-closet", "label": "Upper Skyloft - In Zelda's Closet", "type": "sceneflag", "scene": "Skyloft", "flag": 32, "description": "Set on the sample 100% Wii save." },
         { "id": "hp-upper-skyloft-pumpkin-archery-600-points", "label": "Upper Skyloft - Pumpkin Archery -- 600 Points", "type": "storyflag", "flag": 359, "description": "Set on the sample 100% Wii save." },
         { "id": "hp-central-skyloft-shed-goddess-chest", "label": "Central Skyloft - Shed Goddess Chest", "type": "chestflag", "scene": "Skyloft", "flag": 15, "description": "Set on the sample 100% Wii save." },
@@ -61,6 +62,18 @@
         { "id": "hp-skyview-item-behind-bars", "label": "Skyview - Item behind Bars", "type": "sceneflag", "scene": "Skyview", "flag": 103, "description": "Set on the sample 100% Wii save." },
         { "id": "hp-sandship-chest-at-the-stern", "label": "Sandship - Chest at the Stern", "type": "sceneflag", "scene": "Sandship", "flag": 21, "description": "Set on the sample 100% Wii save." },
         { "id": "hp-fire-sanctuary-plats-chest", "label": "Fire Sanctuary - Plats' Chest", "type": "chestflag", "scene": "Fire Sanctuary", "flag": 2, "description": "Set on the sample 100% Wii save." }
+      ]
+    },
+    {
+      "title": "Batreaux's rewards",
+      "description": "The flow walks these in order and pays out the first one not yet given if you have enough crystals. Clear one to receive it again. The 80-crystal Tycoon Wallet is behind a different check, not mapped yet; the 30-crystal Cursed Medal is a chest.",
+      "fields": [
+        { "id": "batreaux-70", "label": "5 Crystals — Medium Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 70, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-71", "label": "10 Crystals — Piece of Heart", "type": "sceneflag", "scene": "Skyloft", "flag": 71, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-72", "label": "30 Crystals — Big Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 72, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-73", "label": "40 Crystals — Gold Rupee", "type": "sceneflag", "scene": "Skyloft", "flag": 73, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-74", "label": "50 Crystals — Giant Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 74, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-75", "label": "70 Crystals — two Gold Rupees", "type": "sceneflag", "scene": "Skyloft", "flag": 75, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." }
       ]
     },
     {

@@ -471,9 +471,10 @@
     },
     {
       "category": "Collectibles",
-      "title": "Heart pieces (21 of 24 mapped)",
+      "title": "Heart pieces (22 of 24 mapped)",
       "note": "Per-location flags from the randomizer data, checked on a 100% save.",
       "fields": [
+        "locations.hp-batreaux-10-crystals",
         "locations.hp-upper-skyloft-in-zelda-s-closet",
         "locations.hp-upper-skyloft-pumpkin-archery-600-points",
         "locations.hp-central-skyloft-shed-goddess-chest"
@@ -481,9 +482,9 @@
     },
     {
       "category": "Collectibles",
-      "title": "Remaining 3 heart pieces",
+      "title": "Remaining 2 heart pieces",
       "status": "research",
-      "note": "Batreaux's reward and two others aren't tracked by a single flag in the randomizer data."
+      "note": "Two aren't tracked by a single flag in the randomizer data. Batreaux's is now mapped: Skyloft scene flag 71, from event flow 121-AkumaKun."
     },
     {
       "category": "Collectibles",
