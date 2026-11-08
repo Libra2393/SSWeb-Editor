@@ -93,7 +93,7 @@ Changed slots get their CRC32 recomputed on save. Close the game in Dolphin firs
 }
 ```
 
-`scope` is inherited section → group → field. Field offsets are relative to the scope's base.
+A section can list `"formats": ["hd"]` to appear only for those formats (the Cutscenes tab has no Wii data in `wiiking2.sav`). `scope` is inherited section → group → field. Field offsets are relative to the scope's base.
 
 | `type` | Extra keys | Notes |
 | --- | --- | --- |
@@ -125,7 +125,7 @@ format gets its own copy, validated against its layout.
 | Format | File | Notes |
 | --- | --- | --- |
 | `wii` | `layout.json`, 0xFBE0 bytes, big-endian | 3 slots, CRC32 per slot |
-| `hd` | `layout-hd.json`, 0x1DE20 bytes, little-endian | 4 slots with the same struct, plus two per-slot blocks of HD-only data later in the file. Each slot's CRC32 runs over the slot and then both of its blocks (`parts`) |
+| `hd` | `layout-hd.json`, 0x1DE20 bytes, little-endian | 4 slots with the same struct, plus two per-slot blocks of HD-only data later in the file. Each slot's CRC32 runs over the slot and then both of its blocks (`parts`). Cutscene-seen bits live in the save too, 0x24 bytes per file at `0x14F20` (Cutscenes tab) |
 
 Because the formats differ in byte order, flags that live in the game's 16-bit flag arrays (story, item, dungeon
 and scene flags, `0x8E4`–`0x2A63`) are defined as `"storage": "u16"` at the even offset, and packed values are
@@ -316,7 +316,11 @@ This is not legal advice. If you're unsure, ask a lawyer.
 
 - Story-flag labels come from the old WiiKing2 research notes (`Skyward Sword Flags.txt`) and are rough.
 - The last 0x40 bytes after slot 3 are unknown (shown as the "Trailer" scope in Raw bytes).
-- `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet.
+- `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet. HD saves keep their own copy of the
+  same bits at `0x14F20` (0x24 bytes per file, no checksum), which the **Cutscenes** tab edits. In Sky Recomp v2.0.2
+  watching the opening set 5 bits there (`0x02`: `0x02 0x04 0x08 0x40`, `0x0C`: `0x10`) while `skip.dat`'s copy
+  stayed zero, and the game offered Skip on the opening with every bit cleared, so in HD these bits don't gate
+  skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.
 - The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2; the starting-clothes
   variant hasn't been tried in-game. The after-Levias preset reproduces its reference save's flags exactly
   (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.

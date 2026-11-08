@@ -18,7 +18,7 @@
       "stride": "0x53C0",
       "size": "0x53C0",
       "count": 4,
-      "companions": ["slotExtra", "slotExtra2"],
+      "companions": ["slotExtra", "slotExtra2", "skip"],
       "description": "Same struct as the Wii slots, little-endian. The 4th slot looked like a later copy of file 3 in the one sample (possibly an autosave)."
     },
     "slotExtra": {
@@ -37,7 +37,14 @@
       "count": 4,
       "description": "Second per-slot HD-only block, also covered by that slot's checksum."
     },
-    "skip": { "label": "Skip data", "base": "0x14F20", "size": "0x90", "description": "Starts with the same bytes as skip.dat." },
+    "skip": {
+      "label": "File {n} cutscenes seen",
+      "base": "0x14F20",
+      "stride": "0x24",
+      "size": "0x24",
+      "count": 4,
+      "description": "Per-slot cutscene-seen bits, 0x20 bytes of flags plus 4 bytes that were always zero (where the Wii skip.dat keeps a checksum). Not covered by any checksum. This is the live copy: in Sky Recomp v2.0.2 watching the opening set its bits here while skip.dat's chunk stayed zero, and HD offered Skip on the opening with all bits cleared, so the bits don't gate skipping. Slot 4 (autosave) gets the same bits as the file it autosaves."
+    },
     "shared": { "label": "Unknown shared data", "base": "0x1D890", "size": "0x120" },
     "end": { "label": "End of file", "base": "0x1DE10", "size": "0x10" }
   },
