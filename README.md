@@ -69,6 +69,10 @@ gold outlines) and **Light** (parchment with royal blue), and remembers your cho
 In Chromium-based browsers, **Save** writes back to the file you opened. Other browsers download a copy instead.
 Changed slots get their CRC32 recomputed on save. Close the game in Dolphin first.
 
+**Clear file** (next to Revert changes, HD saves only) empties the selected file the way the game does: every byte of the
+slot, its HD blocks and its cutscene bits is zeroed except the playthrough ID, and the slot is marked new. The
+layout's `clear` entry on the slot scope says what to keep; a format without one doesn't offer the button.
+
 ## Definition files
 
 `defs/manifest.json` lists the files to load:

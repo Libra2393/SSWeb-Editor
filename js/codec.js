@@ -210,6 +210,26 @@ export class SaveFile {
     }
   }
 
+  /**
+   * Empties a scope and its companions the way the game does, following the scope's "clear" entry:
+   * every byte is zeroed except the `keep` ranges ({scope, start, length}). The caller then marks the
+   * slot empty through layout.slotSummary.empty. Returns false when the layout has no "clear" entry.
+   */
+  clearScope(name, index) {
+    const rule = this.scope(name).clear;
+    if (!rule) return false;
+    const kept = (rule.keep || []).map((k) => {
+      const at = this.scopeBase(k.scope, index) + num(k.start);
+      return [at, this.bytes.slice(at, at + num(k.length))];
+    });
+    for (const n of this.withCompanions(name)) {
+      const base = this.scopeBase(n, index);
+      this.bytes.fill(0, base, base + num(this.scope(n).size));
+    }
+    for (const [at, b] of kept) this.bytes.set(b, at);
+    return true;
+  }
+
   revertScope(name, index) {
     for (const n of this.withCompanions(name)) {
       const base = this.scopeBase(n, index), size = num(this.scope(n).size);
