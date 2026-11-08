@@ -67,14 +67,15 @@
     },
     {
       "title": "Batreaux's rewards",
-      "description": "The flow walks these in order and pays out the first one not yet given if you have enough crystals. Clear one to receive it again. The 80-crystal Tycoon Wallet is crystal tier 6, but its claimed state isn't one of these flags (not mapped yet); the 30-crystal Cursed Medal is a chest.",
+      "description": "The flow walks these in order and pays out the first one not yet given if you have enough crystals. Clear one to receive it again. The 80-crystal Tycoon Wallet is recorded by story flag 360 (Batreaux turns human), not a scene flag; the 30-crystal Cursed Medal is a chest.",
       "fields": [
         { "id": "batreaux-70", "label": "5 Crystals — Medium Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 70, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-71", "label": "10 Crystals — Piece of Heart", "type": "sceneflag", "scene": "Skyloft", "flag": 71, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-72", "label": "30 Crystals — Big Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 72, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-73", "label": "40 Crystals — Gold Rupee", "type": "sceneflag", "scene": "Skyloft", "flag": 73, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
         { "id": "batreaux-74", "label": "50 Crystals — Giant Wallet", "type": "sceneflag", "scene": "Skyloft", "flag": 74, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
-        { "id": "batreaux-75", "label": "70 Crystals — two Gold Rupees", "type": "sceneflag", "scene": "Skyloft", "flag": 75, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." }
+        { "id": "batreaux-75", "label": "70 Crystals — two Gold Rupees", "type": "sceneflag", "scene": "Skyloft", "flag": 75, "description": "Given. Scene flag in Skyloft that event flow 121-AkumaKun checks before this reward; set once it's given. Read from HD v1.0.0's flow and confirmed on real Sky Recomp saves." },
+        { "id": "batreaux-human", "label": "80 Crystals — Tycoon Wallet", "type": "storyflag", "flag": 360, "description": "Batreaux turns human with this reward. Event flow 121-AkumaKun checks this flag before the reward ladder and skips it once set. Clear at 75 crystals and set at 80 on a real 100% Wii save." }
       ]
     },
     {

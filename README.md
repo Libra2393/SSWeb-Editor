@@ -331,8 +331,8 @@ This is not legal advice. If you're unsure, ask a lawyer.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
   boulders aren't verified, and 1 heart piece isn't mapped yet: Beedle's, which HD tracks in a dedicated shop class rather than a flag in
   the shop table. Batreaux's rewards are Skyloft scene flags 70–75 and the Lightning Round piece is story flag 511, both
-  read from the game's event flows. The 80-crystal Tycoon Wallet's claimed state and the Silent Realm trial-completion
-  flags aren't mapped yet.
+  read from the game's event flows. The 80-crystal Tycoon Wallet is story flag 360 (Batreaux turns human). Silent Realm
+  trial-completion flags aren't mapped yet.
 - Link's outfit can only be switched between his starting clothes and the knight uniform (story flag 36, which
   also gates Fi). Tunic colours aren't stored in the save at all; recolouring needs modified game textures.
 - The spawn fields are named t1/t2/t3 after the decompilation; what distinguishes them isn't fully understood.
