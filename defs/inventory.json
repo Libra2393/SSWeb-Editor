@@ -79,7 +79,7 @@
       "title": "Equipped",
       "fields": [
         { "id": "equippedWeapon", "label": "Equipped B item", "type": "u8", "offset": "0x53AE", "enum": "weapons" },
-        { "id": "knightUniform", "label": "Knight uniform", "type": "storyflag", "flag": 36, "description": "Off: Link wears his starting clothes. The same story flag also unlocks Fi once Link has a sword and switches parts of Skyloft, the Knight Academy and the Sealed Grounds to their later layouts." }
+        { "id": "knightUniform", "label": "Hero's Tunic / Fi unlocked", "type": "storyflag", "flag": 36, "description": "Unlocks Fi once Link has a sword and switches parts of Skyloft, the Knight Academy and the Sealed Grounds to their later layouts. It does not decide Link's outfit: with it clear on a post-prologue file, Sky Recomp v2.0.2 still loads Link in the knight uniform." }
       ]
     }
   ]

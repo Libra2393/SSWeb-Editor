@@ -453,9 +453,8 @@
     {
       "category": "Appearance",
       "title": "Starting clothes vs knight uniform",
-      "fields": [
-        "inventory.knightUniform"
-      ]
+      "status": "research",
+      "note": "Story flag 36 isn't it: cleared on a post-prologue file, Link still loads in the knight uniform (Sky Recomp v2.0.2). A save from just before and just after Link changes into the uniform at the start of the game would find the real flag."
     },
     {
       "category": "Appearance",

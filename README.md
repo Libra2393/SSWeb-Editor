@@ -183,7 +183,7 @@ Any entry can carry `"slot": 1`–`4` to write that file instead of the selected
 several files. `"formats": ["wii"]` shows a preset only for those formats, and `"group"` sorts it under a heading
 in the preset list.
 `"extends": "<preset id>"` starts from another preset's entries and adds its own after them, so they win; the
-"starting clothes" preset is the prologue preset plus one entry that turns the knight uniform off. The
+that keeps one variant of a preset in sync with its base. The
 included preset, `skyloft-before-first-dive`, puts a file at the end of the prologue for practice: Wing Ceremony
 won, Goddess Sword, Sailcloth and Emerald Tablet, Faron light pillar open, 6 hearts, loading on Skyloft, with
 1 h 50 m of play time, measured from a first playthrough of the opening on video. Its
@@ -331,16 +331,16 @@ This is not legal advice. If you're unsure, ask a lawyer.
   skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.
   `skip.dat` is a per-file record of watched cutscenes that the game rebuilds from the save's own copy: delete it and
   the game writes a new one. Edit the in-save copy (the Cutscenes tab); `skip.dat` follows.
-- The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2; the starting-clothes
-  variant hasn't been tried in-game. The after-Levias preset reproduces its reference save's flags exactly
+- The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2. The after-Levias preset reproduces its reference save's flags exactly
   (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
   boulders aren't verified, and 1 heart piece isn't mapped yet: Beedle's, which HD tracks in a dedicated shop class rather than a flag in
   the shop table. Batreaux's rewards are Skyloft scene flags 70–75 and the Lightning Round piece is story flag 511, both
   read from the game's event flows. The 80-crystal Tycoon Wallet is story flag 360 (Batreaux turns human). Silent Realm
   trial-completion flags aren't mapped yet.
-- Link's outfit can only be switched between his starting clothes and the knight uniform (story flag 36, which
-  also gates Fi). Tunic colours aren't stored in the save at all; recolouring needs modified game textures.
+- Link's outfit isn't mapped. Story flag 36 was thought to switch the knight uniform off, but with it clear on a
+  post-prologue file Sky Recomp v2.0.2 still loads Link in the uniform, so the starting-clothes preset was removed.
+  Tunic colours aren't stored in the save at all; recolouring needs modified game textures.
 - The spawn fields are named t1/t2/t3 after the decompilation; what distinguishes them isn't fully understood.
 
 ## Credits and license
