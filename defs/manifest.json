@@ -11,7 +11,8 @@
     "collection.json",
     "locations.json",
     "dungeons.json",
-    "story-flags.json"
+    "story-flags.json",
+    "cutscenes.json"
   ],
   "flagTables": {
     "story": "flags/storyflags.json",

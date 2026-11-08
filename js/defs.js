@@ -59,6 +59,7 @@ export async function loadWith(get) {
   return formats.map((format, i) => {
     const defs = { format, layout: layouts[i], enums, flagTables, tracker, flagUsage, sections: [], fieldsById: new Map(), warnings: [...loadErrors], variantKeys };
     for (const [json, name] of sections) {
+      if (json.formats && !json.formats.includes(format.id)) continue; // e.g. a tab only the HD save has data for
       try { addSection(defs, structuredClone(json), name); }
       catch (e) { defs.warnings.push(`${name}: ${e.message}`); }
     }

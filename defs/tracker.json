@@ -561,10 +561,16 @@
       "note": "100 counters at 0x2F64."
     },
     {
+      "category": "Progress",
+      "title": "Cutscenes seen (HD)",
+      "fields": ["cutscenes.b02m02", "cutscenes.b02m04", "cutscenes.b02m08", "cutscenes.b02m40", "cutscenes.b0cm10"],
+      "note": "Per-file bits in the HD save at 0x14F20. Only the opening's 5 bits are named; they don't gate skipping in HD."
+    },
+    {
       "category": "Other files",
       "title": "skip.dat cutscene skips",
       "status": "research",
-      "note": "Separate file on Wii and Switch; old notes describe a few bits."
+      "note": "Separate file on Wii and Switch. In HD it lags behind the save's own copy (0x14F20) and its per-chunk checksum word is always zero. Antidote's Wii labels don't match the bits the HD opening sets."
     }
   ]
 }
