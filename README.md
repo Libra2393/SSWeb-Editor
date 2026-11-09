@@ -274,6 +274,11 @@ scene-flag collectibles and all 3 story-flag prizes are found. (The 145th chest 
 that the game's code sets directly, rather than its data files, can only be found by comparing saves. `--dump objects.json` also writes the full raw object list
 for research; it is derived from the game data, so keep it to yourself.
 
+`tools/flag_tabs.py` builds the **Item flags** and **Story flag table** tabs from `defs/flags/itemflags.json` and
+`storyflags.json`: every flag by number, labelled from the table. Item flags are indexed by item number, so 163 of
+them are named after the game's own item names (the `NAME_ITEM_<id>` messages in `0-Common.arc`); bug and material
+counters are named after the decompilation. Re-run it after naming a flag in a table.
+
 ## Coverage tracker
 
 The **Coverage** tab shows how much of the save the editor understands, and what's still missing:
