@@ -279,7 +279,8 @@ for research; it is derived from the game data, so keep it to yourself.
 them are named after the game's own item names (the `NAME_ITEM_<id>` messages in `0-Common.arc`); bug and material
 counters are named after the decompilation. It also builds the **Scene flags** tab from `flag-usage.json`: the
 1,313 stored scene flags your game data uses, each described by the chest, dig spot, item, trigger or event that sets
-or checks it. Re-run it after naming a flag in a table or regenerating `flag-usage.json`.
+or checks it, plus the **Beacons** tab (5 beacons in each of the 32 area slots) and the **Enemies** tab (kills
+and hits taken for 100 enemy types). Re-run it after naming a flag in a table or regenerating `flag-usage.json`.
 
 Story flags 584–625 are 14 best-time records (minutes, seconds, hundredths), 60:00.00 until set. They read as real
 times only on a file that has played the Lightning Round, and line up with the 13 bosses in the map text plus a 14th

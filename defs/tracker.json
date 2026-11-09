@@ -567,14 +567,20 @@
     {
       "category": "Progress",
       "title": "Beacons placed on maps",
-      "status": "known",
-      "note": "Positions at 0x0034 and flags at 0x537C."
+      "note": "Beacons tab: placed bit and X/Y/Z for 5 beacons in each of the 32 load-screen area slots, including dungeons and Silent Realms.",
+      "fields": [
+        "beacons.a16b0",
+        "beacons.a16b0x"
+      ]
     },
     {
       "category": "Progress",
       "title": "Enemy kill counters",
-      "status": "known",
-      "note": "100 counters at 0x2F64."
+      "note": "Enemies tab: kills and hits taken for 100 enemy types. Only a few type numbers are identified.",
+      "fields": [
+        "enemies.k62",
+        "enemies.h62"
+      ]
     },
     {
       "category": "Progress",
