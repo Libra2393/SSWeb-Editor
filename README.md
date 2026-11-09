@@ -277,7 +277,14 @@ for research; it is derived from the game data, so keep it to yourself.
 `tools/flag_tabs.py` builds the **Item flags** and **Story flag table** tabs from `defs/flags/itemflags.json` and
 `storyflags.json`: every flag by number, labelled from the table. Item flags are indexed by item number, so 163 of
 them are named after the game's own item names (the `NAME_ITEM_<id>` messages in `0-Common.arc`); bug and material
-counters are named after the decompilation. Re-run it after naming a flag in a table.
+counters are named after the decompilation. It also builds the **Scene flags** tab from `flag-usage.json`: the
+1,313 stored scene flags your game data uses, each described by the chest, dig spot, item, trigger or event that sets
+or checks it. Re-run it after naming a flag in a table or regenerating `flag-usage.json`.
+
+Story flags 584–625 are 14 best-time records (minutes, seconds, hundredths), 60:00.00 until set. They read as real
+times only on a file that has played the Lightning Round, and line up with the 13 bosses in the map text plus a 14th
+slot left unplayed in Normal Mode, so they're labelled as inferred Lightning Round records. Flags 536–538 and
+542–544 have the same shape: two more time records for minigames not yet identified.
 
 ## Coverage tracker
 

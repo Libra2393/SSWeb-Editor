@@ -14,6 +14,7 @@
     "story-flags.json",
     "story-flag-table.json",
     "item-flags.json",
+    "scene-flags.json",
     "cutscenes.json"
   ],
   "flagTables": {
