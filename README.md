@@ -344,6 +344,9 @@ This is not legal advice. If you're unsure, ask a lawyer.
   skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.
   `skip.dat` is a per-file record of watched cutscenes that the game rebuilds from the save's own copy: delete it and
   the game writes a new one. Edit the in-save copy (the Cutscenes tab); `skip.dat` follows.
+  The cutscenes themselves are listed per stage in each stage archive's `dat/zev.dat` ("wZ": 40-byte records of a
+  32-character event name, a flag word and a step offset/count). The records don't carry a cutscene-bit number, so
+  naming the bits still takes playtests or tracing the game code. `Object/NX/EventD.arc` is an empty stub.
 - The prologue preset works in Skyward Sword HD v1.0.1 (Eden) and in Sky Recomp v2.0.2. The after-Levias preset reproduces its reference save's flags exactly
   (checked on Wii and HD files) and loads in Sky Recomp with the expected gear, hearts and 49 h 38 m play time.
 - Collectibles: 167 of 175 locations were confirmed on a 100% Wii save; 8 chests behind bombable walls or in
