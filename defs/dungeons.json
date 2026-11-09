@@ -98,6 +98,24 @@
         { "id": "skyloftSRTears", "label": "Skyloft Silent Realm: tears (bitmask)", "type": "u16", "hex": true, "offset": "0x0BFA", "shift": 0, "bits": 15, "description": "Dungeon flag 13 of area 25: one bit per tear, 0x7FFF once the trial is done." },
         { "id": "skyloftSRRooms", "label": "Skyloft Silent Realm: visited", "type": "u16", "hex": true, "offset": "0x0C02", "description": "Dungeon flag 8 (rooms visited)." }
       ]
+    },
+    {
+      "title": "Rooms visited — other areas",
+      "description": "The same rooms-visited mask the dungeon groups show, for every other area. On a 100% file these are the only dungeon-flag bits set outside dungeons.",
+      "fields": [
+        { "id": "rooms0", "label": "Skyloft: rooms visited", "type": "u16", "hex": true, "offset": "0x0A72", "description": "Dungeon flag 8 of area 0: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms1", "label": "Faron Woods: rooms visited", "type": "u16", "hex": true, "offset": "0x0A82", "description": "Dungeon flag 8 of area 1: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms2", "label": "Lake Floria: rooms visited", "type": "u16", "hex": true, "offset": "0x0A92", "description": "Dungeon flag 8 of area 2: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms3", "label": "Flooded Faron Woods: rooms visited", "type": "u16", "hex": true, "offset": "0x0AA2", "description": "Dungeon flag 8 of area 3: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms4", "label": "Eldin Volcano: rooms visited", "type": "u16", "hex": true, "offset": "0x0AB2", "description": "Dungeon flag 8 of area 4: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms5", "label": "Volcano Summit: rooms visited", "type": "u16", "hex": true, "offset": "0x0AC2", "description": "Dungeon flag 8 of area 5: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms7", "label": "Lanayru Desert: rooms visited", "type": "u16", "hex": true, "offset": "0x0AE2", "description": "Dungeon flag 8 of area 7: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms8", "label": "Lanayru Sand Sea: rooms visited", "type": "u16", "hex": true, "offset": "0x0AF2", "description": "Dungeon flag 8 of area 8: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms9", "label": "Lanayru Gorge: rooms visited", "type": "u16", "hex": true, "offset": "0x0B02", "description": "Dungeon flag 8 of area 9: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms10", "label": "Sealed Grounds: rooms visited", "type": "u16", "hex": true, "offset": "0x0B12", "description": "Dungeon flag 8 of area 10: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms21", "label": "Sky: rooms visited", "type": "u16", "hex": true, "offset": "0x0BC2", "description": "Dungeon flag 8 of area 21: one bit per room of this area Link has entered (room 0 = bit 0)." },
+        { "id": "rooms255", "label": "Stages without an area of their own: rooms visited", "type": "u16", "hex": true, "offset": "0x1A62", "description": "Dungeon flag 8 of area 255, used by the stages whose stage data names no area: F405 (where Demise is fought), F021 and the demo stage." }
+      ]
     }
   ]
 }

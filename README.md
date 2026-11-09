@@ -282,6 +282,12 @@ counters are named after the decompilation. It also builds the **Scene flags** t
 or checks it, plus the **Beacons** tab (5 beacons in each of the 32 area slots) and the **Enemies** tab (kills
 and hits taken for 100 enemy types). Re-run it after naming a flag in a table or regenerating `flag-usage.json`.
 
+Dungeon flags use a 17-entry table right after the item-flag table in the executable (two bytes per entry: word,
+then `shift << 4 | (bits − 1)`). On the 100% Wii save every set bit belongs to an entry the editor shows: boss
+defeated, map, boss key, small keys, Silent Realm tears and the rooms-visited mask, which overworld areas use too
+(the Dungeons tab now lists it for every area, plus area 255 for stages without an area of their own such as
+Demise's arena). Entries 1, 5–7, 9–11 and 14 were never set in any save seen.
+
 Story flags 584–625 are 14 best-time records (minutes, seconds, hundredths), 60:00.00 until set. They read as real
 times only on a file that has played the Lightning Round, and line up with the 13 bosses in the map text plus a 14th
 slot left unplayed in Normal Mode, so they're labelled as inferred Lightning Round records. Flags 536–538 and
