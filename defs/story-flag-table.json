@@ -1,5 +1,6 @@
 {
   "id": "storytable",
+  "advanced": true,
   "title": "Story flag table",
   "scope": "slot",
   "layout": "flags",

@@ -274,6 +274,10 @@ scene-flag collectibles and all 3 story-flag prizes are found. (The 145th chest 
 that the game's code sets directly, rather than its data files, can only be found by comparing saves. `--dump objects.json` also writes the full raw object list
 for research; it is derived from the game data, so keep it to yourself.
 
+A section with `"advanced": true` is a research tab: it stays hidden until the **Advanced** box at the end of the tab
+bar is ticked (remembered per browser). The Story flag table, Item flags, Scene flags, Enemies and Cutscenes tabs are
+marked this way, so a first-time user sees only the everyday tabs.
+
 `tools/flag_tabs.py` builds the **Item flags** and **Story flag table** tabs from `defs/flags/itemflags.json` and
 `storyflags.json`: every flag by number, labelled from the table. Item flags are indexed by item number, so 163 of
 them are named after the game's own item names (the `NAME_ITEM_<id>` messages in `0-Common.arc`); bug and material

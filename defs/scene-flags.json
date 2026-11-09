@@ -1,5 +1,6 @@
 {
   "id": "sceneflags",
+  "advanced": true,
   "title": "Scene flags",
   "scope": "slot",
   "layout": "flags",

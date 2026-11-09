@@ -46,6 +46,7 @@ def item_tab():
     ]
     write("item-flags.json", {
         "id": "itemflags",
+        "advanced": True,
         "title": "Item flags",
         "scope": "slot",
         "layout": "flags",
@@ -68,6 +69,7 @@ def story_tab():
                            "fields": [ref("story", n) for n in ns]})
     write("story-flag-table.json", {
         "id": "storytable",
+        "advanced": True,
         "title": "Story flag table",
         "scope": "slot",
         "layout": "flags",
@@ -127,6 +129,7 @@ def scene_tab():
         groups.append({"title": f"{name} ({len(fields)} located)", "columns": 1, "fields": fields})
     write("scene-flags.json", {
         "id": "sceneflags",
+        "advanced": True,
         "title": "Scene flags",
         "scope": "slot",
         "layout": "flags",
@@ -182,6 +185,7 @@ def enemies_tab():
                        "description": f"How many of each enemy type Link has {what}."})
     write("enemies.json", {
         "id": "enemies",
+        "advanced": True,
         "title": "Enemies",
         "scope": "slot",
         "description": "Per-enemy-type counters: kills (0x2F64) and hits taken (0x302C), 100 types each, same numbering. "

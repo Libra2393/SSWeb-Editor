@@ -34,7 +34,10 @@ const state = {
   compare: null, // { name, save, slot, hideNoise } while comparing with a second save
   variantWarnings: [],
   imported: null, // { from, titleId, skip } when the open save came out of a Wii SD export
+  advanced: false, // show research tabs (sections marked "advanced": true)
 };
+const ADVANCED_KEY = "ssweb.advanced";
+try { state.advanced = localStorage.getItem(ADVANCED_KEY) === "1"; } catch { /* storage blocked: stays off */ }
 
 // ---------------------------------------------------------------- startup
 
@@ -481,13 +484,22 @@ function applyPreset(preset) {
 function renderTabs() {
   const nav = $("#tabs");
   nav.replaceChildren();
-  const tabs = [...state.defs.sections.map((s) => [s.id, s.title || s.id]), ["__raw", "Raw bytes"], ...(state.compare ? [["__compare", "Compare"]] : []), ...(state.defs.tracker ? [["__coverage", "Coverage"]] : [])];
+  const hidden = state.defs.sections.filter((s) => s.advanced).length;
+  const tabs = [...state.defs.sections.filter((s) => state.advanced || !s.advanced).map((s) => [s.id, s.title || s.id]), ["__raw", "Raw bytes"], ...(state.compare ? [["__compare", "Compare"]] : []), ...(state.defs.tracker ? [["__coverage", "Coverage"]] : [])];
   if (!tabs.some(([id]) => id === state.tab)) state.tab = tabs[0][0];
   for (const [id, title] of tabs) {
     nav.append(el("button", {
       role: "tab", class: "tab" + (id === state.tab ? " active" : ""), "aria-selected": id === state.tab ? "true" : "false",
       onclick: () => { state.tab = id; renderTabs(); renderContent(); },
     }, title));
+  }
+  if (hidden) {
+    nav.append(el("label", { class: "tab-advanced", title: `Show ${hidden} research tabs: raw flag tables and counters most people never need` },
+      el("input", { type: "checkbox", checked: state.advanced, onchange: (e) => {
+        state.advanced = e.target.checked;
+        try { localStorage.setItem(ADVANCED_KEY, state.advanced ? "1" : "0"); } catch { /* not remembered */ }
+        renderTabs(); renderContent();
+      } }), "Advanced"));
   }
 }
 

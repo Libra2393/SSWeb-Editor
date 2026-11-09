@@ -1,5 +1,6 @@
 {
   "id": "itemflags",
+  "advanced": true,
   "title": "Item flags",
   "scope": "slot",
   "layout": "flags",

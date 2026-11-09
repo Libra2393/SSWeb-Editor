@@ -1,5 +1,6 @@
 {
   "id": "cutscenes",
+  "advanced": true,
   "title": "Cutscenes",
   "scope": "skip",
   "formats": [
