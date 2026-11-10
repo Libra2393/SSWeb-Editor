@@ -3,7 +3,7 @@
   "title": "100% — at the statue before Demise",
   "description": "A completed file waiting at the bird statue before Demise: every heart container and piece (18 hearts), every item and upgrade, maximum rupees, every bug and treasure, 80 gratitude crystals and all of Batreaux's rewards. Good for practising the final fight or exploring a finished game. Normal Mode.",
   "scope": "slot",
-  "sources": "Flag arrays, spawn, stats, pouch and storage copied from file 2 of the project owner's own 100% NTSC (SOUE) Wii save, with tools/preset-from-save.mjs.",
+  "sources": "Flag arrays, spawn, stats, pouch and storage copied from file 2 of a 100% NTSC (SOUE) Wii save supplied by the project owner, with tools/preset-from-save.mjs.",
   "apply": [
     {
       "field": "general.playerName",
