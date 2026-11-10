@@ -212,7 +212,7 @@ the list heading.
 
 `before-demise` (group **Completed files**) is a finished file waiting at the bird statue before Demise: 18 hearts,
 every item and upgrade, maximum rupees, every bug and treasure and all of Batreaux's rewards, at 83 h 01 m. It was
-made from a 100% Wii save supplied by the project owner with `tools/preset-from-save.mjs` and works on Wii and HD files.
+made from a 100% Wii save from GameFAQs (see CREDITS.md) with `tools/preset-from-save.mjs` and works on Wii and HD files.
 
 The **All Dungeons practice** group (Wii only) holds 25 presets, one per split of minimini352's
 [All Dungeons practice saves](https://github.com/minimini352/SS-All-Dungeons-Saves), from the start of the run to

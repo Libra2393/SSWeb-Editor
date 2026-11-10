@@ -81,6 +81,15 @@ The "After Levias fight before starting the Song of the Hero quests" NTSC save, 
 players caught by the Song of the Hero bug and retrieved from the Internet Archive. The `after-levias` preset copies
 its game state (flags, spawn, stats, pouch and storage). The save itself isn't included.
 
+### consummate gamer (probable) — GameFAQs save, 2011
+<https://gamefaqs.gamespot.com/wii/960633-the-legend-of-zelda-skyward-sword/saves>
+
+A 100% NTSC save with file 1 before Sky Keep, file 2 at the statue before Demise with everything collected and file 3
+a new Hero Mode game. The `before-demise` preset copies file 2's game state; file 1 and file 2 were also the reference
+for Batreaux's 80-crystal reward. The download page couldn't be found again, so the credit is by match: the GameFAQs
+listing by consummate gamer dated 14 December 2011 describes the same three files, and file 2 was last saved on
+10 December 2011. If this is your save and the credit is wrong, please open an issue. The save itself isn't included.
+
 ### minimini352 — SS All Dungeons practice saves, 2022
 <https://github.com/minimini352/SS-All-Dungeons-Saves>
 
