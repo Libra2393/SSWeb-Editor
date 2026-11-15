@@ -52,8 +52,10 @@ your browser. It needs only Python 3 to build:
 python3 tools/build_standalone.py
 ```
 
-Rebuild it whenever `defs/` or the code changes; the footer shows the build's commit and date. To share it, attach
-the file to a GitHub Release (**Releases → Draft a new release**) rather than committing it (`dist/` is ignored).
+Rebuild it whenever `defs/` or the code changes; the footer shows the build's commit and date. To publish a release,
+run the **Release** workflow (**Actions → Release → Run workflow**) and type the version, like `v0.4`: it tags `main`,
+builds this file and attaches it to a new GitHub Release. Notes come from `docs/releases/<version>.md` if that file
+exists, otherwise from the commits since the last release. The file isn't committed (`dist/` is ignored).
 In Chrome and Edge, **Save** writes back to the opened file; Firefox downloads a copy instead. The GPL text and the
 credits are embedded in the file, so every copy carries its license.
 

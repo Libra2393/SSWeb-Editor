@@ -1,0 +1,71 @@
+name: Release
+
+# Run by hand: Actions → Release → Run workflow, and type the version (for example v0.4).
+# It tags the current main, builds the offline SSWeb-Editor.html and publishes a GitHub Release with it attached.
+# Release notes come from docs/releases/<version>.md when that file exists; otherwise GitHub writes them from the
+# commits since the last release.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, like v0.4"
+        required: true
+        type: string
+      draft:
+        description: "Create it as a draft to look over before publishing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency: release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version }}
+      DRAFT: ${{ inputs.draft }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the version
+        run: |
+          if ! [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            echo "::error::'$VERSION' is not a version like v0.4 or v1.2.3"; exit 1
+          fi
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Run this from the main branch (it ran from $GITHUB_REF)"; exit 1
+          fi
+          if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
+            echo "::error::Tag $VERSION already exists. Pick the next version."; exit 1
+          fi
+
+      - name: Tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$VERSION" -m "SSWeb Editor $VERSION"
+
+      - name: Build the offline file
+        run: |
+          python3 tools/build_standalone.py
+          # The build stamps `git describe` into the page; make sure it is this version, not a commit hash.
+          grep -q "$VERSION" dist/SSWeb-Editor.html || { echo "::error::The built file does not say $VERSION"; exit 1; }
+
+      - name: Publish
+        run: |
+          git push origin "$VERSION"
+          args=(--title "SSWeb Editor $VERSION" --verify-tag)
+          if [ -f "docs/releases/$VERSION.md" ]; then
+            args+=(--notes-file "docs/releases/$VERSION.md")
+          else
+            args+=(--generate-notes)
+          fi
+          if [ "$DRAFT" = "true" ]; then args+=(--draft); fi
+          gh release create "$VERSION" dist/SSWeb-Editor.html "${args[@]}"
