@@ -119,13 +119,19 @@ function wire() {
   $("#downloadOrigBtn").onclick = () => download(state.save.original, state.fileName.replace(/(\.sav)?$/, ".orig.sav"));
   $("#downloadSkipBtn").onclick = () => state.imported?.skip && download(state.imported.skip, "skip.dat");
   $("#fixAllBtn").onclick = () => {
-    const fixed = state.save.updateChecksums({ all: true });
+    // Files that arrived with a bad checksum are never re-signed silently; this button is where the user can choose to.
     const held = [];
     state.defs.layout.checksums.forEach((cs, i) => {
-      for (let n = 0; n < state.save.scopeCount(cs.scope); n++) if (state.save.resignWithheld(i, n)) held.push(scopeLabel(cs.scope, n));
+      for (let n = 0; n < state.save.scopeCount(cs.scope); n++) if (state.save.resignWithheld(i, n)) held.push([i, n, scopeLabel(cs.scope, n)]);
     });
-    const kept = held.length ? ` ${held.join(", ")} had a bad checksum when the file was loaded and ${held.length > 1 ? "were" : "was"} left as loaded.` : "";
-    toast((fixed.length ? `Recomputed ${fixed.length} checksum(s).` : held.length ? "No checksum was recomputed." : "This format's checksum algorithm isn't known, so nothing was recomputed.") + kept, !fixed.length || held.length > 0);
+    const names = held.map((h) => h[2]).join(", "), it = held.length > 1 ? "them" : "it";
+    const resign = held.length > 0 && confirm(`${names} had a bad checksum when this file was loaded. That usually means the data was changed outside the game (a hex edit, say) or is damaged.\n\n` +
+      `Re-signing makes the game accept whatever ${held.length > 1 ? "those files hold" : "that file holds"} now, damage included. Do it only if you know why the checksum was wrong.\n\n` +
+      `Re-sign ${it}? Cancel leaves ${it} as loaded and recomputes the rest.`);
+    if (resign) for (const [i, n] of held) state.save.allowResign(i, n);
+    const fixed = state.save.updateChecksums({ all: true });
+    const kept = held.length && !resign ? ` ${names} ${held.length > 1 ? "were" : "was"} left as loaded.` : resign ? ` ${names} re-signed at your request.` : "";
+    toast((fixed.length ? `Recomputed ${fixed.length} checksum(s).` : held.length ? "No checksum was recomputed." : "This format's checksum algorithm isn't known, so nothing was recomputed.") + kept, !fixed.length || (held.length > 0 && !resign));
     renderAll();
   };
   $("#compareBtn").onclick = () => $("#compareInput").click();
@@ -235,7 +241,7 @@ function prepareBytes() {
     }
   });
   if (badOnLoad.length && !confirm(`${badOnLoad.join(", ")} had a bad checksum when this file was loaded, so the editor won't give ${badOnLoad.length > 1 ? "them" : "it"} a new one. ` +
-    "The saved file keeps the bad checksum and the game may reject or reset it. Save anyway?")) return null;
+    "The saved file keeps the bad checksum and the game may reject or reset it. To re-sign on purpose, cancel and use “Recompute all checksums” first. Save anyway?")) return null;
   state.save.updateChecksums();
   renderSlots();
   return state.save.bytes;
@@ -431,6 +437,7 @@ function renderSlots() {
           timeF && !empty ? fmtDuration(save.read(timeF, i)) : "",
           changed ? el("span", { class: "pill edit" }, "edited") : null,
           unknown ? el("span", { class: "pill", title: "This format's checksum algorithm hasn't been worked out" }, "checksum unknown")
+            : slotChecks.some(([, ci]) => save.resignWithheld(ci, i)) ? el("span", { class: "pill bad", title: "The checksum was already wrong when this file was loaded, so Save keeps it as it is. “Recompute all checksums” can re-sign it on purpose." }, "checksum bad, kept")
             : changed ? el("span", { class: "pill" }, "checksum on save")
             : el("span", { class: "pill " + (ok ? "ok" : "bad") }, ok ? "checksum ok" : "checksum bad"),
         ),

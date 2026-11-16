@@ -57,6 +57,7 @@ export class SaveFile {
     this.original = new Uint8Array(buffer.slice(0));
     this.view = new DataView(this.bytes.buffer);
     this.origView = new DataView(this.original.buffer);
+    this.resignAllowed = new Set(); // "checksumIndex:index" the user explicitly chose to re-sign despite a bad checksum on load
     this.replaced = new Set(); // "scope:index" whose loaded contents were thrown away whole (cleared, or a full-file preset)
     this.validOnLoad = new Map(); // "checksumIndex:slot" -> bool
     this.defs.layout.checksums.forEach((cs, i) => {
@@ -207,12 +208,16 @@ export class SaveFile {
   /**
    * True when checksum `i` of scope index `n` must be left as it is: the layout marks it "onlyIfValidOnLoad" and
    * it was already wrong when the file was opened, so signing it again would pass off data the game never wrote.
-   * A scope whose loaded contents were replaced whole (markReplaced) holds none of that data and is signed normally.
+   * A scope whose loaded contents were replaced whole (markReplaced) holds none of that data and is signed normally,
+   * and so is one the user explicitly chose to re-sign (allowResign); only the silent, automatic re-sign is withheld.
    */
   resignWithheld(i, n) {
     const cs = this.defs.layout.checksums[i];
-    return !!cs.onlyIfValidOnLoad && this.validOnLoad.get(`${i}:${n}`) === false && !this.replaced.has(`${cs.scope}:${n}`);
+    return !!cs.onlyIfValidOnLoad && this.validOnLoad.get(`${i}:${n}`) === false && !this.replaced.has(`${cs.scope}:${n}`) && !this.resignAllowed.has(`${i}:${n}`);
   }
+
+  /** The user's deliberate choice to give a bad-on-load scope a new checksum; from then on it is signed like any other. */
+  allowResign(i, n) { this.resignAllowed.add(`${i}:${n}`); }
 
   /** Records that a scope's loaded contents are gone (cleared or overwritten whole), so its checksum is ours to write. */
   markReplaced(name, index) { this.replaced.add(`${name}:${index}`); }

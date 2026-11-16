@@ -282,7 +282,9 @@ for research; it is derived from the game data, so keep it to yourself.
   the file as it was loaded, as `<name>.bak.sav`. It lands in the browser's download folder, not beside the save.
 - **A bad checksum is not papered over.** The slot checksum is marked `"onlyIfValidOnLoad"` in both layouts: a file
   whose checksum was already wrong when the save was opened is not given a new one, on Save or by **Recompute all
-  checksums**, and the editor says so before saving. Edits to it are still written. Once a file's loaded contents are
+  checksums** on its own, and the editor says so before saving. Edits to it are still written. **Recompute all
+  checksums** asks whether to re-sign such a file on purpose (for a save you hex-edited yourself, say); after a yes it
+  is signed like any other. Once a file's loaded contents are
   replaced whole (Clear file, Copy to, or a full-file preset) the checksum is written normally, since none of the
   bad data is left.
 - **Risky edits ask first.** `defs/risks.json` lists edits that can strand a player: `"lock"` (the file may become
