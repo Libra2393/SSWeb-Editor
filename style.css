@@ -211,9 +211,9 @@ input:user-invalid { border-color: var(--bad); }
 }
 
 /* SD import dialog */
-dialog#sdDialog { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--text); padding: 22px 24px; width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
-dialog#sdDialog::backdrop { background: rgb(0 0 0 / 0.45); }
-dialog#sdDialog h2 { margin: 0 0 8px; font-size: 18px; }
+dialog#sdDialog, dialog#importDialog { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--text); padding: 22px 24px; width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
+dialog#sdDialog::backdrop, dialog#importDialog::backdrop { background: rgb(0 0 0 / 0.45); }
+dialog#sdDialog h2, dialog#importDialog h2 { margin: 0 0 8px; font-size: 18px; }
 .legal { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; margin: 12px 0; }
 .legal h3 { margin: 0 0 6px; font-size: 14px; }
 .legal ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
@@ -269,3 +269,6 @@ ul.wish .chip { justify-self: start; }
 .cmp-region { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 @media (max-width: 640px) { .cmp-row { grid-template-columns: 1fr; gap: 4px; } }
 .cmp-uses { display: block; margin-top: 3px; color: var(--accent); }
+
+#importNotes p { margin: 8px 0; }
+#importNotes .warn { color: var(--bad); }

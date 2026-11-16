@@ -18,6 +18,8 @@
       "stride": "0x53C0",
       "size": "0x53C0",
       "count": 4,
+      "units": [["0x0000", "0x0010", 8], ["0x0010", "0x08D4", 4], ["0x08D4", "0x531C", 2], ["0x531C", "0x53BC", 1]],
+      "unitsDescription": "Width of the values in each range of the slot ([start, end, bytes]), from the decompilation's SaveFile struct. Converting a file between the Wii and HD byte orders reverses each value of the first three ranges and copies the last. Fields must agree with it (tests/convert.test.mjs).",
       "companions": ["slotExtra", "slotExtra2", "skip"],
       "clear": {
         "keep": [
@@ -46,6 +48,7 @@
     },
     "skip": {
       "label": "File {n} cutscenes seen",
+      "units": [["0x0", "0x20", 2], ["0x20", "0x24", 4]],
       "base": "0x14F20",
       "stride": "0x24",
       "size": "0x24",

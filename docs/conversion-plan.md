@@ -1,7 +1,7 @@
-# Wii ↔ HD conversion — plan (v0.5, nothing implemented yet)
+# Wii ↔ HD conversion — plan (v0.5)
 
-Written 16 November 2026 against `main` at `fe590f7`. This is the mapping, the rules and the test plan; no code has
-been written. What was checked and how is said next to each claim. Things that are inferred or unknown are in
+Written 16 November 2026 against `main` at `fe590f7`. Status: steps 0–3 below are built (step 3, the import, on
+branch `import-file`); step 4 waits for the in-game checks. What was checked and how is said next to each claim. Things that are inferred or unknown are in
 [Open questions](#open-questions) and are not built on silently.
 
 ## Summary
@@ -171,7 +171,9 @@ Two things conversion cannot make safe, and will say so:
   saved-at time is the same wall-clock second; checksums valid; the other files and the shared block are untouched;
   the target's playthrough ID is unchanged; the extra block is zero.
 - The same in the other direction; the cutscene words carried over and the chunk CRC valid.
-- Wii → HD → Wii and HD → Wii → HD: slot and cutscene bytes identical.
+- Wii → HD → Wii and HD → Wii → HD: slot and cutscene bytes identical, apart from the sub-second part of a Wii
+  saved-at time (HD stores whole seconds) and the checksum over it. On the 100% Wii save, file 2 there and back
+  differs in exactly bytes 0x0C–0x0F and the stored CRC; the generated test saves use whole seconds.
 - A bad-checksum source is refused and the target is not changed.
 - Import onto a bad-on-load target ends valid; revert restores the hold.
 - Same-format import equals Copy to.

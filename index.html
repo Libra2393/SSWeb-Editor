@@ -39,6 +39,7 @@
     </div>
     <input type="file" id="fileInput" hidden>
     <input type="file" id="compareInput" hidden>
+    <input type="file" id="importInput" hidden>
     <input type="file" id="defFileInput" accept=".json,application/json" multiple hidden>
     <input type="file" id="defsDirInput" webkitdirectory hidden>
   </header>
@@ -90,6 +91,19 @@
     <span class="muted">Built on research by the WiiKing2 editor, the zeldaret decompilation, the Skyward Sword Randomizer and its Archipelago world — <a href="https://github.com/Libra2393/SSWeb-Editor/blob/main/CREDITS.md" target="_blank" rel="noopener">Credits</a> · <a href="https://github.com/Libra2393/SSWeb-Editor/blob/main/README.md#legal-united-states" target="_blank" rel="noopener">Legal (United States)</a> · <a href="https://github.com/Libra2393/SSWeb-Editor/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a></span>
     <span class="muted">Unofficial fan project. The Legend of Zelda and Skyward Sword are trademarks of Nintendo; this editor is not affiliated with or endorsed by Nintendo, and includes no Nintendo code, assets or keys.</span>
   </footer>
+
+  <dialog id="importDialog" aria-labelledby="importTitle">
+    <form method="dialog" id="importForm">
+      <h2 id="importTitle">Import a file from another save</h2>
+      <p id="importFrom"></p>
+      <label class="field-line">File <select id="importPick"></select></label>
+      <div id="importNotes"></div>
+      <div class="dialog-actions">
+        <button type="button" class="btn" id="importCancel">Cancel</button>
+        <button type="submit" class="btn primary" id="importGo">Import</button>
+      </div>
+    </form>
+  </dialog>
 
   <dialog id="sdDialog" aria-labelledby="sdTitle">
     <form method="dialog" id="sdForm">

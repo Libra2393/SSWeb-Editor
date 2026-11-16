@@ -16,9 +16,11 @@
       "stride": "0x53C0",
       "size": "0x53C0",
       "count": 3,
+      "units": [["0x0000", "0x0010", 8], ["0x0010", "0x08D4", 4], ["0x08D4", "0x531C", 2], ["0x531C", "0x53BC", 1]],
+      "unitsDescription": "Width of the values in each range of the slot ([start, end, bytes]), from the decompilation's SaveFile struct. Converting a file between the Wii and HD byte orders reverses each value of the first three ranges and copies the last. Fields must agree with it (tests/convert.test.mjs).",
       "companions": ["skip"]
     },
-    "skip": { "label": "File {n} cutscenes seen", "base": "0xFB60", "stride": "0x24", "size": "0x24", "count": 3, "description": "Per-file cutscene-seen bits: 16 big-endian words of flags, then their CRC32 (the decompilation's SavedSaveFiles.skipData). skip.dat beside the save holds the same three chunks. The game wipes a chunk to zero and re-signs it when its CRC is wrong, and when a file is cleared." },
+    "skip": { "label": "File {n} cutscenes seen", "units": [["0x0", "0x20", 2]], "base": "0xFB60", "stride": "0x24", "size": "0x24", "count": 3, "description": "Per-file cutscene-seen bits: 16 big-endian words of flags, then their CRC32 (the decompilation's SavedSaveFiles.skipData). skip.dat beside the save holds the same three chunks. The game wipes a chunk to zero and re-signs it when its CRC is wrong, and when a file is cleared." },
     "tail": { "label": "Trailer", "base": "0xFBCC", "size": "0x14", "description": "0x14 bytes after the cutscene block, unknown (unk2 in the decompilation). Zero in every save seen." }
   },
   "checksums": [

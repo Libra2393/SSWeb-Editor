@@ -5,6 +5,7 @@ import { SaveFile, num } from "./codec.js";
 import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries, applyPresetFresh } from "./defs.js";
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
 import { diffSlots } from "./compare.js";
+import { importFile, importProblems, songOfTheHeroRisk } from "./convert.js";
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
@@ -137,6 +138,11 @@ function wire() {
     const fixed = state.save.updateChecksums({ only: held });
     toast(`Re-signed ${names} (${fixed.length} checksum${fixed.length === 1 ? "" : "s"}) at your request. Nothing else was changed; save to write it.`);
     renderAll();
+  };
+  $("#importInput").onchange = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (file) openImport(file.name, new Uint8Array(await file.arrayBuffer()));
   };
   $("#compareBtn").onclick = () => $("#compareInput").click();
   $("#compareInput").onchange = async (e) => {
@@ -295,6 +301,64 @@ function download(bytes, name) {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// ---------------------------------------------------------------- import a file from another save
+
+/**
+ * Opens another wiiking2.sav (either format) read-only and offers its files for import into the selected file of
+ * the open save. Conversion rules: js/convert.js and docs/conversion-plan.md.
+ */
+function openImport(name, bytes) {
+  const defs = formatFor(state.all, bytes);
+  if (!defs) return toast(`${name} isn't a save the editor knows: ${bytes.length} bytes. Is it the raw, unencrypted wiiking2.sav?`, true);
+  const id = gameIdOf(bytes, defs.layout);
+  if (!defs.layout.magic.values[id]) return toast(`${name} has an unrecognized header "${id}", so it isn't imported from.`, true);
+  if (defs !== state.defs) applyVariants(defs, [defs.format.id, id]); // the open save's definitions already have theirs
+  const src = new SaveFile(bytes.slice().buffer, defs);
+  const to = state.slot, target = scopeLabel("slot", to);
+  const srcLabel = (n) => (defs.layout.scopes.slot.labels?.[n] || defs.layout.scopes.slot.label).replace("{n}", n + 1);
+  const empty = defs.fieldsById.get(defs.layout.slotSummary?.empty), hero = defs.fieldsById.get(defs.layout.slotSummary?.name);
+  const time = defs.fieldsById.get(defs.layout.slotSummary?.playTime);
+  const pick = $("#importPick"), notes = $("#importNotes"), go = $("#importGo"), dlg = $("#importDialog");
+  const options = [...Array(src.scopeCount("slot")).keys()].map((n) => {
+    const isEmpty = empty && !empty.invalid && src.read(empty, n);
+    return el("option", { value: n }, isEmpty ? `${srcLabel(n)} — empty` : `${srcLabel(n)} — ${src.read(hero, n) || "(no name)"}, ${fmtDuration(src.read(time, n))} played`);
+  });
+  pick.replaceChildren(...options);
+  const firstUsed = options.findIndex((o) => !o.textContent.endsWith("— empty"));
+  pick.value = String(Math.max(0, firstUsed));
+  const across = defs.format.id !== state.defs.format.id;
+  $("#importFrom").textContent = `From ${name} (${defs.format.label}) into ${target} of the open save (${state.defs.format.label}).`;
+  const show = () => {
+    const from = Number(pick.value), problems = importProblems(src, from);
+    const p = (text, cls) => el("p", cls ? { class: cls } : {}, text);
+    const out = problems.map((t) => p(t, "warn"));
+    if (!problems.length) {
+      if (across) out.push(p(`The file is converted to the ${state.defs.format.label} byte order. Its saved-at time keeps the same clock time; everything else is the file as it is.`));
+      if (state.defs.layout.scopes.slot.clear?.keep?.length) out.push(p(`${target} keeps its own playthrough ID.`));
+      const tEmpty = summaryField("empty"), tTime = summaryField("playTime");
+      if (tEmpty && !tEmpty.invalid && !state.save.read(tEmpty, to)) out.push(p(`${target} already contains a save (${fmtDuration(state.save.read(tTime, to))} played). ` +
+        "The import replaces it completely, and it can't be recovered after saving.", "warn"));
+      if (songOfTheHeroRisk(src, from, state.defs)) out.push(p("This file is partway through the Song of the Hero quest. The Wii version has a bug in that quest, fixed in HD, " +
+        "that can make it impossible to finish depending on the order of events and reloads. Converting doesn't change the file's progress, but on Wii it is exposed to that bug.", "warn"));
+      out.push(p("Nothing is written to disk until you save. “Revert changes” undoes the import before then."));
+    }
+    notes.replaceChildren(...out);
+    go.disabled = problems.length > 0;
+  };
+  pick.onchange = show;
+  show();
+  $("#importCancel").onclick = () => dlg.close();
+  $("#importForm").onsubmit = (e) => {
+    e.preventDefault();
+    const from = Number(pick.value);
+    try { importFile(state.save, src, from, to); } catch (ex) { return toast(ex.message, true); }
+    dlg.close();
+    renderAll();
+    toast(`Imported ${srcLabel(from)} of ${name} into ${target}${across ? `, converted from ${defs.format.label}` : ""}. The checksum is written on save.`);
+  };
+  dlg.showModal();
 }
 
 // ---------------------------------------------------------------- Wii SD export import
@@ -483,6 +547,9 @@ function renderSlotTools() {
       state.save.copyScope("slot", state.slot, to); state.slot = to; renderAll(); toast("Copied. The checksum is rewritten on save.");
     } }, "Copy to"),
     target,
+    el("span", { class: "tool-sep" }),
+    el("button", { class: "btn small", title: "Replace this file with a file from another wiiking2.sav, Wii or HD; it is converted to this save's format",
+      onclick: () => $("#importInput").click() }, "Import from another save…"),
   );
 }
 

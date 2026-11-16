@@ -75,6 +75,14 @@ Changed slots get their CRC32 recomputed on save. Close the game in Dolphin firs
 slot, its HD blocks and its cutscene bits is zeroed except the playthrough ID, and the slot is marked new. The
 layout's `clear` entry on the slot scope says what to keep; a format without one doesn't offer the button.
 
+**Import from another save…** (next to Copy to) replaces the selected file with a file from another `wiiking2.sav`,
+Wii or HD, converted to the open save's format: every value is byte-swapped by the slot's `units` map, the saved-at
+time keeps the same clock time (HD has no sub-second part), and the cutscene bits come along. The open save keeps its
+header, region and other files, and on HD the file keeps its own playthrough ID; HD's extra blocks are zero unless
+the source is an HD save too. A source file that is empty or has a bad checksum can't be imported (the dialog says why), and an HD
+file partway through the Song of the Hero quest gets a warning before it goes to Wii, where that quest has a bug.
+Details and the in-game checks still to do: [docs/conversion-plan.md](docs/conversion-plan.md).
+
 ## Definition files
 
 `defs/manifest.json` lists the files to load:
@@ -303,7 +311,7 @@ never goes under `defs/`, because the offline build embeds every JSON file there
   checksums** on its own, and the editor says so before saving. Edits to it are still written. **Re-sign bad
   checksums anyway** (⋯ menu, enabled only while a checksum is being withheld) re-signs exactly those files after one
   plain confirmation, for a save you hex-edited yourself, say; from then on the file is signed like any other. Once a file's loaded contents are
-  replaced whole (Clear file, Copy to, or a full-file preset) the checksum is written normally, since none of the
+  replaced whole (Clear file, Copy to, Import from another save, or a full-file preset) the checksum is written normally, since none of the
   bad data is left.
 - **Risky edits ask first.** `defs/risks.json` lists edits that can strand a player: `"lock"` (the file may become
   impossible to finish) or `"loss"` (something is permanently missed), with the dangerous direction in `"riskWhen"`
