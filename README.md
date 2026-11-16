@@ -276,6 +276,25 @@ scene-flag collectibles and all 3 story-flag prizes are found. (The 145th chest 
 that the game's code sets directly, rather than its data files, can only be found by comparing saves. `--dump objects.json` also writes the full raw object list
 for research; it is derived from the game data, so keep it to yourself.
 
+### Safety rails
+
+- **Backup before overwriting.** The first time **Save** writes back over the opened file, the editor first downloads
+  the file as it was loaded, as `<name>.bak.sav`. It lands in the browser's download folder, not beside the save.
+- **A bad checksum is not papered over.** The slot checksum is marked `"onlyIfValidOnLoad"` in both layouts: a file
+  whose checksum was already wrong when the save was opened is not given a new one, on Save or by **Recompute all
+  checksums**, and the editor says so before saving. Edits to it are still written. Once a file's loaded contents are
+  replaced whole (Clear file, Copy to, or a full-file preset) the checksum is written normally, since none of the
+  bad data is left.
+- **Risky edits ask first.** `defs/risks.json` lists edits that can strand a player: `"lock"` (the file may become
+  impossible to finish) or `"loss"` (something is permanently missed), with the dangerous direction in `"riskWhen"`
+  (`set`, `clear` or `both`). A `flags` entry marks every field in any tab that edits the same save bit; a `fields`
+  entry marks one field by key; a field can also carry `risk` / `riskWhen` / `riskWhy` itself. Marked fields show ⚠
+  and the editor asks before a change in the dangerous direction. It warns; it never blocks. The reasons are
+  inferences from how the game grants rewards, not tested cases.
+- **Presets look at the target first.** A full-file preset names every occupied file it would replace. A field-list
+  preset warns when the file is further along than the preset, or is in use at all when the preset doesn't carry the
+  whole flag tables, because the leftovers make a state no playthrough produces.
+
 A section with `"advanced": true` is a research tab: it stays hidden until the **Advanced** box at the end of the tab
 bar is ticked (remembered per browser). The Story flag table, Item flags, Scene flags, Enemies and Cutscenes tabs are
 marked this way, so a first-time user sees only the everyday tabs.

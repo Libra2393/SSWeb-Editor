@@ -24,7 +24,7 @@
         { "id": "totalHearts", "label": "Heart capacity", "type": "u16", "offset": "0x5302", "unit": "¼ hearts", "description": "Stored in quarter hearts: 18 hearts (the maximum) = 72." },
         { "id": "currentHealth", "label": "Current health", "type": "u16", "offset": "0x5306", "unit": "¼ hearts", "description": "Saves often hold more than the capacity here; the game appears to clamp it on load." },
         { "id": "unkHearts", "label": "Unknown hearts value", "type": "u16", "offset": "0x5304", "description": "Unused by the game according to the decompilation; 24 in every sample seen." },
-        { "id": "gratitudeCrystals", "label": "Gratitude crystals", "type": "u16", "offset": "0x0A50", "shift": 3, "bits": 7 },
+        { "id": "gratitudeCrystals", "label": "Gratitude crystals", "type": "u16", "offset": "0x0A50", "shift": 3, "bits": 7, "description": "How many Gratitude Crystals Link holds; the game's maximum is 80. It should agree with the crystals collected and with Batreaux's rewards on the Collectibles tab." },
         { "id": "interfaceType", "label": "Interface", "type": "u16", "offset": "0x09D2", "shift": 13, "bits": 2, "enum": "interfaceTypes" },
         { "id": "interfaceFiTold", "label": "Fi explained interface", "type": "flag", "offset": "0x09D2", "mask": "0x0800", "storage": "u16" }
       ]

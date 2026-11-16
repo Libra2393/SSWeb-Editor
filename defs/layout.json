@@ -26,7 +26,8 @@
       "start": "0x0",
       "length": "0x53BC",
       "store": "0x53BC",
-      "description": "CRC32 of the slot's 0x53BC data bytes, stored big-endian right after them."
+      "onlyIfValidOnLoad": true,
+      "description": "CRC32 of the slot's 0x53BC data bytes, stored big-endian right after them. A slot whose checksum was already wrong when the file was opened is not given a new one."
     }
   ],
   "slotSummary": {

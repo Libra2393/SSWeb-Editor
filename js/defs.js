@@ -41,6 +41,8 @@ export async function loadWith(get) {
   const tracker = manifest.tracker ? await get(manifest.tracker).catch(() => null) : null;
   // Where the game uses each flag (tools/romfs-flag-index.mjs); optional.
   const flagUsage = manifest.flagUsage ? await get(manifest.flagUsage).catch(() => null) : null;
+  // Edits that can strand a player (see defs/risks.json); optional.
+  const risks = manifest.risks ? await get(manifest.risks).catch(() => null) : null;
   const presets = [];
   for (const name of manifest.presets || []) {
     try { presets.push([await get(name), name]); }
@@ -63,6 +65,7 @@ export async function loadWith(get) {
       try { addSection(defs, structuredClone(json), name); }
       catch (e) { defs.warnings.push(`${name}: ${e.message}`); }
     }
+    applyRisks(defs, risks);
     defs.presets = expandPresetExtends(presets, defs.warnings)
       .filter(([json]) => !json.formats || json.formats.includes(format.id))
       .map(([json, name]) => resolvePreset(defs, structuredClone(json), name));
@@ -113,6 +116,7 @@ export function writePreset(defs, save, preset, slot) {
       const end = num(defs.layout.checksums?.find((c) => c.scope === "slot")?.store ?? save.scope("slot").size);
       save.bytes.fill(0, base, base + end);
       for (const [off, data] of entry.image) save.bytes.set(data, base + off);
+      save.markReplaced?.("slot", to);
       written++; slots.add(to);
       continue;
     }
@@ -220,6 +224,34 @@ function resolveField(defs, section, f, scope, { register = true } = {}) {
   const { variants, key, ...base } = f;
   f.base = base;
   f.invalid = f.baseInvalid = !validateField(defs, f, warn);
+}
+
+const RISK_LEVELS = ["lock", "loss"], RISK_WHEN = ["set", "clear", "both"];
+/** The save bit(s) a resolved leaf field edits, as a key that is the same for every tab showing that bit. */
+const bitKey = (f) => `${f.scope}:${num(f.offset)}:${f.mask != null ? "m" + num(f.mask) : `s${num(f.shift ?? 0)}b${num(f.bits ?? 0)}`}`;
+
+/**
+ * Stamps "risk" / "riskWhen" / "riskWhy" onto fields from the risks file: its "flags" entries reach every field
+ * that edits the same bit (so the Inventory tab and the Item flags tab warn alike), its "fields" entries one field
+ * by key. A field's own "risk" wins. The marking is also written to the field's base so variants keep it.
+ */
+function applyRisks(defs, risks) {
+  const byBit = new Map(), byKey = new Map(Object.entries(risks?.fields || {}));
+  for (const r of risks?.flags || []) {
+    const probe = { type: r.type, flag: r.flag, scene: r.scene, scope: "slot" };
+    const err = FLAG_REF_TYPES.includes(r.type) ? expandFlagRef(defs, probe) : `"${r.type}" is not a flag type`;
+    if (err) { defs.warnings.push(`risks → ${r.type} ${r.flag}: ${err}`); continue; }
+    byBit.set(bitKey(probe), r);
+  }
+  for (const k of byKey.keys()) if (!defs.fieldsById.has(k)) defs.warnings.push(`risks → no field "${k}"`);
+  for (const f of defs.fieldsById.values()) {
+    if (f.type === "row" || !f.base) continue;
+    const r = f.risk ? { risk: f.risk, riskWhen: f.riskWhen, why: f.riskWhy } : byKey.get(f.key) || byBit.get(bitKey(f));
+    if (!r) continue;
+    if (!RISK_LEVELS.includes(r.risk) || !RISK_WHEN.includes(r.riskWhen || "both")) { defs.warnings.push(`${f.key}: bad risk marking (${r.risk} / ${r.riskWhen})`); continue; }
+    const mark = { risk: r.risk, riskWhen: r.riskWhen || "both", riskWhy: r.why || f.riskWhy || "", riskName: r.name || "" };
+    Object.assign(f, mark); Object.assign(f.base, mark);
+  }
 }
 
 const FLAG_REF_TYPES = ["storyflag", "itemflag", "sceneflag", "chestflag"];

@@ -59,6 +59,7 @@
     {
       "scope": "slot",
       "algorithm": "crc32",
+      "onlyIfValidOnLoad": true,
       "parts": [
         { "scope": "slot", "start": "0x0", "length": "0x53BC" },
         { "scope": "slotExtra", "start": "0x0", "length": "0x2238" },

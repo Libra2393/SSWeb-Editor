@@ -57,6 +57,7 @@ export class SaveFile {
     this.original = new Uint8Array(buffer.slice(0));
     this.view = new DataView(this.bytes.buffer);
     this.origView = new DataView(this.original.buffer);
+    this.replaced = new Set(); // "scope:index" whose loaded contents were thrown away whole (cleared, or a full-file preset)
     this.validOnLoad = new Map(); // "checksumIndex:slot" -> bool
     this.defs.layout.checksums.forEach((cs, i) => {
       for (let n = 0; n < this.scopeCount(cs.scope); n++) this.validOnLoad.set(`${i}:${n}`, this.checksumValid(cs, n));
@@ -194,7 +195,7 @@ export class SaveFile {
       for (let n = 0; n < this.scopeCount(cs.scope); n++) {
         if (!CHECKSUMS[cs.algorithm]) continue;
         if (!all && !this.checksumParts(cs).some((p) => this.scopeChanged(p.scope, n))) continue;
-        if (cs.onlyIfValidOnLoad && !this.validOnLoad.get(`${i}:${n}`)) continue;
+        if (this.resignWithheld(i, n)) continue;
         const sum = this.computeChecksum(cs, n);
         this.view.setUint32(this.scopeBase(cs.scope, n) + num(cs.store), sum, this.defs.layout.endian === "little");
         fixed.push({ scope: cs.scope, index: n });
@@ -203,11 +204,25 @@ export class SaveFile {
     return fixed;
   }
 
+  /**
+   * True when checksum `i` of scope index `n` must be left as it is: the layout marks it "onlyIfValidOnLoad" and
+   * it was already wrong when the file was opened, so signing it again would pass off data the game never wrote.
+   * A scope whose loaded contents were replaced whole (markReplaced) holds none of that data and is signed normally.
+   */
+  resignWithheld(i, n) {
+    const cs = this.defs.layout.checksums[i];
+    return !!cs.onlyIfValidOnLoad && this.validOnLoad.get(`${i}:${n}`) === false && !this.replaced.has(`${cs.scope}:${n}`);
+  }
+
+  /** Records that a scope's loaded contents are gone (cleared or overwritten whole), so its checksum is ours to write. */
+  markReplaced(name, index) { this.replaced.add(`${name}:${index}`); }
+
   copyScope(name, from, to) {
     for (const n of this.withCompanions(name)) {
       const size = num(this.scope(n).size);
       this.bytes.copyWithin(this.scopeBase(n, to), this.scopeBase(n, from), this.scopeBase(n, from) + size);
     }
+    this.markReplaced(name, to); // the destination now holds the source file, not what was loaded there
   }
 
   /**
@@ -227,10 +242,12 @@ export class SaveFile {
       this.bytes.fill(0, base, base + num(this.scope(n).size));
     }
     for (const [at, b] of kept) this.bytes.set(b, at);
+    this.markReplaced(name, index);
     return true;
   }
 
   revertScope(name, index) {
+    this.replaced.delete(`${name}:${index}`);
     for (const n of this.withCompanions(name)) {
       const base = this.scopeBase(n, index), size = num(this.scope(n).size);
       this.bytes.set(this.original.subarray(base, base + size), base);

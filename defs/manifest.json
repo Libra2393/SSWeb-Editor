@@ -57,5 +57,6 @@
     "presets/all-dungeons/all-dungeons-24.json"
   ],
   "tracker": "tracker.json",
+  "risks": "risks.json",
   "flagUsage": "flags/flag-usage.json"
 }

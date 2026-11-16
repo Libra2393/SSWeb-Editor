@@ -150,6 +150,9 @@ body.dragging .drop-inner, body.dragging #editor { outline: 3px dashed var(--acc
 .field.check { grid-template-columns: 1fr; }
 .field.check label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
 .field.check input { margin-top: 3px; }
+.risk-mark { color: var(--gold); font-size: 0.9em; cursor: help; }
+.risk-mark.risk-lock { color: var(--bad); }
+.risk-ctl { outline: 1px dashed var(--gold); outline-offset: 1px; }
 .label { color: var(--text); }
 .unit { color: var(--muted); font-size: 11px; margin-left: 6px; }
 .row-field { grid-template-columns: 1fr auto; }

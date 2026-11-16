@@ -26,6 +26,7 @@ const state = {
   save: null,
   fileName: "wiiking2.sav",
   handle: null,
+  backedUp: false, // the as-loaded file has been downloaded as a backup before the first in-place save
   slot: 0,
   tab: null,
   flagFilter: "",
@@ -119,7 +120,12 @@ function wire() {
   $("#downloadSkipBtn").onclick = () => state.imported?.skip && download(state.imported.skip, "skip.dat");
   $("#fixAllBtn").onclick = () => {
     const fixed = state.save.updateChecksums({ all: true });
-    toast(fixed.length ? `Recomputed ${fixed.length} checksum(s).` : "This format's checksum algorithm isn't known, so nothing was recomputed.", !fixed.length);
+    const held = [];
+    state.defs.layout.checksums.forEach((cs, i) => {
+      for (let n = 0; n < state.save.scopeCount(cs.scope); n++) if (state.save.resignWithheld(i, n)) held.push(scopeLabel(cs.scope, n));
+    });
+    const kept = held.length ? ` ${held.join(", ")} had a bad checksum when the file was loaded and ${held.length > 1 ? "were" : "was"} left as loaded.` : "";
+    toast((fixed.length ? `Recomputed ${fixed.length} checksum(s).` : held.length ? "No checksum was recomputed." : "This format's checksum algorithm isn't known, so nothing was recomputed.") + kept, !fixed.length || held.length > 0);
     renderAll();
   };
   $("#compareBtn").onclick = () => $("#compareInput").click();
@@ -200,6 +206,7 @@ function openBytes(buf, name, handle, imported) {
   // Safeguard: an imported save never keeps a handle, so Save can't write raw save data back over the
   // encrypted export. It always downloads a plain wiiking2.sav instead.
   state.handle = imported ? null : handle;
+  state.backedUp = false;
   state.imported = imported;
   state.compare = null;
   state.slot = firstUsedSlot();
@@ -221,6 +228,14 @@ function prepareBytes() {
   });
   if (unknown.length && !confirm(`The ${state.defs.format.label} checksum hasn't been worked out yet, so ${unknown.join(", ")} will keep the old checksum. ` +
     "The game may reject or reset that file. Keep a backup of the original. Save anyway?")) return null;
+  const badOnLoad = [];
+  state.defs.layout.checksums.forEach((cs, i) => {
+    for (let n = 0; n < state.save.scopeCount(cs.scope); n++) {
+      if (state.save.resignWithheld(i, n) && state.save.scopeChanged(cs.scope, n)) badOnLoad.push(scopeLabel(cs.scope, n));
+    }
+  });
+  if (badOnLoad.length && !confirm(`${badOnLoad.join(", ")} had a bad checksum when this file was loaded, so the editor won't give ${badOnLoad.length > 1 ? "them" : "it"} a new one. ` +
+    "The saved file keeps the bad checksum and the game may reject or reset it. Save anyway?")) return null;
   state.save.updateChecksums();
   renderSlots();
   return state.save.bytes;
@@ -230,10 +245,21 @@ async function saveInPlace() {
   const bytes = prepareBytes();
   if (!bytes) return;
   if (!state.handle) return download(bytes, state.fileName);
+  if (!state.backedUp) {
+    // `original` is still exactly what is on disk (markSaved rebases it only after a successful write), and
+    // createWritable truncates the file, so this is the last moment the as-loaded save can be kept.
+    download(state.save.original, state.fileName.replace(/(\.sav)?$/, ".bak.sav"));
+    state.backedUp = true;
+  }
   try {
     const w = await state.handle.createWritable();
-    await w.write(bytes);
-    await w.close();
+    try {
+      await w.write(bytes);
+      await w.close();
+    } catch (e) {
+      await w.abort().catch(() => {});
+      throw e;
+    }
     state.save.markSaved();
     renderAll();
     toast(`Saved ${state.fileName}`);
@@ -468,13 +494,36 @@ function presetControls() {
 }
 
 /** Writes every value a preset lists into the current slot. Checksums are updated on save as for any edit. */
+/**
+ * What the user should know about the files a preset is about to land on. A full-file preset destroys whatever is
+ * there. A field-list preset only overwrites what it lists, so on a file that is further along (or, for a preset
+ * that doesn't carry the whole flag tables, on any used file) the leftovers make a state no playthrough produces.
+ */
+function presetTargetWarnings(preset, targets, replaces) {
+  const empty = summaryField("empty"), time = state.defs.fieldsById.get("general.playTime");
+  if (!empty || empty.invalid || !time || time.invalid) return [];
+  const own = (preset.apply || []).findLast((e) => e.field === "general.playTime")?.value; // a preset's own entry comes after its base's
+  // A preset copied from a real save writes the flag tables whole, word by word (ids like "story_0"); one that lists single flags doesn't.
+  const wholeTables = (preset.apply || []).some((e) => e.type === "u16" && /^story_\d+$/.test(e.id || ""));
+  const out = [];
+  for (const i of targets) {
+    if (state.save.read(empty, i)) continue; // an empty file is what presets are for
+    const label = scopeLabel("slot", i), played = state.save.read(time, i);
+    if (replaces) out.push(`${label} already contains a save (${fmtDuration(played)} played). This preset replaces it completely, and it can't be recovered after saving.`);
+    else if (!wholeTables) out.push(`${label} already contains a save (${fmtDuration(played)} played). This preset is made for an empty file: it only sets the fields it lists, so everything else in ${label} stays in place and the result is a mixed state no playthrough produces.`);
+    else if (own != null && played > own) out.push(`${label} already holds a save further along than this preset (${fmtDuration(played)} played, against the preset's ${fmtDuration(own)}). The preset only sets the fields it lists, so later items and progress outside them stay in place and the result is a mixed state no playthrough produces.`);
+  }
+  return out;
+}
+
 function applyPreset(preset) {
   const fixed = [...new Set((preset.apply || []).filter((e) => e.slot).map((e) => e.slot - 1))].sort();
   const replaces = (preset.apply || []).some((e) => e.image);
   const targets = fixed.length ? fixed : [state.slot];
   const where = targets.map((i) => scopeLabel("slot", i)).join(", ");
   const how = replaces ? "The files it lists are replaced completely." : "Fields the preset lists are overwritten; everything else is kept.";
-  if (!confirm(`${preset.title}\n\n${preset.description || ""}\n\nApply to ${where}? ${how} Use "Revert changes" to undo before saving.`)) return;
+  const occupied = presetTargetWarnings(preset, targets, replaces);
+  if (!confirm(`${preset.title}\n\n${preset.description || ""}\n\n${occupied.length ? occupied.join("\n\n") + "\n\n" : ""}Apply to ${where}? ${how} Use "Revert changes" to undo before saving.`)) return;
   const { written, skipped } = writePreset(state.defs, state.save, preset, state.slot);
   if (fixed.length && !fixed.includes(state.slot)) state.slot = fixed[0];
   renderAll();
@@ -557,8 +606,28 @@ function renderGroup(g, isFlags) {
   return el("div", { class: "group" + (g.columns ? " cols" : "") }, title, g.description ? el("p", { class: "muted small" }, g.description) : null, body);
 }
 
+const RISK_LEVEL = {
+  lock: "Changing this by hand can leave the file impossible to finish.",
+  loss: "Changing this by hand can permanently lose something the game gives only once.",
+};
+const RISK_DIRECTION = { set: "turning it on or raising it", clear: "turning it off or lowering it", both: "any change" };
+
+/** True when writing `next` over `cur` moves a risk-marked field in its dangerous direction. */
+function riskApplies(f, cur, next) {
+  if (!f.risk || cur === next) return false;
+  if (f.riskWhen === "both") return true;
+  const up = typeof next === "boolean" ? next && !cur : Number(next) > Number(cur);
+  return f.riskWhen === "set" ? up : !up;
+}
+
+function riskText(f) {
+  const label = f.label || f.id;
+  const also = f.riskName && !label.toLowerCase().includes(f.riskName.toLowerCase()) ? ` (${f.riskName})` : "";
+  return `“${label}”${also}\n\n${RISK_LEVEL[f.risk]}${f.riskWhy ? " " + f.riskWhy : ""}\n\nThe editor doesn't check that the rest of the file agrees. Change it anyway?`;
+}
+
 function fieldTitle(f) {
-  const bits = [f.description, f.flagRef, `${f.scope} + ${hex(num(f.offset))}`];
+  const bits = [f.risk ? `⚠ ${RISK_LEVEL[f.risk]} (${RISK_DIRECTION[f.riskWhen]})` : null, f.description, f.flagRef, `${f.scope} + ${hex(num(f.offset))}`];
   if (f.mask != null) bits.push(`mask ${hex(num(f.mask), 2)}`);
   if (f.bits != null) bits.push(`bits ${num(f.shift ?? 0)}–${num(f.shift ?? 0) + num(f.bits) - 1} of ${f.type}`);
   return bits.filter(Boolean).join(" · ");
@@ -576,13 +645,14 @@ function renderField(f) {
   }
   const row = el("div", { class: "field", title: fieldTitle(f), dataset: { search: `${f.label || f.id} ${hex(num(f.offset))} ${f.flagRef || ""}`.toLowerCase() } });
   const ctl = control(f, row);
+  const flagged = f.risk ? el("span", { class: `risk-mark risk-${f.risk}`, title: `${RISK_LEVEL[f.risk]} The editor asks first (${RISK_DIRECTION[f.riskWhen]}).` }, "⚠") : null;
   if (f.type === "flag" || f.type === "bool") {
     row.classList.add("check");
-    row.append(el("label", {}, ctl, el("span", {}, f.label || f.id)));
+    row.append(el("label", {}, ctl, el("span", {}, f.label || f.id, flagged ? " " : null, flagged)));
   } else {
     const id = "f_" + f.key.replace(/\W/g, "_");
     ctl.id = id;
-    row.append(el("label", { for: id, class: "label" }, f.label || f.id, f.unit ? el("span", { class: "unit" }, f.unit) : null), ctl);
+    row.append(el("label", { for: id, class: "label" }, f.label || f.id, flagged ? " " : null, flagged, f.unit ? el("span", { class: "unit" }, f.unit) : null), ctl);
   }
   markChanged(row, [f]);
   return row;
@@ -599,6 +669,12 @@ function control(f, row, compact = false) {
   const { save } = state;
   const value = save.read(f, state.slot);
   const commit = (v) => {
+    if (riskApplies(f, save.read(f, state.slot), v) && !confirm(riskText(f))) {
+      // Declined: put the control back to what the save holds (the click or typing already changed it on screen).
+      const old = row.querySelector(`[data-key="${f.key}"]`), fresh = control(f, row, compact);
+      if (old) { fresh.id = old.id; old.replaceWith(fresh); }
+      return;
+    }
     try { save.write(f, state.slot, v); }
     catch (e) { toast(e.message, true); return; }
     if (f.scope === "file") {
@@ -612,6 +688,7 @@ function control(f, row, compact = false) {
     renderSlots();
   };
   const tip = compact ? `${f.label || f.id} · ${fieldTitle(f)}` : null;
+  if (compact && f.risk) queueMicrotask(() => row.querySelector(`[data-key="${f.key}"]`)?.classList.add("risk-ctl"));
 
   if (f.type === "flag" || f.type === "bool") {
     return el("input", { type: "checkbox", checked: value, title: tip, "aria-label": compact ? f.label : null, dataset: { key: f.key },
