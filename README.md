@@ -388,9 +388,13 @@ This is not legal advice. If you're unsure, ask a lawyer.
 ## Known gaps
 
 - Story-flag labels come from the old WiiKing2 research notes (`Skyward Sword Flags.txt`) and are rough.
-- The last 0x40 bytes after slot 3 are unknown (shown as the "Trailer" scope in Raw bytes).
-- `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet. HD saves keep their own copy of the
-  same bits at `0x14F20` (0x24 bytes per file, no checksum), which the **Cutscenes** tab edits. In Sky Recomp v2.0.2
+- On Wii, the 0x14 bytes after the cutscene block (0xFBCC, the "Trailer" scope in Raw bytes) are unknown; they are
+  zero in every save seen.
+- `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet. Both formats keep their own copy of
+  the same bits in the save, which the **Cutscenes** tab edits: Wii at `0xFB60` (three 0x24-byte chunks, 16 big-endian
+  words plus their CRC32, identical to `skip.dat` on a real save), HD at `0x14F20` (four chunks, no checksum). The bit
+  numbering is the same in both. The Wii game re-signs a chunk whose CRC is wrong after wiping it to zero, and wipes a
+  file's chunk when the file is cleared; the editor clears it with the file the same way. In Sky Recomp v2.0.2
   watching the opening set 5 bits there (`0x02`: `0x02 0x04 0x08 0x40`, `0x0C`: `0x10`) while `skip.dat`'s copy
   stayed zero, and the game offered Skip on the opening with every bit cleared, so in HD these bits don't gate
   skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.

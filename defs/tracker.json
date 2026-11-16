@@ -215,6 +215,13 @@
       "scope": "slot",
       "start": "0x53BC",
       "end": "0x53C0"
+    },
+    {
+      "id": "cutscenes",
+      "label": "Cutscenes seen",
+      "scope": "skip",
+      "start": "0x0000",
+      "end": "0x0020"
     }
   ],
   "hdRegions": [
@@ -584,7 +591,7 @@
     },
     {
       "category": "Progress",
-      "title": "Cutscenes seen (HD)",
+      "title": "Cutscenes seen",
       "fields": [
         "cutscenes.b02m02",
         "cutscenes.b02m04",
@@ -594,13 +601,13 @@
         "cutscenes.b03m01",
         "cutscenes.b0cm40"
       ],
-      "note": "Per-file bits in the HD save at 0x14F20. Named so far: the opening (5 bits) and the first trip to the Sealed Grounds (2 bits). They don't gate skipping in HD."
+      "note": "Per-file bits in the save's own copy (Wii 0xFB60 with a CRC32, HD 0x14F20), same numbering in both. Named so far: the opening (5 bits) and the first trip to the Sealed Grounds (2 bits), from HD play; all 7 are set on a real 100% Wii file."
     },
     {
       "category": "Other files",
       "title": "skip.dat cutscene skips",
       "status": "research",
-      "note": "Separate file on Wii and Switch. In HD it lags behind the save's own copy (0x14F20) and its per-chunk checksum word is always zero. Antidote's Wii labels don't match the bits the HD opening sets."
+      "note": "Separate file on Wii and Switch, mirroring the save's own cutscene block. On a real Wii save its three chunks equal the in-save copy at 0xFB60 byte for byte. In HD it lags behind the save's copy (0x14F20) and its per-chunk checksum word is always zero. Antidote's Wii labels don't match the bits the HD opening sets."
     }
   ]
 }

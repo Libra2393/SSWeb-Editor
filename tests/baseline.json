@@ -1,7 +1,9 @@
 {
   "wii": {
     "warnings": [],
-    "invalid": []
+    "invalid": [
+      "cutscenes.reserved"
+    ]
   },
   "hd": {
     "warnings": [],

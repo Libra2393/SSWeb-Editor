@@ -3,11 +3,8 @@
   "advanced": true,
   "title": "Cutscenes",
   "scope": "skip",
-  "formats": [
-    "hd"
-  ],
   "layout": "flags",
-  "description": "Cutscene-seen bits for this file, from the HD save's own copy at 0x14F20 (0x24 bytes per file). These don't gate skipping in HD, which offers Skip on unseen cutscenes too. skip.dat beside the save holds an older copy and isn't edited here.",
+  "description": "Cutscene-seen bits for this file: 16 words in the save's own copy (Wii at 0xFB60 with a CRC32, HD at 0x14F20; 0x24 bytes per file). The bit numbering is the same in both formats. skip.dat beside the save mirrors this block and isn't edited here; on Wii, which of the two copies the game reads to allow skipping isn't confirmed. HD offers Skip on unseen cutscenes too.",
   "groups": [
     {
       "title": "Named so far",
@@ -17,1806 +14,2062 @@
           "id": "b02m02",
           "label": "Opening: seen (bit A)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x02",
+          "mask": "0x0002",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
         },
         {
           "id": "b02m04",
           "label": "Opening: seen (bit B)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x04",
+          "mask": "0x0004",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
         },
         {
           "id": "b02m08",
           "label": "Opening: seen (bit C)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x08",
+          "mask": "0x0008",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
         },
         {
           "id": "b02m40",
           "label": "Opening: seen (bit D)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x40",
+          "mask": "0x0040",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
         },
         {
           "id": "b0cm10",
           "label": "Opening: seen (bit E)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x10",
+          "mask": "0x0010",
           "description": "Set by watching the opening through to the first save (Sky Recomp v2.0.2, HD). Which bit is which cutscene isn't known yet."
         },
         {
           "id": "b03m01",
           "label": "First trip to the Sealed Grounds: seen (bit A)",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x01",
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x0100",
           "description": "Set between the first dive and meeting the old woman in the Sealed Temple (Sky Recomp v2.0.2, HD). One is the arrival at the Sealed Grounds, the other the old woman's scene; which is which isn't known yet."
         },
         {
           "id": "b0cm40",
           "label": "First trip to the Sealed Grounds: seen (bit B)",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x40",
+          "mask": "0x0040",
           "description": "Set between the first dive and meeting the old woman in the Sealed Temple (Sky Recomp v2.0.2, HD). One is the arrival at the Sealed Grounds, the other the old woman's scene; which is which isn't known yet."
         }
       ]
     },
     {
-      "title": "Unnamed bits (byte · mask)",
+      "title": "Unnamed bits (word · bit)",
       "columns": 8,
       "fields": [
         {
           "id": "b00m01",
-          "label": "0x00 · 0x01",
+          "label": "Word 0 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b00m02",
-          "label": "0x00 · 0x02",
+          "label": "Word 0 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b00m04",
-          "label": "0x00 · 0x04",
+          "label": "Word 0 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b00m08",
-          "label": "0x00 · 0x08",
+          "label": "Word 0 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b00m10",
-          "label": "0x00 · 0x10",
+          "label": "Word 0 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b00m20",
-          "label": "0x00 · 0x20",
+          "label": "Word 0 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b00m40",
-          "label": "0x00 · 0x40",
+          "label": "Word 0 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b00m80",
-          "label": "0x00 · 0x80",
+          "label": "Word 0 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x00",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b01m01",
-          "label": "0x01 · 0x01",
+          "label": "Word 0 · bit 8",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x0100"
         },
         {
           "id": "b01m02",
-          "label": "0x01 · 0x02",
+          "label": "Word 0 · bit 9",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x0200"
         },
         {
           "id": "b01m04",
-          "label": "0x01 · 0x04",
+          "label": "Word 0 · bit 10",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x0400"
         },
         {
           "id": "b01m08",
-          "label": "0x01 · 0x08",
+          "label": "Word 0 · bit 11",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x0800"
         },
         {
           "id": "b01m10",
-          "label": "0x01 · 0x10",
+          "label": "Word 0 · bit 12",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x1000"
         },
         {
           "id": "b01m20",
-          "label": "0x01 · 0x20",
+          "label": "Word 0 · bit 13",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x2000"
         },
         {
           "id": "b01m40",
-          "label": "0x01 · 0x40",
+          "label": "Word 0 · bit 14",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x4000"
         },
         {
           "id": "b01m80",
-          "label": "0x01 · 0x80",
+          "label": "Word 0 · bit 15",
           "type": "flag",
-          "offset": "0x01",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x00",
+          "mask": "0x8000"
         },
         {
           "id": "b02m01",
-          "label": "0x02 · 0x01",
+          "label": "Word 1 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b02m10",
-          "label": "0x02 · 0x10",
+          "label": "Word 1 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b02m20",
-          "label": "0x02 · 0x20",
+          "label": "Word 1 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b02m80",
-          "label": "0x02 · 0x80",
+          "label": "Word 1 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x02",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b03m02",
-          "label": "0x03 · 0x02",
+          "label": "Word 1 · bit 9",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x0200"
         },
         {
           "id": "b03m04",
-          "label": "0x03 · 0x04",
+          "label": "Word 1 · bit 10",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x0400"
         },
         {
           "id": "b03m08",
-          "label": "0x03 · 0x08",
+          "label": "Word 1 · bit 11",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x0800"
         },
         {
           "id": "b03m10",
-          "label": "0x03 · 0x10",
+          "label": "Word 1 · bit 12",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x1000"
         },
         {
           "id": "b03m20",
-          "label": "0x03 · 0x20",
+          "label": "Word 1 · bit 13",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x2000"
         },
         {
           "id": "b03m40",
-          "label": "0x03 · 0x40",
+          "label": "Word 1 · bit 14",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x4000"
         },
         {
           "id": "b03m80",
-          "label": "0x03 · 0x80",
+          "label": "Word 1 · bit 15",
           "type": "flag",
-          "offset": "0x03",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x02",
+          "mask": "0x8000"
         },
         {
           "id": "b04m01",
-          "label": "0x04 · 0x01",
+          "label": "Word 2 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b04m02",
-          "label": "0x04 · 0x02",
+          "label": "Word 2 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b04m04",
-          "label": "0x04 · 0x04",
+          "label": "Word 2 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b04m08",
-          "label": "0x04 · 0x08",
+          "label": "Word 2 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b04m10",
-          "label": "0x04 · 0x10",
+          "label": "Word 2 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b04m20",
-          "label": "0x04 · 0x20",
+          "label": "Word 2 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b04m40",
-          "label": "0x04 · 0x40",
+          "label": "Word 2 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b04m80",
-          "label": "0x04 · 0x80",
+          "label": "Word 2 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x04",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b05m01",
-          "label": "0x05 · 0x01",
+          "label": "Word 2 · bit 8",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x0100"
         },
         {
           "id": "b05m02",
-          "label": "0x05 · 0x02",
+          "label": "Word 2 · bit 9",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x0200"
         },
         {
           "id": "b05m04",
-          "label": "0x05 · 0x04",
+          "label": "Word 2 · bit 10",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x0400"
         },
         {
           "id": "b05m08",
-          "label": "0x05 · 0x08",
+          "label": "Word 2 · bit 11",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x0800"
         },
         {
           "id": "b05m10",
-          "label": "0x05 · 0x10",
+          "label": "Word 2 · bit 12",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x1000"
         },
         {
           "id": "b05m20",
-          "label": "0x05 · 0x20",
+          "label": "Word 2 · bit 13",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x2000"
         },
         {
           "id": "b05m40",
-          "label": "0x05 · 0x40",
+          "label": "Word 2 · bit 14",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x4000"
         },
         {
           "id": "b05m80",
-          "label": "0x05 · 0x80",
+          "label": "Word 2 · bit 15",
           "type": "flag",
-          "offset": "0x05",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x04",
+          "mask": "0x8000"
         },
         {
           "id": "b06m01",
-          "label": "0x06 · 0x01",
+          "label": "Word 3 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b06m02",
-          "label": "0x06 · 0x02",
+          "label": "Word 3 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b06m04",
-          "label": "0x06 · 0x04",
+          "label": "Word 3 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b06m08",
-          "label": "0x06 · 0x08",
+          "label": "Word 3 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b06m10",
-          "label": "0x06 · 0x10",
+          "label": "Word 3 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b06m20",
-          "label": "0x06 · 0x20",
+          "label": "Word 3 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b06m40",
-          "label": "0x06 · 0x40",
+          "label": "Word 3 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b06m80",
-          "label": "0x06 · 0x80",
+          "label": "Word 3 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x06",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b07m01",
-          "label": "0x07 · 0x01",
+          "label": "Word 3 · bit 8",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x0100"
         },
         {
           "id": "b07m02",
-          "label": "0x07 · 0x02",
+          "label": "Word 3 · bit 9",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x0200"
         },
         {
           "id": "b07m04",
-          "label": "0x07 · 0x04",
+          "label": "Word 3 · bit 10",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x0400"
         },
         {
           "id": "b07m08",
-          "label": "0x07 · 0x08",
+          "label": "Word 3 · bit 11",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x0800"
         },
         {
           "id": "b07m10",
-          "label": "0x07 · 0x10",
+          "label": "Word 3 · bit 12",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x1000"
         },
         {
           "id": "b07m20",
-          "label": "0x07 · 0x20",
+          "label": "Word 3 · bit 13",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x2000"
         },
         {
           "id": "b07m40",
-          "label": "0x07 · 0x40",
+          "label": "Word 3 · bit 14",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x4000"
         },
         {
           "id": "b07m80",
-          "label": "0x07 · 0x80",
+          "label": "Word 3 · bit 15",
           "type": "flag",
-          "offset": "0x07",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x06",
+          "mask": "0x8000"
         },
         {
           "id": "b08m01",
-          "label": "0x08 · 0x01",
+          "label": "Word 4 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b08m02",
-          "label": "0x08 · 0x02",
+          "label": "Word 4 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b08m04",
-          "label": "0x08 · 0x04",
+          "label": "Word 4 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b08m08",
-          "label": "0x08 · 0x08",
+          "label": "Word 4 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b08m10",
-          "label": "0x08 · 0x10",
+          "label": "Word 4 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b08m20",
-          "label": "0x08 · 0x20",
+          "label": "Word 4 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b08m40",
-          "label": "0x08 · 0x40",
+          "label": "Word 4 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b08m80",
-          "label": "0x08 · 0x80",
+          "label": "Word 4 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x08",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b09m01",
-          "label": "0x09 · 0x01",
+          "label": "Word 4 · bit 8",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x0100"
         },
         {
           "id": "b09m02",
-          "label": "0x09 · 0x02",
+          "label": "Word 4 · bit 9",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x0200"
         },
         {
           "id": "b09m04",
-          "label": "0x09 · 0x04",
+          "label": "Word 4 · bit 10",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x0400"
         },
         {
           "id": "b09m08",
-          "label": "0x09 · 0x08",
+          "label": "Word 4 · bit 11",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x0800"
         },
         {
           "id": "b09m10",
-          "label": "0x09 · 0x10",
+          "label": "Word 4 · bit 12",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x1000"
         },
         {
           "id": "b09m20",
-          "label": "0x09 · 0x20",
+          "label": "Word 4 · bit 13",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x2000"
         },
         {
           "id": "b09m40",
-          "label": "0x09 · 0x40",
+          "label": "Word 4 · bit 14",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x4000"
         },
         {
           "id": "b09m80",
-          "label": "0x09 · 0x80",
+          "label": "Word 4 · bit 15",
           "type": "flag",
-          "offset": "0x09",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x08",
+          "mask": "0x8000"
         },
         {
           "id": "b0am01",
-          "label": "0x0A · 0x01",
+          "label": "Word 5 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b0am02",
-          "label": "0x0A · 0x02",
+          "label": "Word 5 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b0am04",
-          "label": "0x0A · 0x04",
+          "label": "Word 5 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b0am08",
-          "label": "0x0A · 0x08",
+          "label": "Word 5 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b0am10",
-          "label": "0x0A · 0x10",
+          "label": "Word 5 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b0am20",
-          "label": "0x0A · 0x20",
+          "label": "Word 5 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b0am40",
-          "label": "0x0A · 0x40",
+          "label": "Word 5 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b0am80",
-          "label": "0x0A · 0x80",
+          "label": "Word 5 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0A",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b0bm01",
-          "label": "0x0B · 0x01",
+          "label": "Word 5 · bit 8",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x0100"
         },
         {
           "id": "b0bm02",
-          "label": "0x0B · 0x02",
+          "label": "Word 5 · bit 9",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x0200"
         },
         {
           "id": "b0bm04",
-          "label": "0x0B · 0x04",
+          "label": "Word 5 · bit 10",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x0400"
         },
         {
           "id": "b0bm08",
-          "label": "0x0B · 0x08",
+          "label": "Word 5 · bit 11",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x0800"
         },
         {
           "id": "b0bm10",
-          "label": "0x0B · 0x10",
+          "label": "Word 5 · bit 12",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x1000"
         },
         {
           "id": "b0bm20",
-          "label": "0x0B · 0x20",
+          "label": "Word 5 · bit 13",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x2000"
         },
         {
           "id": "b0bm40",
-          "label": "0x0B · 0x40",
+          "label": "Word 5 · bit 14",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x4000"
         },
         {
           "id": "b0bm80",
-          "label": "0x0B · 0x80",
+          "label": "Word 5 · bit 15",
           "type": "flag",
-          "offset": "0x0B",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x0A",
+          "mask": "0x8000"
         },
         {
           "id": "b0cm01",
-          "label": "0x0C · 0x01",
+          "label": "Word 6 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b0cm02",
-          "label": "0x0C · 0x02",
+          "label": "Word 6 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b0cm04",
-          "label": "0x0C · 0x04",
+          "label": "Word 6 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b0cm08",
-          "label": "0x0C · 0x08",
+          "label": "Word 6 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b0cm20",
-          "label": "0x0C · 0x20",
+          "label": "Word 6 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b0cm80",
-          "label": "0x0C · 0x80",
+          "label": "Word 6 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0C",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b0dm01",
-          "label": "0x0D · 0x01",
+          "label": "Word 6 · bit 8",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x0100"
         },
         {
           "id": "b0dm02",
-          "label": "0x0D · 0x02",
+          "label": "Word 6 · bit 9",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x0200"
         },
         {
           "id": "b0dm04",
-          "label": "0x0D · 0x04",
+          "label": "Word 6 · bit 10",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x0400"
         },
         {
           "id": "b0dm08",
-          "label": "0x0D · 0x08",
+          "label": "Word 6 · bit 11",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x0800"
         },
         {
           "id": "b0dm10",
-          "label": "0x0D · 0x10",
+          "label": "Word 6 · bit 12",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x1000"
         },
         {
           "id": "b0dm20",
-          "label": "0x0D · 0x20",
+          "label": "Word 6 · bit 13",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x2000"
         },
         {
           "id": "b0dm40",
-          "label": "0x0D · 0x40",
+          "label": "Word 6 · bit 14",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x4000"
         },
         {
           "id": "b0dm80",
-          "label": "0x0D · 0x80",
+          "label": "Word 6 · bit 15",
           "type": "flag",
-          "offset": "0x0D",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x0C",
+          "mask": "0x8000"
         },
         {
           "id": "b0em01",
-          "label": "0x0E · 0x01",
+          "label": "Word 7 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b0em02",
-          "label": "0x0E · 0x02",
+          "label": "Word 7 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b0em04",
-          "label": "0x0E · 0x04",
+          "label": "Word 7 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b0em08",
-          "label": "0x0E · 0x08",
+          "label": "Word 7 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b0em10",
-          "label": "0x0E · 0x10",
+          "label": "Word 7 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b0em20",
-          "label": "0x0E · 0x20",
+          "label": "Word 7 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b0em40",
-          "label": "0x0E · 0x40",
+          "label": "Word 7 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b0em80",
-          "label": "0x0E · 0x80",
+          "label": "Word 7 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x0E",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b0fm01",
-          "label": "0x0F · 0x01",
+          "label": "Word 7 · bit 8",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x0100"
         },
         {
           "id": "b0fm02",
-          "label": "0x0F · 0x02",
+          "label": "Word 7 · bit 9",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x0200"
         },
         {
           "id": "b0fm04",
-          "label": "0x0F · 0x04",
+          "label": "Word 7 · bit 10",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x0400"
         },
         {
           "id": "b0fm08",
-          "label": "0x0F · 0x08",
+          "label": "Word 7 · bit 11",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x0800"
         },
         {
           "id": "b0fm10",
-          "label": "0x0F · 0x10",
+          "label": "Word 7 · bit 12",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x1000"
         },
         {
           "id": "b0fm20",
-          "label": "0x0F · 0x20",
+          "label": "Word 7 · bit 13",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x2000"
         },
         {
           "id": "b0fm40",
-          "label": "0x0F · 0x40",
+          "label": "Word 7 · bit 14",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x4000"
         },
         {
           "id": "b0fm80",
-          "label": "0x0F · 0x80",
+          "label": "Word 7 · bit 15",
           "type": "flag",
-          "offset": "0x0F",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x0E",
+          "mask": "0x8000"
         },
         {
           "id": "b10m01",
-          "label": "0x10 · 0x01",
+          "label": "Word 8 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b10m02",
-          "label": "0x10 · 0x02",
+          "label": "Word 8 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b10m04",
-          "label": "0x10 · 0x04",
+          "label": "Word 8 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b10m08",
-          "label": "0x10 · 0x08",
+          "label": "Word 8 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b10m10",
-          "label": "0x10 · 0x10",
+          "label": "Word 8 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b10m20",
-          "label": "0x10 · 0x20",
+          "label": "Word 8 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b10m40",
-          "label": "0x10 · 0x40",
+          "label": "Word 8 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b10m80",
-          "label": "0x10 · 0x80",
+          "label": "Word 8 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x10",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b11m01",
-          "label": "0x11 · 0x01",
+          "label": "Word 8 · bit 8",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x0100"
         },
         {
           "id": "b11m02",
-          "label": "0x11 · 0x02",
+          "label": "Word 8 · bit 9",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x0200"
         },
         {
           "id": "b11m04",
-          "label": "0x11 · 0x04",
+          "label": "Word 8 · bit 10",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x0400"
         },
         {
           "id": "b11m08",
-          "label": "0x11 · 0x08",
+          "label": "Word 8 · bit 11",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x0800"
         },
         {
           "id": "b11m10",
-          "label": "0x11 · 0x10",
+          "label": "Word 8 · bit 12",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x1000"
         },
         {
           "id": "b11m20",
-          "label": "0x11 · 0x20",
+          "label": "Word 8 · bit 13",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x2000"
         },
         {
           "id": "b11m40",
-          "label": "0x11 · 0x40",
+          "label": "Word 8 · bit 14",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x4000"
         },
         {
           "id": "b11m80",
-          "label": "0x11 · 0x80",
+          "label": "Word 8 · bit 15",
           "type": "flag",
-          "offset": "0x11",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x10",
+          "mask": "0x8000"
         },
         {
           "id": "b12m01",
-          "label": "0x12 · 0x01",
+          "label": "Word 9 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b12m02",
-          "label": "0x12 · 0x02",
+          "label": "Word 9 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b12m04",
-          "label": "0x12 · 0x04",
+          "label": "Word 9 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b12m08",
-          "label": "0x12 · 0x08",
+          "label": "Word 9 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b12m10",
-          "label": "0x12 · 0x10",
+          "label": "Word 9 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b12m20",
-          "label": "0x12 · 0x20",
+          "label": "Word 9 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b12m40",
-          "label": "0x12 · 0x40",
+          "label": "Word 9 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b12m80",
-          "label": "0x12 · 0x80",
+          "label": "Word 9 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x12",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b13m01",
-          "label": "0x13 · 0x01",
+          "label": "Word 9 · bit 8",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x0100"
         },
         {
           "id": "b13m02",
-          "label": "0x13 · 0x02",
+          "label": "Word 9 · bit 9",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x0200"
         },
         {
           "id": "b13m04",
-          "label": "0x13 · 0x04",
+          "label": "Word 9 · bit 10",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x0400"
         },
         {
           "id": "b13m08",
-          "label": "0x13 · 0x08",
+          "label": "Word 9 · bit 11",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x0800"
         },
         {
           "id": "b13m10",
-          "label": "0x13 · 0x10",
+          "label": "Word 9 · bit 12",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x1000"
         },
         {
           "id": "b13m20",
-          "label": "0x13 · 0x20",
+          "label": "Word 9 · bit 13",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x2000"
         },
         {
           "id": "b13m40",
-          "label": "0x13 · 0x40",
+          "label": "Word 9 · bit 14",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x4000"
         },
         {
           "id": "b13m80",
-          "label": "0x13 · 0x80",
+          "label": "Word 9 · bit 15",
           "type": "flag",
-          "offset": "0x13",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x12",
+          "mask": "0x8000"
         },
         {
           "id": "b14m01",
-          "label": "0x14 · 0x01",
+          "label": "Word 10 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b14m02",
-          "label": "0x14 · 0x02",
+          "label": "Word 10 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b14m04",
-          "label": "0x14 · 0x04",
+          "label": "Word 10 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b14m08",
-          "label": "0x14 · 0x08",
+          "label": "Word 10 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b14m10",
-          "label": "0x14 · 0x10",
+          "label": "Word 10 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b14m20",
-          "label": "0x14 · 0x20",
+          "label": "Word 10 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b14m40",
-          "label": "0x14 · 0x40",
+          "label": "Word 10 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b14m80",
-          "label": "0x14 · 0x80",
+          "label": "Word 10 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x14",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b15m01",
-          "label": "0x15 · 0x01",
+          "label": "Word 10 · bit 8",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x0100"
         },
         {
           "id": "b15m02",
-          "label": "0x15 · 0x02",
+          "label": "Word 10 · bit 9",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x0200"
         },
         {
           "id": "b15m04",
-          "label": "0x15 · 0x04",
+          "label": "Word 10 · bit 10",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x0400"
         },
         {
           "id": "b15m08",
-          "label": "0x15 · 0x08",
+          "label": "Word 10 · bit 11",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x0800"
         },
         {
           "id": "b15m10",
-          "label": "0x15 · 0x10",
+          "label": "Word 10 · bit 12",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x1000"
         },
         {
           "id": "b15m20",
-          "label": "0x15 · 0x20",
+          "label": "Word 10 · bit 13",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x2000"
         },
         {
           "id": "b15m40",
-          "label": "0x15 · 0x40",
+          "label": "Word 10 · bit 14",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x4000"
         },
         {
           "id": "b15m80",
-          "label": "0x15 · 0x80",
+          "label": "Word 10 · bit 15",
           "type": "flag",
-          "offset": "0x15",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x14",
+          "mask": "0x8000"
         },
         {
           "id": "b16m01",
-          "label": "0x16 · 0x01",
+          "label": "Word 11 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b16m02",
-          "label": "0x16 · 0x02",
+          "label": "Word 11 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b16m04",
-          "label": "0x16 · 0x04",
+          "label": "Word 11 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b16m08",
-          "label": "0x16 · 0x08",
+          "label": "Word 11 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b16m10",
-          "label": "0x16 · 0x10",
+          "label": "Word 11 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b16m20",
-          "label": "0x16 · 0x20",
+          "label": "Word 11 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b16m40",
-          "label": "0x16 · 0x40",
+          "label": "Word 11 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b16m80",
-          "label": "0x16 · 0x80",
+          "label": "Word 11 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x16",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b17m01",
-          "label": "0x17 · 0x01",
+          "label": "Word 11 · bit 8",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x0100"
         },
         {
           "id": "b17m02",
-          "label": "0x17 · 0x02",
+          "label": "Word 11 · bit 9",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x0200"
         },
         {
           "id": "b17m04",
-          "label": "0x17 · 0x04",
+          "label": "Word 11 · bit 10",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x0400"
         },
         {
           "id": "b17m08",
-          "label": "0x17 · 0x08",
+          "label": "Word 11 · bit 11",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x0800"
         },
         {
           "id": "b17m10",
-          "label": "0x17 · 0x10",
+          "label": "Word 11 · bit 12",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x1000"
         },
         {
           "id": "b17m20",
-          "label": "0x17 · 0x20",
+          "label": "Word 11 · bit 13",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x2000"
         },
         {
           "id": "b17m40",
-          "label": "0x17 · 0x40",
+          "label": "Word 11 · bit 14",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x4000"
         },
         {
           "id": "b17m80",
-          "label": "0x17 · 0x80",
+          "label": "Word 11 · bit 15",
           "type": "flag",
-          "offset": "0x17",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x16",
+          "mask": "0x8000"
         },
         {
           "id": "b18m01",
-          "label": "0x18 · 0x01",
+          "label": "Word 12 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b18m02",
-          "label": "0x18 · 0x02",
+          "label": "Word 12 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b18m04",
-          "label": "0x18 · 0x04",
+          "label": "Word 12 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b18m08",
-          "label": "0x18 · 0x08",
+          "label": "Word 12 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b18m10",
-          "label": "0x18 · 0x10",
+          "label": "Word 12 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b18m20",
-          "label": "0x18 · 0x20",
+          "label": "Word 12 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b18m40",
-          "label": "0x18 · 0x40",
+          "label": "Word 12 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b18m80",
-          "label": "0x18 · 0x80",
+          "label": "Word 12 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x18",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b19m01",
-          "label": "0x19 · 0x01",
+          "label": "Word 12 · bit 8",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x0100"
         },
         {
           "id": "b19m02",
-          "label": "0x19 · 0x02",
+          "label": "Word 12 · bit 9",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x0200"
         },
         {
           "id": "b19m04",
-          "label": "0x19 · 0x04",
+          "label": "Word 12 · bit 10",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x0400"
         },
         {
           "id": "b19m08",
-          "label": "0x19 · 0x08",
+          "label": "Word 12 · bit 11",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x0800"
         },
         {
           "id": "b19m10",
-          "label": "0x19 · 0x10",
+          "label": "Word 12 · bit 12",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x1000"
         },
         {
           "id": "b19m20",
-          "label": "0x19 · 0x20",
+          "label": "Word 12 · bit 13",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x2000"
         },
         {
           "id": "b19m40",
-          "label": "0x19 · 0x40",
+          "label": "Word 12 · bit 14",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x4000"
         },
         {
           "id": "b19m80",
-          "label": "0x19 · 0x80",
+          "label": "Word 12 · bit 15",
           "type": "flag",
-          "offset": "0x19",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x18",
+          "mask": "0x8000"
         },
         {
           "id": "b1am01",
-          "label": "0x1A · 0x01",
+          "label": "Word 13 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b1am02",
-          "label": "0x1A · 0x02",
+          "label": "Word 13 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b1am04",
-          "label": "0x1A · 0x04",
+          "label": "Word 13 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b1am08",
-          "label": "0x1A · 0x08",
+          "label": "Word 13 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b1am10",
-          "label": "0x1A · 0x10",
+          "label": "Word 13 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b1am20",
-          "label": "0x1A · 0x20",
+          "label": "Word 13 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b1am40",
-          "label": "0x1A · 0x40",
+          "label": "Word 13 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b1am80",
-          "label": "0x1A · 0x80",
+          "label": "Word 13 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1A",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b1bm01",
-          "label": "0x1B · 0x01",
+          "label": "Word 13 · bit 8",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x0100"
         },
         {
           "id": "b1bm02",
-          "label": "0x1B · 0x02",
+          "label": "Word 13 · bit 9",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x0200"
         },
         {
           "id": "b1bm04",
-          "label": "0x1B · 0x04",
+          "label": "Word 13 · bit 10",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x0400"
         },
         {
           "id": "b1bm08",
-          "label": "0x1B · 0x08",
+          "label": "Word 13 · bit 11",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x0800"
         },
         {
           "id": "b1bm10",
-          "label": "0x1B · 0x10",
+          "label": "Word 13 · bit 12",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x1000"
         },
         {
           "id": "b1bm20",
-          "label": "0x1B · 0x20",
+          "label": "Word 13 · bit 13",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x2000"
         },
         {
           "id": "b1bm40",
-          "label": "0x1B · 0x40",
+          "label": "Word 13 · bit 14",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x4000"
         },
         {
           "id": "b1bm80",
-          "label": "0x1B · 0x80",
+          "label": "Word 13 · bit 15",
           "type": "flag",
-          "offset": "0x1B",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x1A",
+          "mask": "0x8000"
         },
         {
           "id": "b1cm01",
-          "label": "0x1C · 0x01",
+          "label": "Word 14 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b1cm02",
-          "label": "0x1C · 0x02",
+          "label": "Word 14 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b1cm04",
-          "label": "0x1C · 0x04",
+          "label": "Word 14 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b1cm08",
-          "label": "0x1C · 0x08",
+          "label": "Word 14 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b1cm10",
-          "label": "0x1C · 0x10",
+          "label": "Word 14 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b1cm20",
-          "label": "0x1C · 0x20",
+          "label": "Word 14 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b1cm40",
-          "label": "0x1C · 0x40",
+          "label": "Word 14 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b1cm80",
-          "label": "0x1C · 0x80",
+          "label": "Word 14 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1C",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b1dm01",
-          "label": "0x1D · 0x01",
+          "label": "Word 14 · bit 8",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x0100"
         },
         {
           "id": "b1dm02",
-          "label": "0x1D · 0x02",
+          "label": "Word 14 · bit 9",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x0200"
         },
         {
           "id": "b1dm04",
-          "label": "0x1D · 0x04",
+          "label": "Word 14 · bit 10",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x0400"
         },
         {
           "id": "b1dm08",
-          "label": "0x1D · 0x08",
+          "label": "Word 14 · bit 11",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x0800"
         },
         {
           "id": "b1dm10",
-          "label": "0x1D · 0x10",
+          "label": "Word 14 · bit 12",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x1000"
         },
         {
           "id": "b1dm20",
-          "label": "0x1D · 0x20",
+          "label": "Word 14 · bit 13",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x2000"
         },
         {
           "id": "b1dm40",
-          "label": "0x1D · 0x40",
+          "label": "Word 14 · bit 14",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x4000"
         },
         {
           "id": "b1dm80",
-          "label": "0x1D · 0x80",
+          "label": "Word 14 · bit 15",
           "type": "flag",
-          "offset": "0x1D",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x1C",
+          "mask": "0x8000"
         },
         {
           "id": "b1em01",
-          "label": "0x1E · 0x01",
+          "label": "Word 15 · bit 0",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x01"
+          "mask": "0x0001"
         },
         {
           "id": "b1em02",
-          "label": "0x1E · 0x02",
+          "label": "Word 15 · bit 1",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x02"
+          "mask": "0x0002"
         },
         {
           "id": "b1em04",
-          "label": "0x1E · 0x04",
+          "label": "Word 15 · bit 2",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x04"
+          "mask": "0x0004"
         },
         {
           "id": "b1em08",
-          "label": "0x1E · 0x08",
+          "label": "Word 15 · bit 3",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x08"
+          "mask": "0x0008"
         },
         {
           "id": "b1em10",
-          "label": "0x1E · 0x10",
+          "label": "Word 15 · bit 4",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x10"
+          "mask": "0x0010"
         },
         {
           "id": "b1em20",
-          "label": "0x1E · 0x20",
+          "label": "Word 15 · bit 5",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x20"
+          "mask": "0x0020"
         },
         {
           "id": "b1em40",
-          "label": "0x1E · 0x40",
+          "label": "Word 15 · bit 6",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x40"
+          "mask": "0x0040"
         },
         {
           "id": "b1em80",
-          "label": "0x1E · 0x80",
+          "label": "Word 15 · bit 7",
           "type": "flag",
+          "storage": "u16",
           "offset": "0x1E",
-          "mask": "0x80"
+          "mask": "0x0080"
         },
         {
           "id": "b1fm01",
-          "label": "0x1F · 0x01",
+          "label": "Word 15 · bit 8",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x01"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x0100"
         },
         {
           "id": "b1fm02",
-          "label": "0x1F · 0x02",
+          "label": "Word 15 · bit 9",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x02"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x0200"
         },
         {
           "id": "b1fm04",
-          "label": "0x1F · 0x04",
+          "label": "Word 15 · bit 10",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x04"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x0400"
         },
         {
           "id": "b1fm08",
-          "label": "0x1F · 0x08",
+          "label": "Word 15 · bit 11",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x08"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x0800"
         },
         {
           "id": "b1fm10",
-          "label": "0x1F · 0x10",
+          "label": "Word 15 · bit 12",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x10"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x1000"
         },
         {
           "id": "b1fm20",
-          "label": "0x1F · 0x20",
+          "label": "Word 15 · bit 13",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x20"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x2000"
         },
         {
           "id": "b1fm40",
-          "label": "0x1F · 0x40",
+          "label": "Word 15 · bit 14",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x40"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x4000"
         },
         {
           "id": "b1fm80",
-          "label": "0x1F · 0x80",
+          "label": "Word 15 · bit 15",
           "type": "flag",
-          "offset": "0x1F",
-          "mask": "0x80"
+          "storage": "u16",
+          "offset": "0x1E",
+          "mask": "0x8000"
         }
       ]
     },
@@ -1825,11 +2078,14 @@
       "fields": [
         {
           "id": "reserved",
-          "label": "Unused word",
+          "label": "Unused word (HD)",
           "type": "u32",
           "offset": "0x20",
           "hex": true,
-          "description": "Always zero in every HD save seen. The Wii skip.dat keeps a checksum here; HD doesn't."
+          "description": "Always zero in every HD save seen. On Wii these 4 bytes are the chunk's CRC32, kept by the editor (see the checksum in the layout).",
+          "variants": {
+            "wii": null
+          }
         }
       ]
     }

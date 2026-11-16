@@ -83,10 +83,14 @@ export function filledBytes(d, { seed = 1, name = "Tester", hero = false } = {})
   return save.bytes.slice();
 }
 
-/** Filled bytes with one data byte flipped in each listed file: in the slot itself, or (HD) in its first extra block. */
-export function badBytes(d, slots, { inExtra = false, ...opts } = {}) {
+/**
+ * Filled bytes with one data byte flipped in each listed file: in the slot itself, in HD's first extra block
+ * (`inExtra`), or in another per-file scope (`scope`, e.g. the cutscene chunk). Never in a stored checksum.
+ */
+export function badBytes(d, slots, { inExtra = false, scope = inExtra ? "slotExtra" : "slot", ...opts } = {}) {
   const bytes = filledBytes(d, opts), probe = new SaveFile(bytes.slice().buffer, d);
-  for (const n of slots) bytes[probe.scopeBase(inExtra ? "slotExtra" : "slot", n) + 0x100] ^= 0xff;
+  const at = scope === "slot" || scope === "slotExtra" ? 0x100 : 0x04;
+  for (const n of slots) bytes[probe.scopeBase(scope, n) + at] ^= 0xff;
   return bytes;
 }
 

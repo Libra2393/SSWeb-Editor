@@ -115,6 +115,15 @@ export function writePreset(defs, save, preset, slot) {
       const base = save.scopeBase("slot", to);
       const end = num(defs.layout.checksums?.find((c) => c.scope === "slot")?.store ?? save.scope("slot").size);
       save.bytes.fill(0, base, base + end);
+      // The file's companion scopes (cutscene bits; HD's extra blocks) belong to the file being replaced, not to the
+      // image, so they start empty as well. HD's playthrough ID is kept, as Clear file keeps it.
+      for (const n of save.scope("slot").companions || []) {
+        const keep = (save.scope("slot").clear?.keep || []).filter((k) => k.scope === n).map((k) => {
+          const at = save.scopeBase(n, to) + num(k.start); return [at, save.bytes.slice(at, at + num(k.length))];
+        });
+        const b = save.scopeBase(n, to); save.bytes.fill(0, b, b + num(save.scope(n).size));
+        for (const [at, kept] of keep) save.bytes.set(kept, at);
+      }
       for (const [off, data] of entry.image) save.bytes.set(data, base + off);
       save.markReplaced?.("slot", to);
       written++; slots.add(to);

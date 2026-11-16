@@ -15,9 +15,11 @@
       "base": "0x20",
       "stride": "0x53C0",
       "size": "0x53C0",
-      "count": 3
+      "count": 3,
+      "companions": ["skip"]
     },
-    "tail": { "label": "Trailer", "base": "0xFBA0", "size": "0x40", "description": "Unknown 0x40 bytes after the third slot." }
+    "skip": { "label": "File {n} cutscenes seen", "base": "0xFB60", "stride": "0x24", "size": "0x24", "count": 3, "description": "Per-file cutscene-seen bits: 16 big-endian words of flags, then their CRC32 (the decompilation's SavedSaveFiles.skipData). skip.dat beside the save holds the same three chunks. The game wipes a chunk to zero and re-signs it when its CRC is wrong, and when a file is cleared." },
+    "tail": { "label": "Trailer", "base": "0xFBCC", "size": "0x14", "description": "0x14 bytes after the cutscene block, unknown (unk2 in the decompilation). Zero in every save seen." }
   },
   "checksums": [
     {
@@ -28,6 +30,15 @@
       "store": "0x53BC",
       "onlyIfValidOnLoad": true,
       "description": "CRC32 of the slot's 0x53BC data bytes, stored big-endian right after them. A slot whose checksum was already wrong when the file was opened is not given a new one."
+    },
+    {
+      "scope": "skip",
+      "algorithm": "crc32",
+      "start": "0x0",
+      "length": "0x20",
+      "store": "0x20",
+      "onlyIfValidOnLoad": true,
+      "description": "CRC32 of the chunk's 0x20 flag bytes, stored big-endian after them. The game computes it for every chunk, used or not (initSkipData, clearFileA); on load it wipes a chunk whose CRC is wrong (checkFileStatus)."
     }
   ],
   "slotSummary": {

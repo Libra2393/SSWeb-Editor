@@ -78,10 +78,19 @@ for (const id of FORMATS) {
       const onEmpty = open(d, emptyBytes(d)), onUsed = open(d, filledBytes(d, { seed: 33 }));
       const before = onUsed.bytes.slice();
       applyPresetFresh(d, onEmpty, p, 0); applyPresetFresh(d, onUsed, p, 0);
-      const inTarget = (i) => targets.some((n) => { const b = onUsed.scopeBase("slot", n); return i >= b && i < b + num(onUsed.scope("slot").size); });
+      // A file is its slot plus the scopes that travel with it (the cutscene chunk; HD's extra blocks).
+      const inTarget = (i) => targets.some((n) => slotScopes(d).some((sc) => { const b = onUsed.scopeBase(sc, n); return i >= b && i < b + num(onUsed.scope(sc).size); }));
       for (const n of targets) {
         const b = onUsed.scopeBase("slot", n);
         assert.deepEqual(onUsed.bytes.subarray(b, b + store), onEmpty.bytes.subarray(b, b + store), `${p.id}: file ${n + 1}`);
+        for (const sc of slotScopes(d).slice(1)) {             // the old file's companion data doesn't survive
+          const keep = (d.layout.scopes.slot.clear?.keep || []).filter((k) => k.scope === sc);
+          const cb = onUsed.scopeBase(sc, n);
+          for (let i = 0; i < num(onUsed.scope(sc).size); i++) {
+            if (keep.some((k) => i >= num(k.start) && i < num(k.start) + num(k.length))) continue;
+            assert.equal(onUsed.bytes[cb + i], 0, `${p.id}: file ${n + 1} ${sc} byte ${i} kept from the old file`);
+          }
+        }
       }
       for (let i = 0; i < before.length; i++) if (!inTarget(i) && onUsed.bytes[i] !== before[i]) assert.fail(`${p.id}: byte ${i} outside its files changed`);
     }

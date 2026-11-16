@@ -220,7 +220,7 @@ export class SaveFile {
   allowResign(i, n) { this.resignAllowed.add(`${i}:${n}`); }
 
   /** Records that a scope's loaded contents are gone (cleared or overwritten whole), so its checksum is ours to write. */
-  markReplaced(name, index) { this.replaced.add(`${name}:${index}`); }
+  markReplaced(name, index) { for (const n of this.withCompanions(name)) this.replaced.add(`${n}:${index}`); } // companions go with their file
 
   copyScope(name, from, to) {
     for (const n of this.withCompanions(name)) {
@@ -252,8 +252,8 @@ export class SaveFile {
   }
 
   revertScope(name, index) {
-    this.replaced.delete(`${name}:${index}`);
     for (const n of this.withCompanions(name)) {
+      this.replaced.delete(`${n}:${index}`);
       const base = this.scopeBase(n, index), size = num(this.scope(n).size);
       this.bytes.set(this.original.subarray(base, base + size), base);
     }
