@@ -1,0 +1,21 @@
+name: Tests
+
+# Runs the Node test suite on every push and pull request. The suite needs nothing but Node: it builds its
+# save files in memory and reads no real save. See tests/ and the "Tests" section of the README.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node --test tests/*.test.mjs

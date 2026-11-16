@@ -1,0 +1,39 @@
+{
+  "wii": {
+    "skyloft-before-first-dive": 68,
+    "after-levias": 2696,
+    "after-water-dragon": 2761,
+    "before-demise": 2695,
+    "all-dungeons-00": 3,
+    "all-dungeons-01": 3,
+    "all-dungeons-02": 3,
+    "all-dungeons-03": 3,
+    "all-dungeons-04": 3,
+    "all-dungeons-05": 3,
+    "all-dungeons-06": 3,
+    "all-dungeons-07": 3,
+    "all-dungeons-08": 3,
+    "all-dungeons-09": 3,
+    "all-dungeons-10": 3,
+    "all-dungeons-11": 3,
+    "all-dungeons-12": 3,
+    "all-dungeons-13": 3,
+    "all-dungeons-14": 3,
+    "all-dungeons-15": 3,
+    "all-dungeons-16": 3,
+    "all-dungeons-17": 3,
+    "all-dungeons-18": 3,
+    "all-dungeons-19": 3,
+    "all-dungeons-20": 3,
+    "all-dungeons-21": 3,
+    "all-dungeons-22": 3,
+    "all-dungeons-23": 3,
+    "all-dungeons-24": 3
+  },
+  "hd": {
+    "skyloft-before-first-dive": 68,
+    "after-levias": 2696,
+    "after-water-dragon": 2761,
+    "before-demise": 2695
+  }
+}

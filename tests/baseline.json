@@ -1,0 +1,12 @@
+{
+  "wii": {
+    "warnings": [],
+    "invalid": []
+  },
+  "hd": {
+    "warnings": [],
+    "invalid": [
+      "general.region"
+    ]
+  }
+}

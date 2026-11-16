@@ -277,6 +277,23 @@ scene-flag collectibles and all 3 story-flag prizes are found. (The 145th chest 
 that the game's code sets directly, rather than its data files, can only be found by comparing saves. `--dump objects.json` also writes the full raw object list
 for research; it is derived from the game data, so keep it to yourself.
 
+### Tests
+
+```bash
+npm test          # or: node --test tests/*.test.mjs
+```
+
+The suite uses Node's built-in test runner (Node 20 or newer) and has no dependencies. It reads no real save: `tests/helpers.mjs`
+builds empty, filled and bad-checksum saves in memory for both formats from the layouts, with a fixed-seed fill, so
+it passes on a clean checkout. It covers field reads and writes, the checksum rules (a file that was bad on load is
+never re-signed silently), every preset in the manifest, the risk markings and the definitions themselves, and it
+runs the offline build once. GitHub runs it on every push (`.github/workflows/test.yml`).
+
+Two files pin today's results: `tests/golden-counts.json` (how many values each preset writes) and
+`tests/baseline.json` (load warnings and unusable fields). A change to either is meant to be noticed; after a
+deliberate one, regenerate both with `UPDATE_GOLDEN=1 node --test tests/*.test.mjs` and review the diff. Test data
+never goes under `defs/`, because the offline build embeds every JSON file there.
+
 ### Safety rails
 
 - **Backup before overwriting.** The first time **Save** writes back over the opened file, the editor first downloads
