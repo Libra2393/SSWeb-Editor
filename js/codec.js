@@ -235,8 +235,8 @@ export class SaveFile {
    * every byte is zeroed except the `keep` ranges ({scope, start, length}). The caller then marks the
    * slot empty through layout.slotSummary.empty. Returns false when the layout has no "clear" entry.
    */
-  clearScope(name, index) {
-    const rule = this.scope(name).clear;
+  clearScope(name, index, { force = false } = {}) {
+    const rule = this.scope(name).clear || (force ? {} : null); // force: zero it all when the layout has no rule (what full-file presets do)
     if (!rule) return false;
     const kept = (rule.keep || []).map((k) => {
       const at = this.scopeBase(k.scope, index) + num(k.start);

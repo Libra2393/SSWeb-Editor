@@ -2,7 +2,7 @@
 // Part of SSWeb Editor. See LICENSE and CREDITS.md.
 
 import { SaveFile, num } from "./codec.js";
-import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries, writePreset } from "./defs.js";
+import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, formatFor, coverage, bitCoverage, enumEntries, applyPresetFresh } from "./defs.js";
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
 import { diffSlots } from "./compare.js";
 
@@ -510,30 +510,22 @@ function presetControls() {
   }));
   return [
     el("span", { class: "tool-sep" }),
-    el("button", { class: "btn small", title: "Overwrite parts of this file with a prepared starting state", onclick: () => applyPreset(presets[Number(pick.value)]) }, "Apply preset"),
+    el("button", { class: "btn small", title: "Replace this file with a prepared save at a known point in the game", onclick: () => applyPreset(presets[Number(pick.value)]) }, "Apply preset"),
     pick,
   ];
 }
 
 /** Writes every value a preset lists into the current slot. Checksums are updated on save as for any edit. */
-/**
- * What the user should know about the files a preset is about to land on. A full-file preset destroys whatever is
- * there. A field-list preset only overwrites what it lists, so on a file that is further along (or, for a preset
- * that doesn't carry the whole flag tables, on any used file) the leftovers make a state no playthrough produces.
- */
+/** Names the occupied files a preset is about to replace. Every preset replaces its target; an empty file needs no warning. */
 function presetTargetWarnings(preset, targets, replaces) {
   const empty = summaryField("empty"), time = state.defs.fieldsById.get("general.playTime");
   if (!empty || empty.invalid || !time || time.invalid) return [];
-  const own = (preset.apply || []).findLast((e) => e.field === "general.playTime")?.value; // a preset's own entry comes after its base's
-  // A preset copied from a real save writes the flag tables whole, word by word (ids like "story_0"); one that lists single flags doesn't.
-  const wholeTables = (preset.apply || []).some((e) => e.type === "u16" && /^story_\d+$/.test(e.id || ""));
   const out = [];
   for (const i of targets) {
     if (state.save.read(empty, i)) continue; // an empty file is what presets are for
-    const label = scopeLabel("slot", i), played = state.save.read(time, i);
-    if (replaces) out.push(`${label} already contains a save (${fmtDuration(played)} played). This preset replaces it completely, and it can't be recovered after saving.`);
-    else if (!wholeTables) out.push(`${label} already contains a save (${fmtDuration(played)} played). This preset is made for an empty file: it only sets the fields it lists, so everything else in ${label} stays in place and the result is a mixed state no playthrough produces.`);
-    else if (own != null && played > own) out.push(`${label} already holds a save further along than this preset (${fmtDuration(played)} played, against the preset's ${fmtDuration(own)}). The preset only sets the fields it lists, so later items and progress outside them stay in place and the result is a mixed state no playthrough produces.`);
+    const label = scopeLabel("slot", i), played = fmtDuration(state.save.read(time, i));
+    out.push(replaces ? `${label} already contains a save (${played} played). This preset replaces it completely, and it can't be recovered after saving.`
+      : `${label} already contains a save (${played} played). This preset replaces it: its items, progress and play time are gone after saving, and only the hero's name and the Hero Mode setting carry over.`);
   }
   return out;
 }
@@ -543,13 +535,13 @@ function applyPreset(preset) {
   const replaces = (preset.apply || []).some((e) => e.image);
   const targets = fixed.length ? fixed : [state.slot];
   const where = targets.map((i) => scopeLabel("slot", i)).join(", ");
-  const how = replaces ? "The files it lists are replaced completely." : "Fields the preset lists are overwritten; everything else is kept.";
+  const how = replaces ? "The files it lists are replaced completely." : "The file is emptied first, then the preset's values are written; only the hero's name and the Hero Mode setting are kept.";
   const occupied = presetTargetWarnings(preset, targets, replaces);
   if (!confirm(`${preset.title}\n\n${preset.description || ""}\n\n${occupied.length ? occupied.join("\n\n") + "\n\n" : ""}Apply to ${where}? ${how} Use "Revert changes" to undo before saving.`)) return;
-  const { written, skipped } = writePreset(state.defs, state.save, preset, state.slot);
+  const { written, skipped } = applyPresetFresh(state.defs, state.save, preset, state.slot);
   if (fixed.length && !fixed.includes(state.slot)) state.slot = fixed[0];
   renderAll();
-  toast(`Applied “${preset.title}” to ${where}: ${replaces ? "files replaced" : `${written} values written`}` + (skipped.length ? `, ${skipped.length} skipped (${skipped.join(", ")})` : "") + ". Checksums update when you save.", skipped.length > 0);
+  toast(`Applied “${preset.title}” to ${where}: ${replaces ? "files replaced" : `file emptied, ${written} values written`}` + (skipped.length ? `, ${skipped.length} skipped (${skipped.join(", ")})` : "") + ". Checksums update when you save.", skipped.length > 0);
 }
 
 function renderTabs() {

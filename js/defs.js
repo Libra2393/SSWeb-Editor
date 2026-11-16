@@ -230,6 +230,32 @@ const RISK_LEVELS = ["lock", "loss"], RISK_WHEN = ["set", "clear", "both"];
 /** The save bit(s) a resolved leaf field edits, as a key that is the same for every tab showing that bit. */
 const bitKey = (f) => `${f.scope}:${num(f.offset)}:${f.mask != null ? "m" + num(f.mask) : `s${num(f.shift ?? 0)}b${num(f.bits ?? 0)}`}`;
 
+/** What a preset keeps from the file it replaces: who the file belongs to and how they chose to play it. */
+const PRESET_KEEPS = ["general.playerName", "general.heroMode"];
+
+/**
+ * Applies a preset the way a real save at that point would look: every file it targets is emptied first, then the
+ * preset's values are written, so nothing from the old file is left under them. Only the hero's name and the Hero
+ * Mode setting carry over (a name the preset supplies "onlyIfEmpty" therefore yields to the file's own). Full-file
+ * (image) presets already replace their files and go straight through. Returns writePreset's result.
+ */
+export function applyPresetFresh(defs, save, preset, slot) {
+  const isImage = (preset.apply || []).some((e) => e.image);
+  if (isImage || preset.scope !== "slot") return writePreset(defs, save, preset, slot);
+  const targets = [...new Set((preset.apply || []).map((e) => (e.slot ? e.slot - 1 : slot)))];
+  const empty = defs.fieldsById.get(defs.layout.slotSummary?.empty);
+  const kept = new Map();
+  for (const t of targets) {
+    const wasEmpty = empty && !empty.invalid ? save.read(empty, t) : false;
+    kept.set(t, wasEmpty ? [] : PRESET_KEEPS.map((k) => defs.fieldsById.get(k)).filter((f) => f && !f.invalid).map((f) => [f, save.read(f, t)]));
+    save.clearScope("slot", t, { force: true });
+    for (const [f, v] of kept.get(t)) if (f.type === "string") save.write(f, t, v); // before, so "onlyIfEmpty" names yield
+  }
+  const result = writePreset(defs, save, preset, slot);
+  for (const t of targets) for (const [f, v] of kept.get(t)) if (f.type !== "string") save.write(f, t, v); // after: flag tables are written whole
+  return result;
+}
+
 /**
  * Stamps "risk" / "riskWhen" / "riskWhy" onto fields from the risks file: its "flags" entries reach every field
  * that edits the same bit (so the Inventory tab and the Item flags tab warn alike), its "fields" entries one field

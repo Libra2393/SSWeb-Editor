@@ -207,8 +207,9 @@ changes a real Sky Recomp playthrough made from the after-Levias state to the ga
 play time adds the 43 m 23 s that section took in a continuously recorded walkthrough.
 
 The tool copies the story, item, dungeon, scene and chest flag arrays as words, plus spawn, stats, pouch and storage.
-It leaves the name, play time, Hero Mode, kill and hit statistics, map beacons and undescribed bytes to the save the
-preset is applied to. Add a description and sources by hand afterwards. Give `all` instead of a slot number to copy
+It doesn't copy the name, Hero Mode, kill and hit statistics, map beacons or undescribed bytes. When a preset is
+applied the editor empties the file first (`applyPresetFresh` in `js/defs.js`), so those start from zero as on a new
+file; only the name and the Hero Mode setting of the file being replaced carry over. Add a description and sources by hand afterwards. Give `all` instead of a slot number to copy
 every file, and `--image` to copy slots byte for byte (limited to the reference's format); `--group "<name>"` sets
 the list heading.
 
@@ -293,9 +294,10 @@ for research; it is derived from the game data, so keep it to yourself.
   entry marks one field by key; a field can also carry `risk` / `riskWhen` / `riskWhy` itself. Marked fields show ⚠
   and the editor asks before a change in the dangerous direction. It warns; it never blocks. The reasons are
   inferences from how the game grants rewards, not tested cases.
-- **Presets look at the target first.** A full-file preset names every occupied file it would replace. A field-list
-  preset warns when the file is further along than the preset, or is in use at all when the preset doesn't carry the
-  whole flag tables, because the leftovers make a state no playthrough produces.
+- **A preset replaces the file.** Every preset lands on a clean slate: the file is emptied, then the preset's values
+  are written, so nothing from the old file is left under an earlier story state. Only the hero's name and the Hero
+  Mode setting carry over. Before applying, the editor names every occupied file that would be replaced and how long
+  it was played; "Revert changes" undoes it until you save.
 
 A section with `"advanced": true` is a research tab: it stays hidden until the **Advanced** box at the end of the tab
 bar is ticked (remembered per browser). The Story flag table, Item flags, Scene flags, Enemies and Cutscenes tabs are
