@@ -189,13 +189,13 @@ export class SaveFile {
     return false;
   }
 
-  /** Recomputes checksums for scopes whose bytes changed (or every scope with `all`). Returns what was rewritten. */
-  updateChecksums({ all = false } = {}) {
+  /** Recomputes checksums for scopes whose bytes changed (every scope with `all`; just `only`: [[checksumIndex, index]]). Returns what was rewritten. */
+  updateChecksums({ all = false, only = null } = {}) {
     const fixed = [];
     this.defs.layout.checksums.forEach((cs, i) => {
       for (let n = 0; n < this.scopeCount(cs.scope); n++) {
         if (!CHECKSUMS[cs.algorithm]) continue;
-        if (!all && !this.checksumParts(cs).some((p) => this.scopeChanged(p.scope, n))) continue;
+        if (only ? !only.some(([ci, cn]) => ci === i && cn === n) : !all && !this.checksumParts(cs).some((p) => this.scopeChanged(p.scope, n))) continue;
         if (this.resignWithheld(i, n)) continue;
         const sum = this.computeChecksum(cs, n);
         this.view.setUint32(this.scopeBase(cs.scope, n) + num(cs.store), sum, this.defs.layout.endian === "little");
