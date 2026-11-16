@@ -74,7 +74,7 @@ byte-swapped.
 | Thing | Wii | HD | Conversion rule |
 |---|---|---|---|
 | Game ID, `general.region` (file 0x00, 4 chars) | `SOUE` / `SOUP` / `SOUJ` / `SOUK` | `PROJ` | Belongs to the file, not to a slot. Import never touches the target's. Dropped on Wii → HD. For a whole-file HD → Wii conversion the user must pick the region of their disc; there is no default. |
-| Header word at 0x1C | `0x1D` | `0x2B` | Meaning unknown (one sample each). Import leaves the target's. |
+| Header word at 0x1C | `0x1D` | `0x2B` | On Wii the game rejects the whole save unless it is `0x1D` (`checkFileStatus` in the decompilation), and checks the region too. HD meaning unknown (one sample). Import leaves the target's; whole-file HD → Wii must write `0x1D`. |
 | Number of files | 3 | 4 (the 4th is the game's autosave) | Import is one file at a time into the file the user selected. The HD autosave can be a source like any other. Nothing is ever written to HD file 4 unless the user selects it. |
 | Cutscenes-seen block | 0xFB60, 3 × 0x24: 16 words + CRC32 of them | 0x14F20, 4 × 0x24: 16 words + 4 bytes always zero | See below. |
 | `skip.dat` (separate file) | 0x80 bytes, same three chunks | 0xA0 bytes | Not written by import. HD rebuilds it from the save's copy (observed). Whole-file HD → Wii can offer a matching `skip.dat` download. |
@@ -85,18 +85,19 @@ byte-swapped.
 **Finding on the way: the Wii save has the cutscene block too.** The decompilation's `SavedSaveFiles` puts
 `SkipData skipData[3]` right after the third slot, and the reference save confirms it: three 0x24-byte chunks at
 0xFB60, each 0x20 bytes of flags followed by their CRC32 (big-endian), identical to the chunks in that save's
-`skip.dat`. The editor's Wii layout currently has a wrongly placed "Trailer" scope there (0xFBA0, 0x40) and no
-checksum for it. Fixing that is step 0 of the work: it makes the Cutscenes tab work on Wii saves, closes the "last
-0x40 bytes" item, and is needed for conversion anyway.
+`skip.dat`. The game signs every chunk, used or not (`initSkipData`, `clearFileA`), and on load wipes a chunk whose
+CRC is wrong and re-signs it (`checkFileStatus`) — so a bad chunk costs the player their skips, not their save. The
+editor's Wii layout had a wrongly placed "Trailer" scope there and no checksum for it; step 0 (branch
+`wii-cutscene-block`) fixes that.
 
 **Cutscene bits.** The numbering agrees where it can be compared: the seven bits named from HD play (opening,
-first trip to the Sealed Grounds) are all set in the Wii 100% save at the same word and bit. HD also uses bits the
-Wii never sets: an HD file had a bit in word 8, while words 8–15 are zero in the Wii 100% save. These bits record
-cutscenes watched, not progress; on Wii they are what allows skipping.
+first trip to the Sealed Grounds) are all set in the Wii 100% save at the same word and bit. Counting 16-bit words,
+the Wii 100% save uses words 0–4 and 6–8 in all three files; every HD bit seen so far is inside that range. (An
+earlier draft said HD used a word the Wii never sets; that came from counting bytes in one format and words in the
+other.) These bits record cutscenes watched, not progress; on Wii they are what allows skipping.
 
 - Wii → HD: copy the 16 words (byte-swapped); the 4 trailing bytes stay zero.
-- HD → Wii: copy words 0–7, leave words 8–15 zero, write the chunk's CRC32. Dropping the HD-only words is the
-  cautious choice until someone knows what the Wii does with them (open question).
+- HD → Wii: copy the 16 words (byte-swapped), write the chunk's CRC32. Nothing is dropped.
 
 ## 2. The scopes that travel together (HD)
 
@@ -138,7 +139,6 @@ spawn. The complete list of bytes that do not come from the source file:
 2. The slot checksum and, on Wii, the cutscene chunk's checksum: computed.
 3. HD playthrough ID: the target file's own, unchanged.
 4. HD extra block: zero.
-5. HD → Wii only: cutscene words 8–15 dropped.
 
 Nothing is set that the source did not have, and the hero's name and Hero Mode come from the **source** (unlike a
 preset, this is the player's own file moving across).
@@ -170,8 +170,8 @@ Two things conversion cannot make safe, and will say so:
 - A filled Wii file imported into an HD save: every shared field reads the same through the HD definitions; the
   saved-at time is the same wall-clock second; checksums valid; the other files and the shared block are untouched;
   the target's playthrough ID is unchanged; the extra block is zero.
-- The same in the other direction; cutscene words 8–15 zero and the chunk CRC valid.
-- Wii → HD → Wii: slot bytes identical. HD → Wii → HD: identical except the dropped cutscene words.
+- The same in the other direction; the cutscene words carried over and the chunk CRC valid.
+- Wii → HD → Wii and HD → Wii → HD: slot and cutscene bytes identical.
 - A bad-checksum source is refused and the target is not changed.
 - Import onto a bad-on-load target ends valid; revert restores the hold.
 - Same-format import equals Copy to.
@@ -194,9 +194,9 @@ conversion got differently from the game.
 
 1. **HD second block, byte 0x10** — set by the game on files it has saved? Needs one game-written HD save (the
    device with the live Sky Recomp save was offline when this was written).
-2. **Header word 0x1C** (`0x1D` Wii, `0x2B` HD) and the **HD shared block** — meaning unknown. Import avoids both;
-   whole-file conversion cannot.
-3. **Cutscene words 8–15 on Wii** — unused, or used and just never set in the one Wii save seen?
+2. **Header word 0x1C on HD** (`0x2B`) and the **HD shared block** — meaning unknown. (On Wii, 0x1C must be `0x1D`:
+   settled by the decompilation.) Import avoids both; whole-file conversion cannot.
+3. **Cutscene words 9–15** — unused in both formats, or used and never set in the saves seen? Copied as they are either way.
 4. **Widths of 0x2E64–0x2F63 and 0x53B5–0x53BB** — zero everywhere so far.
 5. **Saved-at time zone** — is the HD value really UTC, and does anything but the file-select screen read it?
 6. **HD-only state inside the slot** — none is known, and no field differs between the definitions, but a
