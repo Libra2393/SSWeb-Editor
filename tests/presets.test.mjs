@@ -108,3 +108,19 @@ for (const id of FORMATS) {
 test("golden counts file is written when asked", { skip: !update }, () => {
   writeFileSync(path.join(ROOT, GOLDEN), JSON.stringify(seen, null, 2) + "\n");
 });
+
+// Values every save made by playing has, whatever its progress (checked against native Sky Recomp, HD and Wii saves).
+// A story preset without them makes the game run its new-game setup over the file, or leaves Sky Keep unlaid.
+const PLAYED = [["general.introViewed", true], ["storytable.f842", true], ["storytable.f204", true], ["storytable.f119", true],
+  ["story.f08FB_40", true], ["sceneflags.s0f99", true],
+  ...[0, 1, 2, 3, 4, 5, 6, 7, 255].map((v, i) => [`general.skyKeep${i + 1}`, v])];
+for (const id of FORMATS) {
+  const d = defsFor(id);
+  test(`${id} D7: every story preset carries what every played save has`, () => {
+    for (const p of d.presets.filter((p) => p.scope === "slot" && !isImage(p))) {
+      const s = open(d, emptyBytes(d));
+      applyPresetFresh(d, s, p, 0);
+      for (const [k, v] of PLAYED) assert.equal(s.read(field(d, k), 0), v, `${p.id}: ${k}`);
+    }
+  });
+}
