@@ -4,7 +4,7 @@
   "title": "Cutscenes",
   "scope": "skip",
   "layout": "flags",
-  "description": "Cutscene-seen bits for this file: 16 words in the save's own copy (Wii at 0xFB60 with a CRC32, HD at 0x14F20; 0x24 bytes per file). The bit numbering is the same in both formats. skip.dat beside the save mirrors this block and isn't edited here; on Wii, which of the two copies the game reads to allow skipping isn't confirmed. HD offers Skip on unseen cutscenes too.",
+  "description": "Cutscene-seen bits for this file, as the save's own copy holds them (16 words; Wii at 0xFB60 with a CRC32, HD at 0x14F20; the same numbering in both). The game reads these marks from skip.dat beside the save and copies them into the save when it saves the file, so a change here lasts only if skip.dat is written too. Wii: open the game's skip.dat (⋯ → Open skip.dat…) and Save writes it back. HD: skip.dat isn't mapped yet and the editor doesn't write it, so the game may undo changes made here. HD offers Skip on unseen cutscenes too.",
   "groups": [
     {
       "title": "Named so far",

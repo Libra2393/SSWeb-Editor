@@ -29,6 +29,8 @@
         <div class="menu-body">
           <button id="downloadOrigBtn" disabled>Download original (as loaded)</button>
           <button id="downloadSkipBtn" hidden>Download skip.dat (from SD import)</button>
+          <button id="openSkipBtn" hidden title="Read the game's skip.dat (beside wiiking2.sav) so the Cutscenes tab shows, and Save writes, what the game uses">Open skip.dat…</button>
+          <button id="saveSkipBtn" hidden title="Download skip.dat as this save's cutscene block now stands">Download skip.dat</button>
           <button id="compareBtn" disabled>Compare with another save…</button>
           <button id="fixAllBtn" disabled>Recompute all checksums</button>
           <button id="resignBtn" disabled title="Only available when a file's checksum was already wrong when this save was opened">Re-sign bad checksums anyway</button>
@@ -40,6 +42,7 @@
     <input type="file" id="fileInput" hidden>
     <input type="file" id="compareInput" hidden>
     <input type="file" id="importInput" hidden>
+    <input type="file" id="skipInput" hidden>
     <input type="file" id="defFileInput" accept=".json,application/json" multiple hidden>
     <input type="file" id="defsDirInput" webkitdirectory hidden>
   </header>

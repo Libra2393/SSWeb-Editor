@@ -6,6 +6,7 @@ import { loadFromServer, loadFromFiles, loadWith, addSection, applyVariants, for
 import { looksLikeSdExport, parseKey, readSdExport } from "./wiisd.js";
 import { diffSlots } from "./compare.js";
 import { importFile, importProblems, songOfTheHeroRisk } from "./convert.js";
+import { skipSidecar, skipDatBytes, skipDatProblems, readSkipDat, skipDatChanged } from "./skipdat.js";
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
@@ -116,9 +117,23 @@ function wire() {
   $("#openBtn").onclick = openFile;
   $("#fileInput").onchange = (e) => e.target.files[0] && loadFile(e.target.files[0], null);
   $("#saveBtn").onclick = saveInPlace;
-  $("#downloadBtn").onclick = () => { const b = prepareBytes(); if (b) download(b, state.fileName); };
+  $("#downloadBtn").onclick = () => {
+    const writeSkip = skipDatPlan();
+    if (writeSkip === null) return;
+    const b = prepareBytes();
+    if (!b) return;
+    download(b, state.fileName);
+    if (writeSkip) download(skipDatBytes(state.save), "skip.dat");
+  };
   $("#downloadOrigBtn").onclick = () => download(state.save.original, state.fileName.replace(/(\.sav)?$/, ".orig.sav"));
   $("#downloadSkipBtn").onclick = () => state.imported?.skip && download(state.imported.skip, "skip.dat");
+  $("#openSkipBtn").onclick = openSkipDat;
+  $("#skipInput").onchange = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = "";
+    if (file) takeSkipDat(new Uint8Array(await file.arrayBuffer()), file.name, null);
+  };
+  $("#saveSkipBtn").onclick = () => { if (prepareBytes()) download(skipDatBytes(state.save), "skip.dat"); };
   $("#fixAllBtn").onclick = () => {
     const fixed = state.save.updateChecksums({ all: true });
     const held = withheldChecksums().map((h) => h[2]);
@@ -224,6 +239,7 @@ function openBytes(buf, name, handle, imported) {
   state.handle = imported ? null : handle;
   state.backedUp = false;
   state.imported = imported;
+  state.skip = null;
   state.compare = null;
   state.slot = firstUsedSlot();
   renderAll();
@@ -267,10 +283,55 @@ function prepareBytes() {
   return state.save.bytes;
 }
 
+// ---------------------------------------------------------------- skip.dat (cutscene marks; js/skipdat.js)
+
+async function openSkipDat() {
+  if (window.showOpenFilePicker) {
+    try {
+      const [handle] = await window.showOpenFilePicker({ types: [{ description: "skip.dat beside the save", accept: { "application/octet-stream": [".dat"] } }] });
+      return takeSkipDat(new Uint8Array(await (await handle.getFile()).arrayBuffer()), handle.name, handle);
+    } catch (e) { if (e.name === "AbortError") return; }
+  }
+  $("#skipInput").click();
+}
+
+function takeSkipDat(bytes, name, handle) {
+  const problems = skipDatProblems(state.save, bytes);
+  if (problems.length) return toast(`${name} wasn't read: ${problems.join(" ")}`, true);
+  readSkipDat(state.save, bytes);
+  state.skip = { name, handle };
+  renderAll();
+  toast(`Read ${name}: the Cutscenes tab now shows the game's own record, and Save writes ${handle ? `${name} back` : "a skip.dat beside the save as a download"}.`);
+}
+
+/**
+ * Whether a save should also write skip.dat: true, false, or null when the user backs out. With the game's skip.dat
+ * opened it is always written. Without it, a changed cutscene block is written only if the user agrees, since the
+ * other files would then take this save's copy of their marks, which may be older than the game's.
+ */
+function skipDatPlan() {
+  if (!skipSidecar(state.defs)) return false;
+  if (state.skip) return true;
+  if (!skipDatChanged(state.save)) return false;
+  const ok = confirm("The game reads cutscene marks from skip.dat beside the save, not from the save itself, so cutscene changes only last if skip.dat is written too.\n\n" +
+    "skip.dat hasn't been opened, so the one written would be built from this save: every file's marks, including files you didn't change, which may be older than the game's own.\n\n" +
+    "OK: also download skip.dat built from this save. Cancel: save without it (or cancel, then ⋯ → Open skip.dat… first, to keep the game's record).");
+  return ok;
+}
+
+async function writeSkipDat() {
+  const bytes = skipDatBytes(state.save);
+  if (!state.skip?.handle) return download(bytes, "skip.dat");
+  const w = await state.skip.handle.createWritable();
+  try { await w.write(bytes); await w.close(); } catch (e) { await w.abort().catch(() => {}); throw e; }
+}
+
 async function saveInPlace() {
+  const writeSkip = skipDatPlan();
+  if (writeSkip === null) return;
   const bytes = prepareBytes();
   if (!bytes) return;
-  if (!state.handle) return download(bytes, state.fileName);
+  if (!state.handle) { download(bytes, state.fileName); if (writeSkip) await writeSkipDat(); return; }
   if (!state.backedUp) {
     // `original` is still exactly what is on disk (markSaved rebases it only after a successful write), and
     // createWritable truncates the file, so this is the last moment the as-loaded save can be kept.
@@ -286,9 +347,12 @@ async function saveInPlace() {
       await w.abort().catch(() => {});
       throw e;
     }
+    if (writeSkip) {
+      try { await writeSkipDat(); } catch (e) { state.save.markSaved(); renderAll(); return toast(`Saved ${state.fileName}, but skip.dat couldn't be written (${e.message}). Use ⋯ → Download skip.dat.`, true); }
+    }
     state.save.markSaved();
     renderAll();
-    toast(`Saved ${state.fileName}`);
+    toast(`Saved ${state.fileName}${writeSkip ? ` and ${state.skip?.handle ? state.skip.name : "skip.dat (downloaded)"}` : ""}`);
   } catch (e) {
     toast(`Couldn't write the file (${e.message}). Use “Download copy” instead.`, true);
   }
@@ -337,6 +401,9 @@ function openImport(name, bytes) {
     if (!problems.length) {
       if (across) out.push(p(`The file is converted to the ${state.defs.format.label} byte order. Its saved-at time keeps the same clock time; everything else is the file as it is.`));
       if (state.defs.layout.scopes.slot.clear?.keep?.length) out.push(p(`${target} keeps its own playthrough ID.`));
+      out.push(p(skipSidecar(state.defs)
+        ? `The file's cutscene marks come along into the save, but the game reads them from skip.dat. ${state.skip ? `Save writes ${state.skip.name} too.` : "Open the game's skip.dat first (⋯ → Open skip.dat…) so Save writes it; otherwise Save offers one built from this save."}`
+        : "The file's cutscene marks come along into the save, but on HD the game restores them from its own skip.dat, which the editor can't write yet, so they may not last."));
       const tEmpty = summaryField("empty"), tTime = summaryField("playTime");
       if (tEmpty && !tEmpty.invalid && !state.save.read(tEmpty, to)) out.push(p(`${target} already contains a save (${fmtDuration(state.save.read(tTime, to))} played). ` +
         "The import replaces it completely, and it can't be recovered after saving.", "warn"));
@@ -486,6 +553,7 @@ function renderAll() {
   const from = state.imported ? ` · imported from ${state.imported.from} (decrypted locally)` : "";
   $("#fileInfo").textContent = `${state.fileName} · ${format.label}${where}${from}` + (state.handle ? "" : " · Save will download");
   $("#downloadSkipBtn").hidden = !state.imported?.skip;
+  $("#openSkipBtn").hidden = $("#saveSkipBtn").hidden = !skipSidecar(state.defs);
   $("#saveBtn").title = state.handle ? `Write back to ${state.fileName}` : "This browser can't write the file back, so Save downloads it";
   renderSlots();
   renderSlotTools();

@@ -23,6 +23,10 @@
     "skip": { "label": "File {n} cutscenes seen", "units": [["0x0", "0x20", 2]], "base": "0xFB60", "stride": "0x24", "size": "0x24", "count": 3, "description": "Per-file cutscene-seen bits: 16 big-endian words of flags, then their CRC32 (the decompilation's SavedSaveFiles.skipData). skip.dat beside the save holds the same three chunks. The game wipes a chunk to zero and re-signs it when its CRC is wrong, and when a file is cleared." },
     "tail": { "label": "Trailer", "base": "0xFBCC", "size": "0x14", "description": "0x14 bytes after the cutscene block, unknown (unk2 in the decompilation). Zero in every save seen." }
   },
+  "sidecars": [
+    { "file": "skip.dat", "start": "0xFB60", "length": "0x80", "scope": "skip",
+      "description": "skip.dat beside the save is byte for byte the save's cutscene block plus its trailer (0xFB60-0xFBE0, CRCs included). The game reads cutscene marks from skip.dat and, when it saves a file, writes that file's chunk from it into the save; so cutscene edits only last if skip.dat is written too. Checked in Dolphin against a game-written pair." }
+  ],
   "checksums": [
     {
       "scope": "slot",

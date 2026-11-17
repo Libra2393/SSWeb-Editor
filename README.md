@@ -77,7 +77,9 @@ layout's `clear` entry on the slot scope says what to keep; a format without one
 
 **Import from another save…** (next to Copy to) replaces the selected file with a file from another `wiiking2.sav`,
 Wii or HD, converted to the open save's format: every value is byte-swapped by the slot's `units` map, the saved-at
-time keeps the same clock time (HD has no sub-second part), and the cutscene bits come along. The open save keeps its
+time keeps the same clock time (HD has no sub-second part), and the cutscene marks come along into the save's own
+copy. They last only once `skip.dat` is written: on Wii open it first (⋯ → Open skip.dat…) and Save writes it; on HD
+the editor can't write it yet (see Known gaps). The open save keeps its
 header, region and other files, and on HD the file keeps its own playthrough ID; HD's extra blocks are zero unless
 the source is an HD save too. A source file that is empty or has a bad checksum can't be imported (the dialog says why), and an HD
 file partway through the Song of the Hero quest gets a warning before it goes to Wii, where that quest has a bug.
@@ -229,7 +231,7 @@ The **All Dungeons practice** group (Wii only) holds 25 presets, one per split o
 [All Dungeons practice saves](https://github.com/minimini352/SS-All-Dungeons-Saves), from the start of the run to
 the Horde. Each replaces files 1–3 with exact copies of that save's files: the main file plus the helper files the
 route uses for Back in Time. They were made on the Japanese version and keep its file names and play times.
-Cutscene skipping also needs a `skip.dat` with the cutscenes marked as seen, which presets don't write. They were
+Cutscene skipping also needs the cutscenes marked as seen in `skip.dat`, and the presets mark none. They were
 made with:
 
 ```bash
@@ -398,16 +400,26 @@ This is not legal advice. If you're unsure, ask a lawyer.
 - Story-flag labels come from the old WiiKing2 research notes (`Skyward Sword Flags.txt`) and are rough.
 - On Wii, the 0x14 bytes after the cutscene block (0xFBCC, the "Trailer" scope in Raw bytes) are unknown; they are
   zero in every save seen.
-- `skip.dat` (cutscene-skip flags) is a separate file and isn't supported yet. Both formats keep their own copy of
-  the same bits in the save, which the **Cutscenes** tab edits: Wii at `0xFB60` (three 0x24-byte chunks, 16 big-endian
-  words plus their CRC32, identical to `skip.dat` on a real save), HD at `0x14F20` (four chunks, no checksum). The bit
-  numbering is the same in both. The Wii game re-signs a chunk whose CRC is wrong after wiping it to zero, and wipes a
+- **Cutscene marks live in `skip.dat`.** The game reads which cutscenes a file has seen from `skip.dat` beside the
+  save, and when it saves a file it copies that file's marks from it over the save's own copy. Checked in Sky Recomp
+  and in Dolphin: marks put into the save with an empty `skip.dat` entry were zero again after one in-game save. So
+  the in-save copy the **Cutscenes** tab edits only lasts if `skip.dat` is written too. Both formats keep that copy:
+  Wii at `0xFB60` (three 0x24-byte chunks, 16 big-endian words plus their CRC32), HD at `0x14F20` (four chunks, no
+  checksum); the bit numbering is the same in both.
+  - **Wii:** `skip.dat` is byte for byte the save's `0xFB60`–`0xFBE0` (the three chunks, CRCs included, then the
+    trailer). **⋯ → Open skip.dat…** reads the game's file into the save, so the Cutscenes tab shows what the game
+    uses, and **Save** writes it back beside the save (in place when the browser can, otherwise as a download). A save
+    whose cutscene marks changed without `skip.dat` opened offers to download one built from the save; that one
+    gives every file the save's copy of its marks, which can be older than the game's.
+  - **HD:** `skip.dat` is 0x28 bytes per file, four bytes more than the save's chunk, and those bytes aren't mapped.
+    The editor doesn't read or write it, so on HD the game restores cutscene marks from its own `skip.dat`: edits in
+    the Cutscenes tab and marks brought in by an import may not last.
+ The Wii game re-signs a chunk whose CRC is wrong after wiping it to zero, and wipes a
   file's chunk when the file is cleared; the editor clears it with the file the same way. In Sky Recomp v2.0.2
   watching the opening set 5 bits there (`0x02`: `0x02 0x04 0x08 0x40`, `0x0C`: `0x10`) while `skip.dat`'s copy
   stayed zero, and the game offered Skip on the opening with every bit cleared, so in HD these bits don't gate
   skipping. Which bit is which cutscene isn't known yet; Antidote's Wii labels don't match.
-  `skip.dat` is a per-file record of watched cutscenes that the game rebuilds from the save's own copy: delete it and
-  the game writes a new one. Edit the in-save copy (the Cutscenes tab); `skip.dat` follows.
+  Deleting `skip.dat` makes the game write a new one.
   The cutscenes themselves are listed per stage in each stage archive's `dat/zev.dat` ("wZ": 40-byte records of a
   32-character event name, a flag word and a step offset/count). The records don't carry a cutscene-bit number, so
   naming the bits still takes playtests or tracing the game code. `Object/NX/EventD.arc` is an empty stub.
