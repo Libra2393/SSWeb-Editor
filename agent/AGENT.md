@@ -53,3 +53,9 @@ Digest format, kept short: **Changes since last sweep** (issues/PRs/CI) · **Bug
 ## First run
 
 Supervised: set up the state branch and folders, write this charter as `agent/AGENT.md` in each repo, run one sweep in front of Mark, and show him the digest before the schedule goes live. If the digest format annoys him, fix the format first — he has to want to read these.
+
+## Mark's decisions
+
+- 2026-11-21 — **pcsx2-reliquary is research only.** The agent reads the repo, its CI and its build output, and writes research notes for Mark. It never pushes, commits, branches, opens PRs or issues there, and never writes to its research/ pages. Mark reviews the notes and writes any documentation himself, by hand. Why: the repo's AGENTS.md bars AI-written commits, PRs and issues on GitHub, and the goal is documentation for people building recomps of rare or non-running PS2 games, not fixes for PCSX2.
+- Notes for pcsx2-reliquary go to Mark directly (sent as a file, or saved in a local folder on his PC when sweeps run there). Never to GitHub.
+- Mark reviews every change by hand.
