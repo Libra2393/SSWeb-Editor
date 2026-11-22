@@ -1,6 +1,6 @@
 # SSWeb-Editor — work queue
 
-Last updated: 2026-11-21 (first sweep, main @ 2b2bcbc)
+Last updated: 2026-11-21 pm sweep (main @ 2b2bcbc)
 
 ## 1. Extra Wallets can't be edited (issue #1)
 - **Goal:** let users give themselves Extra Wallets (+300 each), so saves like the one in issue #1 can be fixed.
@@ -9,12 +9,9 @@ Last updated: 2026-11-21 (first sweep, main @ 2b2bcbc)
 - **Legal-edit check:** only allow counts the real game can reach. Add a risk entry like the other wallets (clearing it may lose the item).
 - **Size:** M (most of the work is confirming storage on real saves).
 
-## 2. Tracker "Wallets" group lists only 2 of 4 wallets
-- **Goal:** confirm whether this is on purpose.
-- **Evidence:** `defs/tracker.json` "Wallets" group has `mediumWallet` and `tycoonWallet`; `bigWallet` and `giantWallet` exist in `defs/inventory.json` but are not listed.
-- **First step:** check other tracker groups to see if they list every field or only a sample.
-- **Size:** S.
-
-## 3. Branch tidy-up (Mark only)
+## 2. Branch tidy-up (Mark only)
 - 11 branches on GitHub besides `main`. Some may be already merged. The agent never deletes branches; this is a list for Mark to review.
 - **Size:** S.
+
+## Done
+- **Tracker "Wallets" group (was item 2) — on purpose, not a bug.** Other wishlist groups also list only some fields (Swords: 3, Songs and Triforce pieces: 3, Bugs: 3, Cutscenes: 7). README "Coverage tracker" says an item is *in editor* once the listed fields exist, so a sample is enough. All 4 wallets are editable in `defs/inventory.json`. Closed 2026-11-21 pm.
