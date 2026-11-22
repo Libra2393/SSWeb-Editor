@@ -37,7 +37,9 @@
     {"type": "itemflag", "flag": 108, "name": "Medium Wallet", "risk": "loss", "riskWhen": "clear", "why": "Clearing this takes the item away while the story flags that say you already received it stay set, so the game may never offer it again."},
     {"type": "itemflag", "flag": 109, "name": "Big Wallet", "risk": "loss", "riskWhen": "clear", "why": "Clearing this takes the item away while the story flags that say you already received it stay set, so the game may never offer it again."},
     {"type": "itemflag", "flag": 110, "name": "Giant Wallet", "risk": "loss", "riskWhen": "clear", "why": "Clearing this takes the item away while the story flags that say you already received it stay set, so the game may never offer it again."},
-    {"type": "itemflag", "flag": 111, "name": "Tycoon Wallet", "risk": "loss", "riskWhen": "clear", "why": "Clearing this takes the item away while the story flags that say you already received it stay set, so the game may never offer it again."}
+    {"type": "itemflag", "flag": 111, "name": "Tycoon Wallet", "risk": "loss", "riskWhen": "clear", "why": "Clearing this takes the item away while the story flags that say you already received it stay set, so the game may never offer it again."},
+    {"type": "itemflag", "flag": 508, "name": "Extra Wallets", "risk": "loss", "riskWhen": "clear", "why": "Lowering the count takes Extra Wallets away. Whether Beedle sells them again afterwards isn't known yet, so they may not be offered again."},
+    {"type": "itemflag", "flag": 199, "name": "Extra Wallet obtained", "risk": "loss", "riskWhen": "clear", "why": "Clearing this while Extra Wallets are owned leaves the save unlike any the game writes; whether the game then offers them again isn't known yet."}
   ],
   "fields": {
     "dungeons.skyviewBoss": {"risk": "loss", "riskWhen": "set", "why": "Marking the boss as defeated by hand can permanently skip what beating it gives you, such as its Heart Container."},

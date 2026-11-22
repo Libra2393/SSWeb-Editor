@@ -54,7 +54,11 @@
         { "id": "mediumWallet", "label": "Medium Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0004", "storage": "u16" },
         { "id": "bigWallet", "label": "Big Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0008", "storage": "u16" },
         { "id": "giantWallet", "label": "Giant Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0010", "storage": "u16" },
-        { "id": "tycoonWallet", "label": "Tycoon Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0020", "storage": "u16" }
+        { "id": "tycoonWallet", "label": "Tycoon Wallet", "type": "flag", "offset": "0x09EE", "mask": "0x0020", "storage": "u16" },
+        { "id": "extraWallets", "label": "Extra Wallets", "type": "u16", "offset": "0x0A62", "shift": 14, "bits": 2, "min": 0, "max": 3,
+          "description": "How many Extra Wallets Link has, 0 to 3; each adds 300 to the rupee capacity of his largest wallet (the decompilation's ExtraWalletCounter, item counter 508, maximum 3). Every save seen that has them has all 3, with \"Extra Wallet obtained\" set." },
+        { "id": "extraWalletObtained", "label": "Extra Wallet obtained", "type": "flag", "offset": "0x09FC", "mask": "0x0400", "storage": "u16",
+          "description": "Item flag 199. Set in every save seen that has Extra Wallets and clear in every save without them; keep it set while Extra Wallets is 1 or more." }
       ]
     },
     {
