@@ -1,6 +1,6 @@
 # SSWeb-Editor — work queue
 
-Last updated: 2026-11-23 am sweep (main @ 2b2bcbc)
+Last updated: 2026-11-23 pm sweep (main @ 2b2bcbc)
 
 ## 1. Extra Wallets can't be edited (issue #1)
 - **Status:** in progress — live session (Mark + Claude), 2026-11-22. Sweeps: don't open a draft PR for this item.
