@@ -380,7 +380,7 @@
         "inventory.extraWallets",
         "inventory.extraWalletObtained"
       ],
-      "note": "A counter, 0-3 (item counter 508, 2 bits at 0x0A62), plus the obtained flag (item flag 199). From the decompilation's ExtraWalletCounter and rupee capacity code; every real save checked agrees (Wii and HD 100% saves: 3 and set; others 0 and clear)."
+      "note": "A counter, 0-3 (item counter 508, 2 bits at 0x0A62), plus the obtained flag (item flag 199). From the decompilation's ExtraWalletCounter and rupee capacity code; every real save checked agrees (Wii and HD 100% saves: 3 and set; others 0 and clear). Checked in Sky Recomp: with 3 set by the editor on a Giant Wallet, rupees went past 5,600 (5,000 + 2 x 300) and the game kept the count; with 2, Beedle's stock stayed sold out, so lowering the count loses them."
     },
     {
       "category": "Items",
