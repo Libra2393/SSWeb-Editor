@@ -1,9 +1,9 @@
 # SSWeb-Editor — work queue
 
-Last updated: 2026-11-25 am sweep (main @ 2b2bcbc)
+Last updated: 2026-11-25 pm sweep (main @ ed964d7)
 
 ## 1. Extra Wallets can't be edited (issue #1)
-- **Status:** fixed — merged to main at ed964d7 on 2026-11-25 (Extra Wallets 0-3 + obtained flag; verified by Muse; tested in Sky Recomp). Reply on issue #1 waits for Mark's approval of the text. Sweeps: nothing to do here.
+- **Status:** fixed — merged to main at ed964d7 on 2026-11-25 (Extra Wallets 0-3 + obtained flag; verified by Muse; tested in Sky Recomp). Mark replied on issue #1 on 2026-11-26 00:22 UTC. Issue is still open; closing it is Mark's call (wait for the reporter, or close). Sweeps: nothing to do here.
 - **Goal:** let users give themselves Extra Wallets (+300 each), so saves like the one in issue #1 can be fixed.
 - **Evidence:** issue #1 (Max7512, 2026-11-11, no reply yet). `defs/inventory.json` has Medium/Big/Giant/Tycoon wallets but no Extra Wallet. `defs/tracker.json` lists it as "known" only: "Item 199 (Extra Wallet) in the item flag table; may be a counter."
 - **First step:** find out how the game stores it. Mark compares two real saves: one before and one after buying an Extra Wallet. If it is one flag, it's a simple field. If it is a counter (0–3), it needs a number field.
@@ -13,7 +13,7 @@ Last updated: 2026-11-25 am sweep (main @ 2b2bcbc)
 - **Size:** M (most of the work is confirming storage on real saves).
 
 ## 2. Branch tidy-up (Mark only)
-- 11 branches on GitHub besides `main`. Some may be already merged. The agent never deletes branches; this is a list for Mark to review.
+- 12 branches on GitHub besides `main` (11 plus `agent/state`). `extra-wallets` is now fully merged (same commit as main, ed964d7). Others may be merged too. The agent never deletes branches; this is a list for Mark to review.
 - **Size:** S.
 
 ## Done
